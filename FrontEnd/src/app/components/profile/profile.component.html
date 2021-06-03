@@ -1,0 +1,143 @@
+<main class="has-dflex-center">
+  <section>
+    <div class="lx-container-100">
+      <div class="lx-row">
+        <h1 class="title">Edit your profile</h1>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="lx-column column-user-pic">
+            <div class="profile-pic bs-md">
+              <h1 class="pic-label">Profile picture</h1>
+              <div class="pic bs-md">
+                <label class="hoverable" for="fileInput">
+                  <img [src]="sanitize()"> 
+                  <div class="hover-text">
+                    <em class="material-icons">add_a_photo</em>
+                  </div>
+                  <div class="background"></div>
+                </label>
+                <br/>
+                <input id="fileInput" type='file' (change)="onSelectFile($event)">
+              </div>
+              <div class="pic-info">
+                <p><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;This photo will appear on the platform, as your avatar.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-8">
+
+          <div class="lx-column">
+            <div class="col-12">
+
+            <form [formGroup]="userForm"class=" needs-validation" novalidate>
+              <div class="row">
+                
+                <div class="col-6">
+                  <label for="validationTooltip01">First name</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="validationTooltipUsernamePrepend">
+                        <em class="material-icons">person_pin</em>
+                      </span>
+                    </div>
+                    <input [ngClass]="{'form-control is-invalid' :userForm.get('name')?.invalid && ( userForm.get('name').dirty || userForm.get('name').touched), 'form-control':1}"
+                    formControlName="name" type="text" class="form-control" id="validationTooltip01" placeholder="First name" required>
+                   <div *ngIf="userForm.get('name')?.invalid && (userForm.get('name').dirty || userForm.get('name').touched)" class="invalid-feedback">
+                     Wrong name
+                   </div>
+                  </div>
+                 
+                </div>
+                <div class="col-6">
+                  <label for="validationTooltipUsername">Username</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="validationTooltipUsernamePrepend">
+                        <em class="material-icons">person</em>
+                      </span>
+                    </div>
+                    <input [ngClass]="{'form-control is-invalid' :userForm.get('username')?.invalid && ( userForm.get('username').dirty || userForm.get('username').touched), 'form-control':1}" formControlName="username" type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required>
+                    <div *ngIf="userForm.get('username')?.invalid && (userForm.get('username').dirty || userForm.get('username').touched)" class="invalid-feedback">
+                      Wrong username
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+             <div class="row">
+             <div class="col-6">
+              <label for="validationTooltip02">Email</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="validationTooltipUsernamePrepend">
+                    <em class="material-icons">email</em>
+                  </span>
+                </div>
+                <input [ngClass]="{'form-control is-invalid' :userForm.get('email')?.invalid && ( userForm.get('email').dirty || userForm.get('email').touched), 'form-control':1}" type="email" class="form-control" id="validationTooltip02" placeholder="Email" formControlName="email" required>
+                <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email').dirty || userForm.get('email').touched)" class="invalid-feedback">
+                  Wrong email
+                </div>
+              </div>
+             
+             </div>
+             <div class="col-6">
+              <label for="validationTooltip03">Password</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="validationTooltipUsernamePrepend">
+                    <em class="material-icons">lock</em>
+                  </span>
+                </div>
+                <input [ngClass]="{'form-control is-invalid' :userForm.get('password')?.invalid && ( userForm.get('password').dirty || userForm.get('password').touched), 'form-control':1}" type="password" class="form-control" id="validationTooltip03" formControlName="password" placeholder="************" required>
+      <div *ngIf="userForm.get('password')?.invalid && (userForm.get('password').dirty || userForm.get('password').touched)" class="invalid-feedback">
+        Weak password
+      </div>
+              </div>
+      
+            </div>
+             </div>
+             <div class="row">
+              <div class="col-6">
+                <label for="validationTooltip04">Confirm Password</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="validationTooltipUsernamePrepend">
+                      <em class="material-icons">lock_open</em>
+                    </span>
+                  </div>
+                  <input [ngClass]="{'form-control is-invalid' :userForm.get('confirmPassword')?.invalid && ( userForm.get('confirmPassword').dirty || userForm.get('confirmPassword').touched), 'form-control':1}" formControlName="confirmPassword" type="password"  class="form-control" id="validationTooltip04" placeholder="************" required>
+                  <div *ngIf="userForm.get('confirmPassword')?.invalid && (userForm.get('confirmPassword').dirty || userForm.get('confirmPassword').touched)" class="invalid-feedback">
+                    Passwords don't match
+                  </div>
+                </div>
+               
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <label for="passc"></label>
+                  <div class="actions">
+                    <button (click)="reset()" type="button" class="btn btn-danger">Clear</button>
+                    <button  (click)="update()" type="button" class="btn btn-success">Save</button>
+                  </div>
+               </div>
+              </div>
+            </form>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<section class="rating-area align-center">
+  <div class="thumbs-up-circle align-center transition-fast">
+  <span class="thumbs-up transition-fast"><i class="icon fa fa-thumbs-up thumb "></i></span>
+  </div>
+  <div class="thumbs-up-circle align-center transition-fast">
+  <span class="thumbs-down transition-fast"><i class="icon fa fa-thumbs-down thumb "></i></span>
+  </div>
+  </section>
