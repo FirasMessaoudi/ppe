@@ -32,6 +32,7 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     this.lang = this.storageService.read('language');
+    
     if (!this.adult) {
       this.storageService.save('adult', false);
     }
@@ -40,6 +41,7 @@ export class SettingsComponent implements OnInit {
 
   languageChange(event: MatSelectChange) {
     this.storageService.save('language', event.value);
+    this.storageService.lang.next(event.value);
     this.translateService.use(event.value);
   }
 

@@ -12,7 +12,6 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 export class TokenStorageService {
   private statusSource = new BehaviorSubject<boolean>(localStorage.getItem(TOKEN_KEY) != null);
   currentStatus = this.statusSource.asObservable();
-  private roles:string;
   constructor() { }
  
   signOut() {

@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { StorageService } from "src/app/service/sharedservice.service";
 import { IMovie } from "src/app/domain/movie";
 import { MovieService } from "src/app/service/movie.service";
+import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-products-list",
@@ -23,16 +25,19 @@ export class ProductsListComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   constructor(
     private storageService: StorageService,
-    private _service: MovieService
+    private _service: MovieService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
+    this.spinner.show();
     this.lang = this.storageService.read("language");
     this._service.trendingMovie().subscribe(
       (res) => (this.movies = res),
       (erreur) => {
         console.log("erreur movie");
         this.showError = true;
+        this.spinner.hide();
       },
       () => {
         console.log(this.movies.results);
@@ -43,9 +48,12 @@ export class ProductsListComponent implements OnInit {
       (erreur) => {
         console.log("erreur movie");
         this.showError = true;
+        this.spinner.hide();
+
       },
       () => {
         console.log(this.tvs.results);
+        this.spinner.hide();
       }
     );
   }

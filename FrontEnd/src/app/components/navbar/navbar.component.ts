@@ -26,6 +26,7 @@ export class NavBarComponent implements OnInit {
 
   modalFormSubscriptionName = new FormControl('', Validators.required);
 modalFormSubscriptionEmail = new FormControl('', Validators.email);
+  dir: any;
   constructor(public router: Router,private storageService: StorageService,  private translateService: TranslateService, private tokenStorage: TokenStorageService) {
     
 
@@ -35,13 +36,26 @@ modalFormSubscriptionEmail = new FormControl('', Validators.email);
     
    
     this.lang = this.storageService.read('language');
+    this.dir= this.lang=='ar'? 'rtl': 'ltr';
+    console.log(this.lang);
 
     this.tokenStorage.currentStatus.subscribe(status => {
       this.isLoggedIn = status;
 
 
 
-    })
+    });
+    this.storageService.langObs.subscribe(
+      res=>{
+        if(res!=null){
+          console.log(res);
+          
+        this.dir= res=='ar'? 'rtl': 'ltr';
+        console.log(this.dir);
+        }
+        
+      }
+    )
   }
   changeLanguage(event){
     console.log("language= "+event);

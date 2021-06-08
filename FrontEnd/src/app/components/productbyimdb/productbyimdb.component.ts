@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { IMovie } from 'src/app/domain/movie';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { MovieModel } from 'src/app/domain/moviemodel';
 import { MovieService } from 'src/app/service/movie.service';
 
@@ -11,13 +11,10 @@ import { MovieService } from 'src/app/service/movie.service';
 })
 export class ProductbyimdbComponent implements OnInit {
   p: number = 1;
-  s: number = 12;
-  t: number = 1;
   top_rated:MovieModel[] = [];
-  isLoading;
   showError: boolean;
   // tslint:disable-next-line:max-line-length
-  constructor(private service: MovieService, private route: ActivatedRoute, private router: Router) {
+  constructor(private service: MovieService, private spinner: NgxSpinnerService, private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
 } ;
@@ -28,18 +25,19 @@ export class ProductbyimdbComponent implements OnInit {
   
   }
   init(){
-   this.isLoading = true;
+   this.spinner.show();
     this.service.getTopRatedMovies(this.p).subscribe(
       res =>
       {this.top_rated.push(...res.results)
-      this.t = res.total_pages;
       },
       erreur => {console.log('erreur movie');
       this.showError = true;
+      this.spinner.hide();
     
     },      ()=>{
         console.log(this.top_rated);
-        this.isLoading = false;
+        this.spinner.hide();
+
 
       }
     );

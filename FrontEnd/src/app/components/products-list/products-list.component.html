@@ -5,9 +5,7 @@
 
 <div class="row ml-4 mt-3">
   <h2
-    [routerLink]="['/allProduct', 'Movies']"
-    style="color: #fff; font-family: sans-serif; cursor: pointer"
-  >
+      >
     {{ "App.Trending_movies" | translate }}
   </h2>
 </div>
@@ -33,7 +31,7 @@
 </div>
 <div class="row">
 
-  <div class="col-sm col-md col-lg col-xl text-white text-right more">
+  <div [routerLink]="['/allProduct', 'Movies']"  class="col-sm col-md col-lg col-xl text-white text-right more">
     View all 
    <i class="fa fa-caret-right"></i>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -43,7 +41,7 @@
 <!-- Series -->
 
 <div class="row ml-4 mt-3">
-  <h2 [routerLink]="['/allProduct', 'Series']">
+  <h2 >
     {{ "App.Trending_shows" | translate }}
   </h2>
 </div>
@@ -66,7 +64,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm col-md col-lg col-xl text-white text-right more">
+  <div [routerLink]="['/allProduct', 'Series']" class="col-sm col-md col-lg col-xl text-white text-right more">
     View all 
    <i class="fa fa-caret-right"></i>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

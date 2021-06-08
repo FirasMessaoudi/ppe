@@ -19,6 +19,7 @@ import { StorageService } from "src/app/service/sharedservice.service";
 import { TranslateService } from "@ngx-translate/core";
 import { MovieDetailsModel } from "src/app/domain/moviedetail";
 import { MovieService } from "src/app/service/movie.service";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-product-details",
@@ -71,15 +72,12 @@ export class ProductDetailsComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private router: Router,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private spinner: NgxSpinnerService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-  }
-
-  openSm(content) {
-    // this.modalService.open(content, { size: 'sm', centered: true });
   }
   ngOnInit() {
     this.read = true;
@@ -98,14 +96,20 @@ export class ProductDetailsComponent implements OnInit {
       this.id = params["idProduct"];
       this.section = params["section"];
     });
+
+
+
+
     if (this.section === "Series") {
+      this.spinner.show();
       this.movieService.getTvShowById(this.id, this.lang).subscribe(
         (res) => (this.showDetail = res),
         (erreur) => {
-          console.log("erreur SERIe");
           this.showError = true;
+          this.spinner.hide();
         },
         () => {
+          this.spinner.hide();
           this.movieService.getSimilarTv(this.showDetail.id).subscribe(
             (res) => (this.similar = res),
             (err) => console.log("ma jewech"),
@@ -131,13 +135,17 @@ export class ProductDetailsComponent implements OnInit {
         }
       );
     } else {
+      this.spinner.show();
       this.movieService.getMovieById(this.id, this.lang).subscribe(
         (res) => (this.movieDetail = res),
         (erreur) => {
           console.log("erreur movie");
           this.showError = true;
+          this.spinner.hide();
+
         },
         () => {
+          this.spinner.hide();
           this.link =
             "https://videospider.in/getvideo?key=l6IeT0ahNeECt2IH&video_id=" +
             this.movieDetail.id +
@@ -169,103 +177,42 @@ export class ProductDetailsComponent implements OnInit {
       );
     }
 
+
     if (this.tokenStorage.getToken()) {
       this.username = this.tokenStorage.getUsername();
 
       this.userservice.getUser(this.username).subscribe(
         (res) => (this.user = res),
         (err) => console.log("err"),
-        () => {
-          console.log(this.user);
-          this.userservice
-            .getMovieNote(new IMovieUserId(this.id, this.user.email))
-            .subscribe(
-              (res) => (this.note = res),
-              (err) => console.log(err.error),
-              () => {
-                console.log(this.note);
-                this.userservice
-                  .existsInFavoris(new IMovieUserId(this.id, this.user.email))
-                  .subscribe(
-                    (res) => (this.existsInFav = res),
-                    (err) => console.log(err.error),
-                    () => {
-                      console.log(this.existsInFav);
-                      this.userservice
-                        .existsInWatchList(
-                          new IMovieUserId(this.id, this.user.email)
-                        )
-                        .subscribe(
-                          (res) => (this.existsInWatchList = res),
-                          (err) => console.log(err.error)
-                        ),
-                        () => {
-                          console.log(this.existsInWatchList);
-                        };
-                    }
-                  );
-              }
-            );
+        () => { 
+
+          this.userservice.existsInWatchList(
+            new IMovieUserId(this.id, this.user.email)
+          )
+          .subscribe(
+            (res) => (this.existsInWatchList = res),
+            (err) => console.log(err.error)
+          );
         }
       );
-    }
+    
   }
+}
   back() {
     this.location.back();
   }
-
-  onOpen(event: any) {
-    console.log(event);
-  }
   addOrDeleteWatchList() {
-    if (this.tokenStorage.getToken()) {
       let fav = new IFavorit(new IMovieUserId(this.id, this.user.email));
       fav.watched = false;
       fav.section = this.section;
-
       this.userservice.addToList(fav).subscribe(() => (this.message = "hhhhh"));
       //  alert('added to watch list');
       this.existsInWatchList = !this.existsInWatchList;
       if (this.existsInWatchList)
         this.toaster.success("Program added to watchlist");
       else this.toaster.success("Program removed from watchlist");
-    } else {
-      this.toaster.warning("You must sign in first");
-    }
   }
-  addOrDeleteFavorite() {
-    if (this.tokenStorage.getToken()) {
-      let fav = new IFavorit(new IMovieUserId(this.id, this.user.email));
-      fav.section = this.section;
-      this.userservice.addToMyFav(fav).subscribe(
-        (res) => console.log(res),
-        (err) => console.log(err.error),
-        () => console.log("user = ", this.user.email, "id = ", this.id)
-      );
-      this.existsInFav = !this.existsInFav;
-      if (this.existsInFav) this.toaster.success("Program added to favorite");
-      else this.toaster.success("Program removed from favorite");
-    } else {
-      this.toaster.warning("You must sign in first");
-    }
-  }
-  rateMovie(event) {
-    // this.movieUserID = new IMovieUserId(this.id, this.user.email);
-    let fav = new IFavorit(new IMovieUserId(this.id, this.user.email));
-    fav.section = this.section;
-    fav.note = event;
-    if (this.tokenStorage.getToken()) {
-      console.log(this.note);
-      this.note = event;
-      this.userservice.rateMovie(fav).subscribe(
-        (res) => console.log(res),
-        (err) => console.log("msg")
-      );
-      console.log(this.note);
-    } else {
-      this.toaster.warning("Sign to rate this program");
-    }
-  }
+
   changeSeason(event) {
     this.seasonNumber = event;
     this.season = this.showDetail.seasons[this.seasonNumber];
