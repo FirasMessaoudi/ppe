@@ -19,7 +19,6 @@ export class ProductbysectionComponent implements OnInit {
   name: string;
   category: string;
   all = "all";
-  showSpinner: boolean;
   categories: Genre;
   sortlist = [
     { id: "vote_average.desc", name: "Vote" },
@@ -83,7 +82,6 @@ export class ProductbysectionComponent implements OnInit {
   p: number = 1;
   s: number = 20;
   t: number = 1;
-  isLoading = true;
   showError: boolean;
   SWIPE_ACTION = { LEFT: "swipeleft", RIGHT: "swiperight" };
 
@@ -211,7 +209,7 @@ export class ProductbysectionComponent implements OnInit {
           (err) => console.log(err.error),
           () => {
             console.log(this.shows);
-            this.isLoading = false;
+            this.spinner.hide();
           }
         );
     }

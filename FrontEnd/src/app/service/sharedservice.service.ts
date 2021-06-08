@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-
+   lang = new BehaviorSubject<any>(localStorage.getItem('language'));
+  langObs = this.lang.asObservable();
   constructor() { }
 
   save(key, data) {
