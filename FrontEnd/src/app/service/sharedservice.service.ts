@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 export class StorageService {
    lang = new BehaviorSubject<any>(localStorage.getItem('language'));
   langObs = this.lang.asObservable();
+  theme = new BehaviorSubject<any>(localStorage.getItem('theme'));
+  themeObs = this.lang.asObservable();
   constructor() { }
 
   save(key, data) {

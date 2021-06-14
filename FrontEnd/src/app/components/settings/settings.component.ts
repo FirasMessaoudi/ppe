@@ -45,6 +45,10 @@ export class SettingsComponent implements OnInit {
     this.translateService.use(event.value);
   }
 
+  themeChange(event: MatSelectChange) {
+    this.storageService.save('theme', event.value);
+    this.storageService.theme.next(event.value);
+  }
   adultChange(event: MatSlideToggleChange) {
     if (event.checked === true) {
       this.storageService.save('adult', true);

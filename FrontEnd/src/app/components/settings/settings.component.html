@@ -41,6 +41,25 @@
       </div>
     </div>
 
+    <!-- Theme -->
+
+    <div class="about--container">
+      <div class="about--info">
+        <mat-icon>autorenew</mat-icon>
+        <h3>Theme</h3>
+        <div style="width: 11%;padding-top: 1.5%" class="setting">
+          <mat-select placeholder="{{'App.Language' | translate}}" [ngModel]="theme" (selectionChange)="themeChange($event)">
+            <mat-option  value="Dark">
+             Dark
+            </mat-option>
+            <mat-option  value="White">
+              White
+             </mat-option>
+          </mat-select>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 

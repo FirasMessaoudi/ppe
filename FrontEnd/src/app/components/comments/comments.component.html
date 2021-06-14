@@ -1,0 +1,45 @@
+<div class="comment-container theme--light">
+  <div class="comments">
+    <div>
+      <div *ngFor="let e of [].constructor(5); let i = index" class="card v-card v-sheet theme--light elevation-2">
+        <div class="header">
+          <div class="v-avatar avatar" style="height: 50px; width: 50px">
+            <img
+              src="https://images.unsplash.com/photo-1490894641324-cfac2f5cd077?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=70"
+            />
+          </div>
+          <span class="displayName title">John Doe</span>
+          <span class="displayName caption">2 days ago</span>
+        </div>
+        <!---->
+        <div class="wrapper comment">
+          <p>
+            Fusce sodales magna id porta egestas. Nulla massa est, hendrerit nec
+            auctor vitae, porta ut est.
+          </p>
+          <span class="cursor"><mat-icon class="mat-red">favorite </mat-icon> 
+            <span class="comment-number">25</span>
+          </span>
+        </div>
+        <div class="actions">
+          <!---->
+          <!---->
+          <!---->
+        </div>
+        <div class="v-dialog__container" style="display: block"></div>
+      </div>
+      <!---->
+      <div class="answers">
+        <!---->
+        <textarea type="text" class="input" 
+        placeholder="Write a comment"></textarea>
+        <button class='primaryContained float-right' type="submit">Add Comment</button>
+      </div>
+  
+    </div>
+
+    
+    <div>
+  </div>
+</div>
+</div>
