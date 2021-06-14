@@ -75,13 +75,12 @@ export class ProductDetailsComponent implements OnInit {
     private movieService: MovieService,
     private spinner: NgxSpinnerService
   ) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
+    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    //   return false;
+    // };
   }
   ngOnInit() {
     this.read = true;
-    // this.id = +this.route.snapshot.params['idProduct'];
     this.lang = this.storageService.read("language");
     this.tokenStorage.currentStatus.subscribe((status) => {
       this.isLoggedIn = status;
@@ -97,9 +96,6 @@ export class ProductDetailsComponent implements OnInit {
       this.section = params["section"];
     });
 
-
-
-
     if (this.section === "Series") {
       this.spinner.show();
       this.movieService.getTvShowById(this.id, this.lang).subscribe(
@@ -112,20 +108,18 @@ export class ProductDetailsComponent implements OnInit {
           this.spinner.hide();
           this.movieService.getSimilarTv(this.showDetail.id).subscribe(
             (res) => (this.similar = res),
-            (err) => console.log("ma jewech"),
+            (err) => console.log(err),
             () => {
-              // console.log("siim before"+this.similar.results.length);
               this.similarProducts = this.similar.results;
-              //console.log("siim" +this.similarProducts.length)
             }
           );
           this.movieService.getTvCast(this.showDetail.id).subscribe(
             (res) => (this.actors = res),
-            (err) => console.log("erreur"),
+            (err) => console.log(err),
             () => {
               this.movieService.getTvVideo(this.showDetail.id).subscribe(
                 (res) => (this.video = res),
-                (err) => console.log("erreur"),
+                (err) => console.log(err),
                 () => {
                   this.youtube += this.video.results[0].key;
                 }
@@ -139,10 +133,9 @@ export class ProductDetailsComponent implements OnInit {
       this.movieService.getMovieById(this.id, this.lang).subscribe(
         (res) => (this.movieDetail = res),
         (erreur) => {
-          console.log("erreur movie");
+          console.log(erreur);
           this.showError = true;
           this.spinner.hide();
-
         },
         () => {
           this.spinner.hide();
@@ -150,24 +143,23 @@ export class ProductDetailsComponent implements OnInit {
             "https://videospider.in/getvideo?key=l6IeT0ahNeECt2IH&video_id=" +
             this.movieDetail.id +
             "&tmdb=1";
-          // if(this.product.nbSeasons >-1){
           this.movieService.getSimilarMovies(this.movieDetail.id).subscribe(
             (res) => (this.similar = res),
-            (err) => console.log("ma jewech"),
+            (err) => console.log(err),
             () => {
-              //  console.log("siim before"+this.similar.results.length);
               this.similarProducts = this.similar.results;
-              // console.log("siim" +this.similarProducts.length)
             }
           );
           this.movieService.getMovieCast(this.movieDetail.id).subscribe(
             (res) => (this.actors = res),
-            (err) => console.log("erreur"),
+            (err) => console.log(err),
             () => {
               this.movieService.getMovieVideo(this.movieDetail.id).subscribe(
                 (res) => (this.video = res),
-                (err) => console.log("erreur"),
+                (err) => console.log(err),
                 () => {
+                  console.log(this.video.results);
+                  
                   this.youtube += this.video.results[0].key;
                 }
               );
@@ -177,40 +169,35 @@ export class ProductDetailsComponent implements OnInit {
       );
     }
 
-
     if (this.tokenStorage.getToken()) {
       this.username = this.tokenStorage.getUsername();
 
       this.userservice.getUser(this.username).subscribe(
         (res) => (this.user = res),
         (err) => console.log("err"),
-        () => { 
-
-          this.userservice.existsInWatchList(
-            new IMovieUserId(this.id, this.user.email)
-          )
-          .subscribe(
-            (res) => (this.existsInWatchList = res),
-            (err) => console.log(err.error)
-          );
+        () => {
+          this.userservice
+            .existsInWatchList(new IMovieUserId(this.id, this.user.email))
+            .subscribe(
+              (res) => (this.existsInWatchList = res),
+              (err) => console.log(err.error)
+            );
         }
       );
-    
+    }
   }
-}
   back() {
     this.location.back();
   }
   addOrDeleteWatchList() {
-      let fav = new IFavorit(new IMovieUserId(this.id, this.user.email));
-      fav.watched = false;
-      fav.section = this.section;
-      this.userservice.addToList(fav).subscribe(() => (this.message = "hhhhh"));
-      //  alert('added to watch list');
-      this.existsInWatchList = !this.existsInWatchList;
-      if (this.existsInWatchList)
-        this.toaster.success("Program added to watchlist");
-      else this.toaster.success("Program removed from watchlist");
+    let fav = new IFavorit(new IMovieUserId(this.id, this.user.email));
+    fav.watched = false;
+    fav.section = this.section;
+    this.userservice.addToList(fav).subscribe(() => (this.message = "hhhhh"));
+    this.existsInWatchList = !this.existsInWatchList;
+    if (this.existsInWatchList)
+      this.toaster.success("Program added to watchlist");
+    else this.toaster.success("Program removed from watchlist");
   }
 
   changeSeason(event) {
@@ -218,5 +205,8 @@ export class ProductDetailsComponent implements OnInit {
     this.season = this.showDetail.seasons[this.seasonNumber];
     for (let i = 0; i < this.season.episode_count; i++)
       this.nbEpisodes[i] = i + 1;
+  }
+  trailerLink(key){
+    return "https://www.youtube.com/embed/"+key;
   }
 }

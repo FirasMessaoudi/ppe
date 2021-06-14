@@ -21,17 +21,40 @@ export class ProductsListComponent implements OnInit {
   categories: ICategory[];
   lang: string;
   showError: boolean;
+   theme: any;
+   responsiveOptions;
 
   // tslint:disable-next-line:max-line-length
   constructor(
     private storageService: StorageService,
     private _service: MovieService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) {
+    this.responsiveOptions = [
+      {
+          breakpoint: '1024px',
+          numVisible: 6,
+          numScroll: 6
+      },
+      {
+          breakpoint: '768px',
+          numVisible: 2,
+          numScroll: 2
+      },
+      {
+          breakpoint: '560px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
+  }
 
   ngOnInit() {
     this.spinner.show();
     this.lang = this.storageService.read("language");
+    this.storageService.themeObs.subscribe(
+      res => this.theme = res
+    )
     this._service.trendingMovie().subscribe(
       (res) => (this.movies = res),
       (erreur) => {

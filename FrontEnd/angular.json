@@ -28,7 +28,9 @@
               "src/node_modules/@ant-design/icons-angular/src/inline-svg/"
             ],
             "styles": [
-             
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/bootstrap/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "node_modules/font-awesome/scss/font-awesome.scss",

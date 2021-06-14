@@ -39,6 +39,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { LikeDislikeComponent } from './components/like-dislike/like-dislike.component';
 import { NzPopoverModule, NzToolTipModule  } from 'ng-zorro-antd';
 import { NgxSpinnerModule } from "ngx-spinner";
+import {CarouselModule} from 'primeng/carousel';
+import { CommentsComponent } from './components/comments/comments.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -75,6 +77,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     DetailModalComponent,
     ProfileComponent,
     LikeDislikeComponent,
+    CommentsComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -93,6 +96,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     NgxSpinnerModule,
     NzPopoverModule,
     NzToolTipModule,
+    CarouselModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
