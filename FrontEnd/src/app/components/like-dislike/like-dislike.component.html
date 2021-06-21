@@ -1,8 +1,11 @@
 <section class="rating-area align-center">
   <div (click)="like()" class="thumbs-up-circle align-center transition-fast like">
-  <span [ngStyle]="{'color':likeColor()}" class="thumbs-up transition-fast"><i class="icon fa fa-thumbs-up thumb "></i></span>
+    <span  class="thumbs-up transition-fast">
+      <i  [class]="likeClass()" aria-hidden="true"></i>
+    </span>
   </div>
   <div (click)="dislike()" class="thumbs-up-circle align-center transition-fast">
-  <span [ngStyle]="{'color':dislikeColor()}" class="thumbs-down transition-fast"><i class="icon fa fa-thumbs-down thumb "></i></span>
+    <span class="thumbs-down transition-fast"><i
+         [class]="dislikeClass()"></i></span>
   </div>
-  </section>
+</section>

@@ -4,6 +4,15 @@
     border-radius: 40px;
     border:  #FF424F 2px solid !important;
 }
+.loginbtn{
+    background-color: #FF424F !important;
+    color : #FFF !important;
+    border:  #FF424F 2px solid !important;
+    width: 90px;
+    height: 37px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 .signin{
     padding-left: 34% !important;
     
@@ -16,9 +25,7 @@
 .signup{
     padding-left: 10% !important;
 }
-.close {
-    // color: #FFF !important;
-}
+
 .modal-footer{
     border-top:none !important;
 }

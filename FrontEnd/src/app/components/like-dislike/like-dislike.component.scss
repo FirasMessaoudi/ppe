@@ -18,7 +18,8 @@
   .thumbs-up-circle{
     width:50px;
     height:50px;
-    background:#f0f0f0;
+    // background:#f0f0f0;
+    border: 2px solid white;
     border-radius:50%;
     box-shadow:1px 1px 0px rgba(0,0,0,0.2);
     cursor:pointer;
@@ -26,7 +27,8 @@
     margin-top:5px;
   }
   .thumbs-up{
-    color:#2196f3;
+    // color:#2196f3;
+    color: white;
     font-size:24px;
     transform:rotate(0) translate(0);
   }
@@ -34,7 +36,7 @@
      box-shadow:1px 1px 2px rgba(0,0,0,0.5);
   }
   .thumbs-up-circle:hover .thumbs-up{
-    color:#1976D2;
+    // color:#1976D2;
     transform:rotate(-5deg) translate(0px, -1px);
   }
   .thumbs-up-circle:active{
@@ -42,21 +44,21 @@
     box-shadow:1px 1px 0px rgba(0,0,0,0.2);
   }
   .thumbs-up-circle:active .thumbs-up{
-    color:#065bae;
+    // color:#065bae;
     transition:0.1s;
     transform:rotate(-10deg) translate(0px, -2px);
   }
   .thumbs-down{
-    color:#2196f3;
+    // color:#2196f3;
     font-size:24px;
     transform:rotate(0) translate(0);
   }
   .thumbs-up-circle:hover .thumbs-down{
-    color:#065bae;
+    // color:#065bae;
     transform:rotate(5deg) translate(0px, 1px);
   }
   .thumbs-up-circle:active .thumbs-down{
-    color:#065bae;
+    // color:#065bae;
     transition:0.1s;
     transform:rotate(10deg) translate(0px, 2px);
   }

@@ -37,11 +37,13 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { DetailModalComponent } from './components/detail-modal/detail-modal.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LikeDislikeComponent } from './components/like-dislike/like-dislike.component';
-import { NzPopoverModule, NzToolTipModule  } from 'ng-zorro-antd';
+import { NzPopoverModule, NzToolTipModule, NzPopconfirmModule, NZ_I18N, en_US  } from 'ng-zorro-antd';
 import { NgxSpinnerModule } from "ngx-spinner";
-import {CarouselModule} from 'primeng/carousel';
 import { CommentsComponent } from './components/comments/comments.component';
-
+import {TimeAgoPipe} from 'time-ago-pipe';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+registerLocaleData(en);
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -77,7 +79,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     DetailModalComponent,
     ProfileComponent,
     LikeDislikeComponent,
-    CommentsComponent
+    CommentsComponent,
+    TimeAgoPipe
   ],
   imports: [
     ReactiveFormsModule,
@@ -96,7 +99,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     NgxSpinnerModule,
     NzPopoverModule,
     NzToolTipModule,
-    CarouselModule,
+    NzPopconfirmModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -106,7 +109,10 @@ export class MyHammerConfig extends HammerGestureConfig {
     }),
 
   ],
-  providers: [{provide:HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig}
+  providers: [{provide:HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig},
+    TimeAgoPipe,
+    { provide: NZ_I18N, useValue: en_US }
+
    /* {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

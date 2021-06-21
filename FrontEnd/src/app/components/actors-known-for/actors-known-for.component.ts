@@ -8,6 +8,7 @@ import { forkJoin } from 'rxjs';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { MovieVideosModel } from 'src/app/domain/moviemodelvideo';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-actors-known-for',
@@ -18,8 +19,6 @@ export class ActorsKnownForComponent implements OnInit {
   person: MoviePersonModel;
   movies: MovieCast[];
   tv_credits: TvCastModel[];
-  isLoadingResults: boolean;
-
   path ='https://image.tmdb.org/t/p/w185/';
  cover='https://image.tmdb.org/t/p/original/';
  youtube = 'https://www.youtube.com/embed/';
@@ -27,18 +26,18 @@ export class ActorsKnownForComponent implements OnInit {
  video: MovieVideosModel;
 
   constructor(private route: ActivatedRoute,
-    private location: Location,private serviceactor: CategoryService,private toastr: ToastrService,private categoryservice: CategoryService, private router: Router
+    private location: Location,private serviceactor: CategoryService,private spinner: NgxSpinnerService
     ) { }
 
   ngOnInit() {
-    this.isLoadingResults = true;
+    this.spinner.show();
     const id = this.route.snapshot.paramMap.get('id');
     const getPerson = this.serviceactor.getPerson(+id);
     const getPersonMovies = this.serviceactor.getPersonMovies(+id);
     const getPersonTv = this.serviceactor.getPersonTv(+id);
 
     forkJoin(getPerson, getPersonMovies, getPersonTv).subscribe(([person, movies, tv_credits]) => {
-      this.isLoadingResults = false;
+      this.spinner.hide();
       this.person = person;
       this.movies = movies.cast;
       this.tv_credits = tv_credits.cast;

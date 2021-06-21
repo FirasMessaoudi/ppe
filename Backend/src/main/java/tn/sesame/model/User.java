@@ -1,5 +1,4 @@
 package tn.sesame.model;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
@@ -8,7 +7,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "utilisateur")
-
 @Data
 public class User {
     @Id
@@ -25,7 +23,9 @@ public class User {
     @ElementCollection(fetch = FetchType.LAZY)
     @Enumerated(EnumType.STRING)
     private List<Role> roles;
-
+    @ManyToMany(mappedBy = "likedBy")
+    @JsonIgnore
+    List<Comment> likedComments;
     public User (){}
 
 
