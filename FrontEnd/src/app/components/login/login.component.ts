@@ -10,6 +10,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { UserService } from 'src/app/service/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ErrorStateMatcher } from '@angular/material';
+import { NgxSpinnerService } from 'ngx-spinner';
 export  const patternMDP: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,12}$/;
 export const patternEmail: RegExp = /^[^\W][a-zA-Z0-9\-\_\.]+[^\W]@[^\W][a-zA-Z0-9\-\_\.]+[^\W]\.[a-zA-Z]{2,6}$/;
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
   url : any;
   constructor(private fb:FormBuilder,private toastr: ToastrService,private authService: AuthService,
      private tokenStorage: TokenStorageService,  
-        private spinnerService: Ng4LoadingSpinnerService,
+        private spinnerService: NgxSpinnerService,
         private userService: UserService,
         private sanitizer: DomSanitizer,
 

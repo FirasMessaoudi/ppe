@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/watchlist/**").permitAll()
             .antMatchers("/movieNote/**").permitAll()
             .antMatchers("/contact/**").permitAll()
+            .antMatchers("/comments/**").permitAll()
 
 
 

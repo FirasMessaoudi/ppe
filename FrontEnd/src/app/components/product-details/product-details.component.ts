@@ -195,9 +195,9 @@ export class ProductDetailsComponent implements OnInit {
     fav.section = this.section;
     this.userservice.addToList(fav).subscribe(() => (this.message = "hhhhh"));
     this.existsInWatchList = !this.existsInWatchList;
-    if (this.existsInWatchList)
-      this.toaster.success("Program added to watchlist");
-    else this.toaster.success("Program removed from watchlist");
+    // if (this.existsInWatchList)
+    //   this.toaster.success("Program added to watchlist");
+    // else this.toaster.success("Program removed from watchlist");
   }
 
   changeSeason(event) {

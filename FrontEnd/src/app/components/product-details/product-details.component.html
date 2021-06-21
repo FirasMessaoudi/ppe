@@ -71,7 +71,7 @@
             mat-button
             (click)="addOrDeleteWatchList()"
           >
-            <mat-icon class="mat-red">favorite_border </mat-icon>&nbsp;Add to
+            <mat-icon class="mat-red">playlist_add </mat-icon>&nbsp;Add to
             list &nbsp;&nbsp;
           </button>
           <button
@@ -80,7 +80,7 @@
             mat-button
             (click)="addOrDeleteWatchList()"
           >
-            <mat-icon class="mat-red">favorite </mat-icon>&nbsp;Remove from list
+            <mat-icon class="mat-red">playlist_add_check </mat-icon>&nbsp;Remove from list
             &nbsp;&nbsp;
           </button>
 
@@ -225,20 +225,9 @@
           ></iframe>
         </section>
       </mat-tab>
-      <!-- Notes -->
+      <!-- Review -->
       <mat-tab label="{{ 'App.Reviews' | translate }}">
-        <!-- <section class="justify-content-center">
-          <table>
-            <tr *ngFor="let item of reviews">
-              <td>
-                <strong style="color: white">
-                  {{ item.userNote.username }}
-                </strong>
-              </td>
-            </tr>
-          </table>
-        </section> -->
-        <!-- <app-comments></app-comments> -->
+        <app-comments [idMovie]="id" [user]="user"></app-comments>
       </mat-tab>
     </mat-tab-group>
 
@@ -361,7 +350,7 @@
             mat-button
             (click)="addOrDeleteWatchList()"
           >
-            <mat-icon class="mat-red">favorite_border </mat-icon>&nbsp;Add to
+            <mat-icon class="mat-red">playlist_add </mat-icon>&nbsp;Add to
             list &nbsp;&nbsp;
           </button>
           <button
@@ -370,7 +359,7 @@
             mat-button
             (click)="addOrDeleteWatchList()"
           >
-            <mat-icon class="mat-red">favorite </mat-icon>&nbsp;Remove from list
+            <mat-icon class="mat-red">playlist_add_check </mat-icon>&nbsp;Remove from list
             &nbsp;&nbsp;
           </button>
 
@@ -508,21 +497,13 @@
 
       <mat-tab label="{{ 'App.Watch Now' | translate }}">
         <section class="movie--trailer">
-          <app-show-details [idtmdb]="showDetail.id"></app-show-details>
+          <app-show-details [idtmdb]="showDetail?.id"></app-show-details>
         </section>
       </mat-tab>
+
+      <!-- reviews -->
       <mat-tab label="{{ 'App.Reviews' | translate }}">
-        <section class="justify-content-center">
-          <table>
-            <tr *ngFor="let item of reviews">
-              <td>
-                <strong style="color: white">
-                  {{ item.userNote.username }}
-                </strong>
-              </td>
-            </tr>
-          </table>
-        </section>
+        <app-comments [idMovie]="id" [user]="user"></app-comments>
       </mat-tab>
     </mat-tab-group>
 

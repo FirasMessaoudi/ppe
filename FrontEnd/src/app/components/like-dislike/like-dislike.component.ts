@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IMovieUserId } from 'src/app/domain/imovieuserid';
 import { UserService } from 'src/app/service/user.service';
 
@@ -7,13 +7,33 @@ import { UserService } from 'src/app/service/user.service';
   templateUrl: './like-dislike.component.html',
   styleUrls: ['./like-dislike.component.scss']
 })
-export class LikeDislikeComponent implements OnInit {
+export class LikeDislikeComponent implements OnInit, OnChanges {
   @Input()
   user: string;
   @Input()
   id: any;
   movieNote: any;
   constructor(private service: UserService) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.user){
+      this.user = changes.user.currentValue;
+    }
+    if(changes.id){
+      this.id = changes.id.currentValue;
+    }
+    console.log(this.user);
+    
+    this.service.getLikedDisliked(new IMovieUserId(this.id,this.user)).subscribe(
+      res =>this.movieNote = res,
+      err =>console.log(err),
+      () => {
+        console.log(this.movieNote);
+        
+      }
+      
+      
+    )
+  }
 
   ngOnInit() {
     console.log(this.user);
@@ -73,19 +93,23 @@ export class LikeDislikeComponent implements OnInit {
     }
   }
   
-  likeColor(){
+  likeClass(){
     if(this.movieNote!=null){
     if(this.movieNote.liked){
-      return 'blue';
+      return 'icon fa thumb fa-thumbs-up ';
     }
+    return 'icon fa thumb fa-thumbs-o-up'
   }
+  return 'icon fa thumb fa-thumbs-o-up'
     }
 
-    dislikeColor(){
+    dislikeClass(){
       if(this.movieNote!=null){
       if(this.movieNote.disliked){
-        return 'blue';
+        return 'icon fa thumb fa-thumbs-down';
       }
+      return 'icon fa thumb fa-thumbs-o-down';
     }
+    return 'icon fa thumb fa-thumbs-o-down';
       }
 }

@@ -1,25 +1,80 @@
 <div class="comment-container theme--light">
   <div class="comments">
     <div>
-      <div *ngFor="let e of [].constructor(5); let i = index" class="card v-card v-sheet theme--light elevation-2">
+      <div
+        *ngFor="let comment of comments; let i = index"
+        class="card v-card v-sheet theme--light elevation-2"
+      >
         <div class="header">
           <div class="v-avatar avatar" style="height: 50px; width: 50px">
-            <img
-              src="https://images.unsplash.com/photo-1490894641324-cfac2f5cd077?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=70"
+            <img [src]="sanitize(comment)"
             />
           </div>
-          <span class="displayName title">John Doe</span>
-          <span class="displayName caption">2 days ago</span>
+          <span class="displayName title">{{ comment?.user?.username }}</span>
+          <span class="displayName caption">{{
+            comment?.commentDate | timeAgo
+          }}</span>
         </div>
         <!---->
         <div class="wrapper comment">
-          <p>
-            Fusce sodales magna id porta egestas. Nulla massa est, hendrerit nec
-            auctor vitae, porta ut est.
+          <p *ngIf="!editMode || selectedComment.id != comment.id">
+            {{ comment?.comment }}
           </p>
-          <span class="cursor"><mat-icon class="mat-red">favorite </mat-icon> 
-            <span class="comment-number">25</span>
-          </span>
+          <div
+            *ngIf="editMode && selectedComment.id == comment.id"
+            class="editMode"
+          >
+            <textarea
+              type="text"
+              class="input"
+              [(ngModel)]="selectedComment.comment"
+              placeholder="Write a comment"
+            ></textarea>
+            <div class="float-right">
+              <button (click)="editMode = false" class="cancel" type="submit">
+                Cancel
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <button
+                [disabled]="selectedComment.comment == ''"
+                class="primaryContained"
+                type="submit"
+                (click)="update()"
+              >
+                Submit changes
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <span class="cursor" (click)="likeDislike(comment)"
+                ><mat-icon *ngIf="likedOrNot(comment)==-1" class="mat-red">favorite_border </mat-icon>
+                <mat-icon *ngIf="likedOrNot(comment)!=-1" class="mat-red">favorite </mat-icon>
+                <span class="comment-number">{{ likesNumber(comment) }}</span>
+              </span>
+            </div>
+
+            <div
+              class="col-3"
+              *ngIf="isLoggedIn && comment?.user?.id == user?.id"
+            >
+              <a
+                nz-popconfirm
+                nzPopconfirmTitle="Are you sure delete this task?"
+                nzPopconfirmPlacement="bottom"
+                (nzOnConfirm)="delete(comment.id)"
+              >
+                <mat-icon class="mat-red cursor"
+                  >delete
+                </mat-icon>
+              </a>
+              <mat-icon
+                (click)="editMode = true; selectedComment = comment"
+                class="mat-green cursor"
+                >edit_note
+              </mat-icon>
+            </div>
+          </div>
         </div>
         <div class="actions">
           <!---->
@@ -29,17 +84,25 @@
         <div class="v-dialog__container" style="display: block"></div>
       </div>
       <!---->
-      <div class="answers">
+      <div class="answers" *ngIf="isLoggedIn">
         <!---->
-        <textarea type="text" class="input" 
-        placeholder="Write a comment"></textarea>
-        <button class='primaryContained float-right' type="submit">Add Comment</button>
+        <textarea
+          type="text"
+          class="input"
+          [(ngModel)]="myComment"
+          placeholder="Write a comment"
+        ></textarea>
+        <button
+          (click)="addComment()"
+          [disabled]="myComment == ''"
+          class="primaryContained float-right"
+          type="submit"
+        >
+          Post Comment
+        </button>
       </div>
-  
     </div>
 
-    
-    <div>
+    <div></div>
   </div>
-</div>
 </div>

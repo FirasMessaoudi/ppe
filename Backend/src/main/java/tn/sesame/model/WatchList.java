@@ -10,8 +10,6 @@ import javax.persistence.*;
 public class WatchList {
     @EmbeddedId
     private MovieUserID movieUserID;
-
-
     private String section;
     private boolean watched;
 
