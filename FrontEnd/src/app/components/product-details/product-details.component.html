@@ -320,6 +320,8 @@
             ></span>{{ showDetail?.origin_country[0] }}<span></span> |<span
             ></span><span style="color: #fbb829; font-weight: 700">Imdb</span>
             {{ showDetail?.vote_average }}<br /><br />
+            <h6 *ngIf="showDetail?.next_episode_to_air">Next Episode to air: {{ showDetail?.next_episode_to_air?.air_date | date: "mediumDate"
+            }} <br> <br></h6>
           </div>
         </div>
         <div class="movie--genre">

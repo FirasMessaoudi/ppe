@@ -31,13 +31,14 @@ const appRoutes: Routes = [
   {path: 'not-found', component: PageNotFoundComponent},
   {path: 'profile',component: ProfileComponent},
   {path: '**', redirectTo: 'home' },
-  {path:'',redirectTo: 'home', pathMatch: 'full'}
+  {path:'',redirectTo: 'home', pathMatch: 'full'},
+  
 
 
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

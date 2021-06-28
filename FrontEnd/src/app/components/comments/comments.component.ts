@@ -105,7 +105,7 @@ likeDislike(comment) {
 }
 likedOrNot(comment){
   let index = -1;
-  if(comment.likedBy){
+  if(comment.likedBy && this.user){
   index = comment.likedBy.map((item) => item.id).indexOf(this.user.id);
   }
   return index;
