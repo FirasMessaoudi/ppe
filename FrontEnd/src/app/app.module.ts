@@ -37,12 +37,14 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { DetailModalComponent } from './components/detail-modal/detail-modal.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LikeDislikeComponent } from './components/like-dislike/like-dislike.component';
-import { NzPopoverModule, NzToolTipModule, NzPopconfirmModule, NZ_I18N, en_US  } from 'ng-zorro-antd';
+import { NgZorroAntdModule, NZ_I18N, en_US  } from 'ng-zorro-antd';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CommentsComponent } from './components/comments/comments.component';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+
 registerLocaleData(en);
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -97,9 +99,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     LazyLoadImageModule,
     Ng4LoadingSpinnerModule.forRoot(),
     NgxSpinnerModule,
-    NzPopoverModule,
-    NzToolTipModule,
-    NzPopconfirmModule,
+    NgZorroAntdModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -111,7 +111,8 @@ export class MyHammerConfig extends HammerGestureConfig {
   ],
   providers: [{provide:HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig},
     TimeAgoPipe,
-    { provide: NZ_I18N, useValue: en_US }
+    { provide: NZ_I18N, useValue: en_US },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
 
    /* {
       provide: HTTP_INTERCEPTORS,

@@ -4,7 +4,7 @@
   <mat-option *ngFor="let item of showDetail?.seasons" [value]="item.season_number">Season {{item.season_number}}</mat-option>
 </mat-select>
 
-<mat-select style="padding-left: 30%;" name="episodes" placeholder="Episode" [(ngModel)]="nbEpisodes" (selectionChange)="changeEpisode($event.value)">
+<mat-select style="padding-left: 30%;" name="episodes" placeholder="Episode" [(ngModel)]="currentEp" (selectionChange)="changeEpisode($event.value)">
   <mat-option *ngFor="let item of episodeCount" [value]="item">Episode {{item}}</mat-option>
 </mat-select>
 </div>
@@ -15,7 +15,10 @@
     
     <iframe [src]="link | safeUrl" width="560" height="315" class="card-img-top"  frameborder="0" allowfullscreen="true" scrolling="no"> 
     </iframe>   
-
+     
+    <h3>Additional Link</h3>
+    <iframe [src]="additionalLink | safeUrl" width="560" height="315" class="card-img-top"  frameborder="0" allowfullscreen="true" scrolling="no"> 
+    </iframe> 
     <div class="card-body">
       <!-- <h5 class="card-title">{{showDetail.name}}</h5> -->
      <!-- <p class="card-text">test</p> -->

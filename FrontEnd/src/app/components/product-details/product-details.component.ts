@@ -49,6 +49,8 @@ export class ProductDetailsComponent implements OnInit {
   username: string;
   isLoggedIn = false;
   link: string;
+  additionalLink1: string;
+  additionalLink2: string;
   showDetail: TvDetailsModel;
   movieDetail: MovieDetailsModel;
   seasonNumber = 1;
@@ -140,9 +142,9 @@ export class ProductDetailsComponent implements OnInit {
         () => {
           this.spinner.hide();
           this.link =
-            "https://videospider.in/getvideo?key=l6IeT0ahNeECt2IH&video_id=" +
-            this.movieDetail.id +
-            "&tmdb=1";
+            "https://movie2konline.net/api/openload.php?id="+this.movieDetail.imdb_id;
+            // this.additionalLink1 ='https://gomo.to/movie/'+this.getName(this.movieDetail);
+            // this.additionalLink2 ="https://api.123movie.cc/imdb.php?imdb="+this.movieDetail.imdb_id+"&server=streamtape"
           this.movieService.getSimilarMovies(this.movieDetail.id).subscribe(
             (res) => (this.similar = res),
             (err) => console.log(err),
@@ -159,7 +161,7 @@ export class ProductDetailsComponent implements OnInit {
                 (err) => console.log(err),
                 () => {
                   console.log(this.video.results);
-                  
+                  if(this.video.results)
                   this.youtube += this.video.results[0].key;
                 }
               );
@@ -208,5 +210,11 @@ export class ProductDetailsComponent implements OnInit {
   }
   trailerLink(key){
     return "https://www.youtube.com/embed/"+key;
+  }
+  getName(movie: any){
+    let name = movie.original_title.toLowerCase().split(":").join("");
+    let finalFinalName = name.split("-").join("");
+    let finalName= finalFinalName.split(" ").join("-");
+    return finalName;
   }
 }
