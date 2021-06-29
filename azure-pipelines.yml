@@ -23,4 +23,7 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod
+    pipe: atlassian/firebase-deploy:0.3.0
+           variables:
+             FIREBASE_TOKEN: '$FIREBASE_TOKEN_CI'
   displayName: 'npm install and build'
