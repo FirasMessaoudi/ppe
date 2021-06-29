@@ -47,6 +47,7 @@ export class ProductbyimdbComponent implements OnInit {
    this.init()
  }
  @HostListener("window:scroll", ["$event"])
+ @HostListener("window:touchmove", ["$event"])
 onWindowScroll() {
 //In chrome and some browser scroll is given to body tag
 let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;

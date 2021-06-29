@@ -1,7 +1,5 @@
  <div nz-popover  nzPopoverTitle="Title" [nzContent]="contentTemplate" nzPlacement="right" class="card border-0" style="width: 200px;margin: 10px;" >
   <div class="hovereffect">
-<!-- <div class="myImage" (mouseover)="checkIfExistInWatchList()" nzPlacement="top" nz-popover nzTitle="{{title}}" [nzContent]="contentTemplate" >
-  !--->
   <a [routerLink]="['/viewDetail',section, id]">
   <div class="myImage" >
     <img *ngIf="image" [defaultImage]="'assets/images/no_poster_available.jpg'" class="card-img-top " style="height: 330px;" [lazyLoad]="'https://image.tmdb.org/t/p/original/' + image" alt="Card image cap">

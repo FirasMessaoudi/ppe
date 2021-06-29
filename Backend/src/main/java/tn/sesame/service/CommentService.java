@@ -1,6 +1,8 @@
 package tn.sesame.service;
 
 import org.springframework.stereotype.Service;
+import tn.sesame.dto.CommentDTO;
+import tn.sesame.dto.mapper.CommentMapper;
 import tn.sesame.model.Comment;
 import tn.sesame.model.User;
 import tn.sesame.repository.CommentRepository;
@@ -13,10 +15,11 @@ import java.util.Optional;
 public class CommentService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
-
-    public CommentService(CommentRepository commentRepository, UserRepository userRepository) {
+   private final CommentMapper commentMapper;
+    public CommentService(CommentRepository commentRepository, UserRepository userRepository, CommentMapper commentMapper) {
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
+        this.commentMapper = commentMapper;
     }
 
     public Comment saveComment(Comment comment){
@@ -29,7 +32,7 @@ public class CommentService {
         return commentRepository.findByIdMovie(idMovie);
     }
 
-    public Comment likeDislike(Long idComment, Integer idUser) {
+    public CommentDTO likeDislike(Long idComment, Integer idUser) {
         Optional<Comment> comment = commentRepository.findById(idComment);
         Optional<User> user = userRepository.findById(idUser);
         if(comment.isPresent() && user.isPresent()){
@@ -37,13 +40,13 @@ public class CommentService {
                 //dislike
                 comment.get().getLikedBy().remove(user.get());
                 commentRepository.save(comment.get());
-                return comment.get();
+                return commentMapper.toDto(comment.get());
 
             }else {
                 //like
                 comment.get().getLikedBy().add(user.get());
                 commentRepository.save(comment.get());
-                return comment.get();
+                return commentMapper.toDto(comment.get());
 
             }
         }

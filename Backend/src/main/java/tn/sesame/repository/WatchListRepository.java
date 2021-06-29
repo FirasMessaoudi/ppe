@@ -12,5 +12,8 @@ import java.util.List;
 public interface WatchListRepository extends JpaRepository<WatchList, MovieUserID> {
     @Query("select w from WatchList w where w.movieUserID.email=:email")
  List<WatchList> getWatchListsByUser(@Param("email") String email);
+ List<WatchList> findByMovieUserIDEmailAndAndWatchedIsTrue(String email);
+ List<WatchList> findByMovieUserIDEmailAndAndWatchedIsFalse(String email);
+
 
 }

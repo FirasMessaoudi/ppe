@@ -16,12 +16,9 @@ export class UserService {
  
   baseUrl=environment.myBaseUrl;
   URL =  this.baseUrl+'/user/';
-  URL2 = this.baseUrl+'/favoris/addOrDeleteFromFavoris/';
-  URL3 =  this.baseUrl+'/favoris/movie/firas_messaoudi@outlook.fr/';
   addLToListUrl =  this.baseUrl+'/watchlist/addToWatchList';
   urlExistInWatchList =  this.baseUrl+'/watchlist/existInWatchList';
   urlExistInFavoris =  this.baseUrl+'/favoris/existInFavorit';
-
   urlWatch =    this.baseUrl+'/watchlist/updateWatchList';
   urlRate =    this.baseUrl+'/movieNote/rateMovie/';
   urUserFavoris =    this.baseUrl+'/favoris/getFavoris/';
@@ -61,6 +58,9 @@ export class UserService {
   }
   getWatchList(email: string): Observable<IFavorit[]> {
     return this.http.get<IFavorit[]>(this.urlUserWatchList + email );
+  }
+  getWatchListByCriteria(email: string, criteria: string): Observable<IFavorit[]> {
+    return this.http.get<IFavorit[]>(this.urlUserWatchList + email+'/'+criteria );
   }
   addToMyFav(fav: IFavorit) {
     return this.http.post(this.addtofav,fav,httpOptions);

@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.tokenStorage.currentStatus.subscribe(status => {
       this.isLoggedIn = status;
+      if(this.isLoggedIn){
       this.profil = this.tokenStorage.getUsername();
        this.userService.getUser(this.profil).subscribe(
          res => this.user = res,
@@ -70,6 +71,7 @@ export class LoginComponent implements OnInit {
          }
 
                )
+        }
 
 
     })
@@ -113,14 +115,8 @@ export class LoginComponent implements OnInit {
         console.log(data);
         this.tokenStorage.saveToken(data.token);
         this.profil = this.tokenStorage.getUsername();
-        console.log(this.profil);
-        
-      //  this.tokenStorage.saveUsername(data.username);
-        //this.tokenStorage.saveAuthorities(data.authorities);
         this.isLoggedIn = true;
         this.modalSignUp.hide();
-        //this.reloadPage();
-       // this.toastr.success("Your account has been created succesfully ");
       },
       error => {
         console.log(error);
@@ -141,11 +137,7 @@ export class LoginComponent implements OnInit {
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
         console.log(data);
-        
         this.tokenStorage.saveToken(data.token);
-        //this.tokenStorage.saveUsername(data.username);
-        //this.tokenStorage.saveAuthorities(data.authorities);
-       // this.toastr.success("Congratulations Mr", data.authorities.toString());
        this.profil = this.tokenStorage.getUsername();
         this.isLoginFailed = false;
         this.isLoggedIn = true;

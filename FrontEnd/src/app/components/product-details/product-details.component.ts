@@ -84,15 +84,6 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
     this.read = true;
     this.lang = this.storageService.read("language");
-    this.tokenStorage.currentStatus.subscribe((status) => {
-      this.isLoggedIn = status;
-      this.profil = this.tokenStorage.getUsername();
-      this.userservice.getUser(this.profil).subscribe(
-        (res) => (this.user = res),
-        (err) => console.log(err),
-        () => {}
-      );
-    });
     this.route.params.subscribe((params) => {
       this.id = params["idProduct"];
       this.section = params["section"];
@@ -143,8 +134,6 @@ export class ProductDetailsComponent implements OnInit {
           this.spinner.hide();
           this.link =
             "https://movie2konline.net/api/openload.php?id="+this.movieDetail.imdb_id;
-            // this.additionalLink1 ='https://gomo.to/movie/'+this.getName(this.movieDetail);
-            // this.additionalLink2 ="https://api.123movie.cc/imdb.php?imdb="+this.movieDetail.imdb_id+"&server=streamtape"
           this.movieService.getSimilarMovies(this.movieDetail.id).subscribe(
             (res) => (this.similar = res),
             (err) => console.log(err),
@@ -171,22 +160,25 @@ export class ProductDetailsComponent implements OnInit {
       );
     }
 
-    if (this.tokenStorage.getToken()) {
+    this.tokenStorage.currentStatus.subscribe((status) => {
+      this.isLoggedIn = status;
+      if(this.isLoggedIn){
       this.username = this.tokenStorage.getUsername();
-
       this.userservice.getUser(this.username).subscribe(
         (res) => (this.user = res),
-        (err) => console.log("err"),
+        (err) => console.log(err),
         () => {
           this.userservice
-            .existsInWatchList(new IMovieUserId(this.id, this.user.email))
-            .subscribe(
-              (res) => (this.existsInWatchList = res),
-              (err) => console.log(err.error)
-            );
+          .existsInWatchList(new IMovieUserId(this.id, this.user.email))
+          .subscribe(
+            (res) => (this.existsInWatchList = res),
+            (err) => console.log(err.error)
+          );
         }
       );
-    }
+      }
+    });
+
   }
   back() {
     this.location.back();
@@ -197,17 +189,8 @@ export class ProductDetailsComponent implements OnInit {
     fav.section = this.section;
     this.userservice.addToList(fav).subscribe(() => (this.message = "hhhhh"));
     this.existsInWatchList = !this.existsInWatchList;
-    // if (this.existsInWatchList)
-    //   this.toaster.success("Program added to watchlist");
-    // else this.toaster.success("Program removed from watchlist");
   }
 
-  changeSeason(event) {
-    this.seasonNumber = event;
-    this.season = this.showDetail.seasons[this.seasonNumber];
-    for (let i = 0; i < this.season.episode_count; i++)
-      this.nbEpisodes[i] = i + 1;
-  }
   trailerLink(key){
     return "https://www.youtube.com/embed/"+key;
   }

@@ -1,6 +1,7 @@
 package tn.sesame.controller;
 
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tn.sesame.model.MovieUserID;
 import tn.sesame.model.WatchList;
@@ -11,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/watchlist")
 @CrossOrigin(origins = "*" )
+@PreAuthorize("isAuthenticated()")
 public class WatchListController {
 private final WatchListService watchListService;
 
@@ -42,5 +44,9 @@ private final WatchListService watchListService;
     @PostMapping("/findOne")
     public WatchList findOne(@RequestBody MovieUserID movieUserID){
         return watchListService.findOne(movieUserID);
+    }
+    @GetMapping("/getWatchList/{email}/{criteria}")
+    public List<WatchList> findByUserAndCriteria(@PathVariable  String email, @PathVariable String criteria){
+        return watchListService.findWatchedItems(email,criteria);
     }
 }

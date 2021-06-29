@@ -30,18 +30,12 @@ export class CommentsComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes.user) {
       this.user = changes.user.currentValue;
-      console.log(this.user);
       this.isLoggedIn = this.user != null && this.user != undefined;
-      console.log(this.isLoggedIn);
     }
   }
 
   ngOnInit() {
-    console.log(this.user);
-
     this.isLoggedIn = this.user != null && this.user != undefined;
-    console.log(this.isLoggedIn);
-
     this.findAll();
   }
   findAll() {
@@ -57,8 +51,9 @@ export class CommentsComponent implements OnInit, OnChanges {
     let comment: any = {};
     comment.comment = this.myComment;
     comment.commentDate = new Date();
-    comment.user = this.user;
+    comment.userId = this.user.id;
     comment.idMovie = this.idMovie;
+    comment.username= this.user.username;
     comment.likes = 0;
     this.commentService.addComment(comment).subscribe(
       (res) => this.comments.push(res),
@@ -91,6 +86,7 @@ export class CommentsComponent implements OnInit, OnChanges {
     //}
 }
 likeDislike(comment) {
+  if(this.isLoggedIn){
   let newComment: any ={};
   this.commentService.likeDislike(comment.id,this.user.id).subscribe(
     res => newComment = res,
@@ -102,6 +98,7 @@ likeDislike(comment) {
     
     
   )
+  }
 }
 likedOrNot(comment){
   let index = -1;

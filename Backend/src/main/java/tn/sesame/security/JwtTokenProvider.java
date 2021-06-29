@@ -24,6 +24,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import tn.sesame.exception.CustomException;
 import tn.sesame.model.Role;
+import tn.sesame.model.User;
+import tn.sesame.repository.UserRepository;
 
 @Component
 public class JwtTokenProvider {
@@ -40,17 +42,18 @@ public class JwtTokenProvider {
 
   @Autowired
   private MyUserDetails myUserDetails;
-
+  @Autowired
+  private UserRepository userRepository;
   @PostConstruct
   protected void init() {
     secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
   }
 
   public String createToken(String username, List<Role> roles) {
-
+    User user = userRepository.findByUsername(username);
     Claims claims = Jwts.claims().setSubject(username);
     claims.put("auth", roles.stream().map(s -> new SimpleGrantedAuthority(s.getAuthority())).filter(Objects::nonNull).collect(Collectors.toList()));
-
+    claims.put("email", user.getEmail());
     Date now = new Date();
     Date validity = new Date(now.getTime() + validityInMilliseconds);
 

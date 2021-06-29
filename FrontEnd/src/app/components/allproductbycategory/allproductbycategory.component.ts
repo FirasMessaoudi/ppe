@@ -83,6 +83,7 @@ export class AllproductbycategoryComponent implements OnInit {
     this.init();
   }
   @HostListener("window:scroll", ["$event"])
+  @HostListener("window:touchmove", ["$event"])
   onWindowScroll() {
     //In chrome and some browser scroll is given to body tag
     let pos =

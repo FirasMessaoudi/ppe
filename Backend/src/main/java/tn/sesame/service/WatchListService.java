@@ -51,4 +51,14 @@ public class WatchListService {
     public WatchList findOne(MovieUserID movieUserID) {
         return watchListRepository.findById(movieUserID).get();
     }
+
+    public List<WatchList> findWatchedItems(String email, String criteria){
+        if(criteria.equals("ALL")){
+            return findByUser(email);
+        } else if(criteria.equals(("true"))){
+            return watchListRepository.findByMovieUserIDEmailAndAndWatchedIsTrue(email);
+        }else {
+            return watchListRepository.findByMovieUserIDEmailAndAndWatchedIsFalse(email);
+        }
+    }
 }

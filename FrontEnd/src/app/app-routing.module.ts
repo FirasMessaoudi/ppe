@@ -13,6 +13,7 @@ import { ShowDetailsComponent } from './components/show-details/show-details.com
 import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { UserGuard } from './guards/user.guard';
 const appRoutes: Routes = [
   {path: 'viewDetail/:section/:idProduct', component: ProductDetailsComponent},
   {path: 'allProduct/:nameSection', component: ProductbysectionComponent},
@@ -22,7 +23,7 @@ const appRoutes: Routes = [
   {path: 'sortall/:critere', component: ProductbyimdbComponent},
   {path: 'upcomingmovies', component: UpcomingmoviesComponent},
   {path: 'searchbykeyword/:keyword', component: SearchComponent},
-  {path: 'watchlist', component: WatchlistComponent},
+  {path: 'watchlist', component: WatchlistComponent, canActivate: [UserGuard]},
   {path: 'actorworks/:id', component: ActorsKnownForComponent},
   {path: 'TvDetails',component:ShowDetailsComponent},
   {path: '', component: ProductsListComponent},

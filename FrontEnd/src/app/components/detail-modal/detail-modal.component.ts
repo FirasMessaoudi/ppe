@@ -17,22 +17,12 @@ export class DetailModalComponent implements OnInit {
   cat: string ='';
   constructor(private service: UserService) { }
 
-  ngOnInit() {
-    console.log(this.fav);
-    
+  ngOnInit() {    
    this.program.cat.forEach(element => {
      this.cat=this.cat+element.name+', ';
    });
    
   }
-// ngOnChanges(changes: SimpleChanges){
-//   this.program = changes.program.currentValue;
-//   this.program.cat.forEach(element => {
-//     this.cat+element.name+', ';
-//   });
-//   console.log(this.cat);
-
-// }
 updateFav(){
   this.fav.watched = !this.fav.watched;
   this.service.watchUnWatchMovie(this.fav).subscribe(

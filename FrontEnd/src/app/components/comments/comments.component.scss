@@ -90,8 +90,8 @@ a {
 }
 
 .avatar {
-  width: 50px;
-  height: 50px;
+  width: 34px;
+  height: 34px;
   margin-left: -42px;
   border-radius: 50%;
 }
@@ -210,9 +210,10 @@ img {
 }
 
 .title {
-  font-size: 20px !important;
-  font-weight: 700;
-  line-height: 1 !important;
+  font-size: 16px !important;
+  font-weight: 500;
+  font-family: inherit;
+  line-height: 1.2;
   letter-spacing: 0.02em !important;
   color: #d0d2d6 !important;
 }
@@ -257,14 +258,9 @@ a:hover {
 .wrapper {
   overflow: auto;
 }
-
-.answers {
-  //padding-left: 64px;
-}
-
 .comment {
   overflow-y: auto;
-  margin-left: 32px;
+  margin-left: 17px;
   margin-right: 16px;
 }
 
@@ -321,7 +317,7 @@ a:hover {
 
 .card,
 .card {
-  padding: 20px 16px;
+  padding-left: 16px;
 //   margin-bottom: 32px;
   display: flex;
   flex-direction: column;

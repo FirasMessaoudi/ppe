@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/navbar/navbar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SafeurlserviceService} from 'src/app/service/safeurlservice.service';
 import { MaterialModule } from './material.module';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -44,6 +44,7 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+import { AuthInterceptor } from './service/authinterceptor.service';
 
 registerLocaleData(en);
 export function createTranslateLoader(http: HttpClient) {
@@ -112,13 +113,12 @@ export class MyHammerConfig extends HammerGestureConfig {
   providers: [{provide:HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig},
     TimeAgoPipe,
     { provide: NZ_I18N, useValue: en_US },
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
-
-   /* {
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+   {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi:true
-    }*/
+    }
     
   ],
   bootstrap: [AppComponent],

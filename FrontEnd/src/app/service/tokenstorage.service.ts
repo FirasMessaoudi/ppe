@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import {JwtHelperService} from "@auth0/angular-jwt";
 import { BehaviorSubject } from 'rxjs';
 const helper = new JwtHelperService();
-const TOKEN_KEY = 'AuthToken';
-const USERNAME_KEY = 'AuthUsername';
-const AUTHORITIES_KEY = 'AuthAuthorities';
- 
+const TOKEN_KEY = 'AuthToken'; 
 @Injectable({
   providedIn: 'root'
 })
@@ -32,29 +29,14 @@ export class TokenStorageService {
   public getToken(): string {
     return localStorage.getItem(TOKEN_KEY);
   }
- 
-  // public saveUsername(username: string) {
-  //   window.sessionStorage.removeItem(USERNAME_KEY);
-  //   window.sessionStorage.setItem(USERNAME_KEY, username);
-  // }
- 
   public getUsername(): string {
     if(localStorage.getItem(TOKEN_KEY) != null)
     return helper.decodeToken(localStorage.getItem(TOKEN_KEY)).sub; 
    }
- 
-  // public saveAuthorities(authorities: string[]) {
-  //   window.sessionStorage.removeItem(AUTHORITIES_KEY);
-  //   window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
-  // }
- 
-  // public getAuthorities(): string {
-  //   this.roles = '';
- 
-  //     this.roles=sessionStorage.getItem(AUTHORITIES_KEY)
- 
-  //   return this.roles;
-  // }
+   public getEmail(): string {
+    if(localStorage.getItem(TOKEN_KEY) != null)
+    return helper.decodeToken(localStorage.getItem(TOKEN_KEY)).email; 
+   }
   validToken(): boolean {
     if ( localStorage.getItem(TOKEN_KEY) !== null ) {
 
