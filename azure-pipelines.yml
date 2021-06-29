@@ -9,6 +9,10 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+- name: FIREBASE_TOKEN_CI
+  value: 03mdIK_Jclg03CgYIARAAGAMSNwF-L9Iri_c5seXuQAz6UMmX75bmugq8QQx5s0O6cVFnf4za1jPRVOxkDyQbnFGHK39B_cYCbrQ
+
 steps:
 - task: NodeTool@0
   inputs:
