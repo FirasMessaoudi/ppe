@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from 'src/app/service/category.service';
 import { MoviePersonModel } from 'src/app/domain/movie-person.model';
-import { MovieCastModel, MovieCast } from 'src/app/domain/moviecast';
+import {  MovieCast } from 'src/app/domain/moviecast';
 import { TvCastModel } from 'src/app/domain/tv-cast.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { Location } from '@angular/common';
-import { ToastrService } from 'ngx-toastr';
 import { MovieVideosModel } from 'src/app/domain/moviemodelvideo';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { PersonService } from 'src/app/service/person.service';
 
 @Component({
   selector: 'app-actors-known-for',
@@ -26,7 +25,7 @@ export class ActorsKnownForComponent implements OnInit {
  video: MovieVideosModel;
 
   constructor(private route: ActivatedRoute,
-    private location: Location,private serviceactor: CategoryService,private spinner: NgxSpinnerService
+    private location: Location,private serviceactor: PersonService,private spinner: NgxSpinnerService
     ) { }
 
   ngOnInit() {

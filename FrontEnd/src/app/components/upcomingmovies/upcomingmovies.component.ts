@@ -16,7 +16,6 @@ export class UpcomingmoviesComponent implements OnInit {
   top_movies: IMovie;
   upcoming: MovieModel[] = [];
   showError: boolean;
-  responsiveOptions: { breakpoint: string; numVisible: number; numScroll: number; }[];
   // tslint:disable-next-line:max-line-length
   constructor(
     private service: MovieService,
@@ -26,23 +25,6 @@ export class UpcomingmoviesComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-    this.responsiveOptions = [
-      {
-          breakpoint: '1024px',
-          numVisible: 6,
-          numScroll: 6
-      },
-      {
-          breakpoint: '768px',
-          numVisible: 2,
-          numScroll: 2
-      },
-      {
-          breakpoint: '560px',
-          numVisible: 1,
-          numScroll: 1
-      }
-  ];
   }
 
   ngOnInit() {

@@ -15,22 +15,19 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ProfileComponent } from './components/profile/profile.component';
 import { UserGuard } from './guards/user.guard';
 const appRoutes: Routes = [
-  {path: 'viewDetail/:section/:idProduct', component: ProductDetailsComponent},
-  {path: 'allProduct/:nameSection', component: ProductbysectionComponent},
-  {path: 'allProductByCategory/:section/:name/:category', component: AllproductbycategoryComponent},
-
+  {path: 'detail/:section/:idProduct', component: ProductDetailsComponent},
+  {path: 'all/:nameSection', component: ProductbysectionComponent},
+  {path: 'category/:section/:name/:category', component: AllproductbycategoryComponent},
   {path: 'home', component: ProductsListComponent},
-  {path: 'sortall/:critere', component: ProductbyimdbComponent},
   {path: 'upcomingmovies', component: UpcomingmoviesComponent},
   {path: 'searchbykeyword/:keyword', component: SearchComponent},
   {path: 'watchlist', component: WatchlistComponent, canActivate: [UserGuard]},
   {path: 'actorworks/:id', component: ActorsKnownForComponent},
-  {path: 'TvDetails',component:ShowDetailsComponent},
   {path: '', component: ProductsListComponent},
   {path: 'settings',component: SettingsComponent},
-  {path:'Top_Rated', component: ProductbyimdbComponent},
+  {path:'top-rated', component: ProductbyimdbComponent},
   {path: 'not-found', component: PageNotFoundComponent},
-  {path: 'profile',component: ProfileComponent},
+  {path: 'profile',component: ProfileComponent, canActivate: [UserGuard]},
   {path: '**', redirectTo: 'home' },
   {path:'',redirectTo: 'home', pathMatch: 'full'},
   

@@ -41,7 +41,7 @@ app.on('activate', function () {
 function openModal(){
   const { BrowserWindow } = require('electron');
   let modal = new BrowserWindow({ parent: mainWindow, modal: true, show: false })
-  modal.loadURL('https://www.sitepoint.com')
+  modal.loadURL('https://infinite-hamlet-71906.herokuapp.com')
   modal.once('ready-to-show', () => {
     modal.show()
   })

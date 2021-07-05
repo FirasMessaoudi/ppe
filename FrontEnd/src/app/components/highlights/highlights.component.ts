@@ -70,7 +70,7 @@ export class HighlightsComponent implements OnInit {
   goToDetails($event){
     console.log($event);
     
-   this.router.navigateByUrl('/viewDetails'+'Movies'+$event)
+   this.router.navigateByUrl('/details'+'Movies'+$event)
   }
 
 }

@@ -52,7 +52,7 @@
               <a
                 style="color: #00acc1"
                 [routerLink]="[
-                  '/allProductByCategory',
+                  '/category',
                   'Movies',
                   genre.name,
                   genre.id
@@ -258,7 +258,7 @@
           <i class="fa fa-whatsapp fa-lg white-text"> </i>
         </button>
         <a
-          href="https://plus.google.com/share?url=https://mymovies-430e3.firebaseapp.com/Movies/viewDetails/{{
+          href="https://plus.google.com/share?url=https://mymovies-430e3.firebaseapp.com/Movies/details/{{
             movieDetail.id
           }}"
           onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
@@ -333,7 +333,7 @@
               <a
                 style="color: #00acc1"
                 [routerLink]="[
-                  '/allProductByCategory',
+                  '/category',
                   'Series',
                   genre.name,
                   genre.id
@@ -536,7 +536,7 @@
           <i class="fa fa-whatsapp fa-lg white-text"> </i>
         </button>
         <a
-          href="https://plus.google.com/share?url=https://mymovies-430e3.firebaseapp.com/Series/viewDetails/{{
+          href="https://plus.google.com/share?url=https://mymovies-430e3.firebaseapp.com/Series/details/{{
             showDetail.id
           }}"
           onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"

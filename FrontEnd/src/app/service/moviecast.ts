@@ -7,4 +7,5 @@ export interface MovieCastModel {
     name: string;
     order: number;
     profile_path: string;
+    cast?: any;
 }
