@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {
   MatButtonModule,
@@ -36,7 +36,7 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
  
   ],
   exports: [

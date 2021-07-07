@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { StorageService } from './service/sharedservice.service';
 import { TranslateService } from '@ngx-translate/core';
+import { StorageService } from './core/services/sharedservice.service';
 
 @Component({
   selector: 'app-root',

@@ -1,0 +1,25 @@
+<!-- <mdb-carousel  [controls]="true" [indicators]="true" [animation]="'fade'">
+  <mdb-carousel-item *ngFor="let item of highlightmovies?.results | paginate: { itemsPerPage: 8, currentPage: p}" [interval]="1000">
+    <img
+    [src]=" 'https://image.tmdb.org/t/p/original' +item.backdrop_path "
+      class="d-block w-100 h-100"
+      alt="..."
+    />
+    <div class="carousel-caption d-none d-md-block">
+      <h5>{{item?.title}}</h5>
+      <p id="description">{{item?.overview}}</p>
+    </div>
+  </mdb-carousel-item>
+</mdb-carousel>
+ -->
+
+ <nz-carousel nzAutoPlay>
+  <div nz-carousel-content *ngFor="let item of highlightmovies?.results | paginate: { itemsPerPage: 8, currentPage: p}">
+    <img
+    [src]=" 'https://image.tmdb.org/t/p/original' +item.backdrop_path "
+      class="d-block w-100 h-100"
+      alt="..."
+    />  
+  </div>
+
+</nz-carousel>

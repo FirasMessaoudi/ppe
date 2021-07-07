@@ -1,0 +1,76 @@
+<div *ngIf="!showError">
+  <app-highlights></app-highlights>
+</div>
+<app-page-not-found *ngIf="showError"></app-page-not-found>
+
+<div class="row ml-4 mt-3">
+  <h2
+      >
+    {{ "App.Trending_movies" | translate }}
+  </h2>
+</div>
+
+<div class="row justify-content-center">
+  <div
+    *ngFor="
+      let item of movies?.results
+        | paginate: { itemsPerPage: 12, currentPage: p }
+    "
+  >
+    <app-cardmovie
+      [section]="'Movies'"
+      [id]="item.id"
+      [image]="item.poster_path"
+      [title]="item.title"
+      [dateRelease]="item.release_date"
+      [note]="item.vote_average"
+      [numbervisits]="item.popularity"
+    >
+    </app-cardmovie>
+  </div>
+</div>
+
+
+
+
+<div class="row">
+
+  <div [routerLink]="['/query/all', 'Movies']"  class="col-sm col-md col-lg col-xl text-white text-right more">
+    View all 
+   <i class="fa fa-caret-right"></i>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+</div>
+
+<!-- Series -->
+
+<div class="row ml-4 mt-3">
+  <h2 >
+    {{ "App.Trending_shows" | translate }}
+  </h2>
+</div>
+<div class="row justify-content-center">
+  <div
+    *ngFor="
+      let item of tvs?.results | paginate: { itemsPerPage: 12, currentPage: p }
+    "
+  >
+    <app-cardmovie
+      [section]="'Series'"
+      [id]="item.id"
+      [image]="item.poster_path"
+      [title]="item.name"
+      [dateRelease]="item.first_air_date"
+      [note]="item.vote_average"
+      [numbervisits]="item.popularity"
+    >
+    </app-cardmovie>
+  </div>
+</div>
+<div class="row">
+  <div [routerLink]="['/query/all', 'Series']" class="col-sm col-md col-lg col-xl text-white text-right more">
+    View all 
+   <i class="fa fa-caret-right"></i>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+</div>
