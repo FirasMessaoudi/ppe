@@ -5,19 +5,19 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 import { SettingsComponent } from './shared/components/settings/settings.component';
 const appRoutes: Routes = [
   {path: 'detail',
-  loadChildren: () => import('./modules/detail/detail.module').then(m => m.DetailModule)
+  loadChildren:'./modules/detail/detail.module#DetailModule'
   },
   {path: 'home',
-  loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+  loadChildren: './modules/home/home.module#HomeModule'
   },
   {path: '',
-  loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+  loadChildren: './modules/home/home.module#HomeModule'
   },
   {path: 'query',
-  loadChildren: () => import('./modules/productby/productby.module').then(m => m.ProductbyModule)
+  loadChildren: './modules/productby/productby.module#ProductbyModule'
   },
   {path: 'user',
-  loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule), canActivate: [UserGuard]
+  loadChildren: './modules/user/user.module#UserModule', canActivate: [UserGuard]
   },
   {path: 'not-found', component: PageNotFoundComponent},
  {path: 'settings',component: SettingsComponent},
