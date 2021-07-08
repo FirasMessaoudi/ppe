@@ -5,7 +5,6 @@ import { TokenStorageService } from 'src/app/core/services/tokenstorage.service'
 import { ToastrService } from 'ngx-toastr';
 import { IUser } from 'src/app/core/domain/iuser';
 import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { ModalDirective } from 'angular-bootstrap-md';
 import { ErrorStateMatcher, MatDialogRef } from '@angular/material';
 import { NgxSpinnerService } from 'ngx-spinner';
 export  const patternMDP: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,12}$/;
@@ -135,11 +134,8 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
   signout(){
-    
     this.tokenStorage.signOut();
     this.reloadPage();
-  
-    
   }
  
   MustMatch(controlName: string, matchingControlName: string) {

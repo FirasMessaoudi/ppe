@@ -6,9 +6,8 @@
       </div>
       <div class="row">
         <div class="col-4">
-          <div class="lx-column column-user-pic">
             <div class="profile-pic bs-md">
-              <h1 class="pic-label">Profile picture</h1>
+              <!-- <h1 class="pic-label">Profile picture</h1> -->
               <div class="pic bs-md">
                 <label class="hoverable" for="fileInput">
                   <img [src]="sanitize()"> 
@@ -21,10 +20,11 @@
                 <input id="fileInput" type='file' (change)="onSelectFile($event)">
               </div>
               <div class="pic-info">
-                <p><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;This photo will appear on the platform, as your avatar.</p>
+                <p class="text-white"><i class="fas fa-exclamation-triangle">
+
+                </i>&nbsp;&nbsp;This photo will appear on the platform, as your avatar. Click on it to update</p>
               </div>
             </div>
-          </div>
         </div>
         <div class="col-8">
 
@@ -33,86 +33,91 @@
 
             <form [formGroup]="userForm"class=" needs-validation" novalidate>
               <div class="row">
-                
                 <div class="col-6">
-                  <label for="validationTooltip01">First name</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="validationTooltipUsernamePrepend">
-                        <em class="material-icons">person_pin</em>
-                      </span>
-                    </div>
-                    <input [ngClass]="{'form-control is-invalid' :userForm.get('name')?.invalid && ( userForm.get('name').dirty || userForm.get('name').touched), 'form-control':1}"
-                    formControlName="name" type="text" class="form-control" id="validationTooltip01" placeholder="First name" required>
-                   <div *ngIf="userForm.get('name')?.invalid && (userForm.get('name').dirty || userForm.get('name').touched)" class="invalid-feedback">
-                     Wrong name
-                   </div>
-                  </div>
+                  <mat-form-field class="field" appearance="outline">
+                    <mat-label>Full Name</mat-label>
+                    <input
+                      [errorStateMatcher]="matcher"
+                      formControlName="firstname"
+                      matInput
+                      placeholder="Full Name"
+                    />
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="userForm.controls['firstname'].errors">
+                      Invalid name
+                    </mat-error>
+                  </mat-form-field>
                  
                 </div>
                 <div class="col-6">
-                  <label for="validationTooltipUsername">Username</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="validationTooltipUsernamePrepend">
-                        <em class="material-icons">person</em>
-                      </span>
-                    </div>
-                    <input [ngClass]="{'form-control is-invalid' :userForm.get('username')?.invalid && ( userForm.get('username').dirty || userForm.get('username').touched), 'form-control':1}" formControlName="username" type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required>
-                    <div *ngIf="userForm.get('username')?.invalid && (userForm.get('username').dirty || userForm.get('username').touched)" class="invalid-feedback">
-                      Wrong username
-                    </div>
-                  </div>
+                  <mat-form-field class="field" appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input
+                      [errorStateMatcher]="matcher"
+                      formControlName="username"
+                      matInput
+                      placeholder="Username"
+                    />
+                    <mat-icon matSuffix>person_pin</mat-icon>
+                    <mat-error *ngIf="userForm.controls['username'].errors">
+                      Invalid username
+                    </mat-error>
+                  </mat-form-field>
                 </div>
               </div>
              
              <div class="row">
              <div class="col-6">
-              <label for="validationTooltip02">Email</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="validationTooltipUsernamePrepend">
-                    <em class="material-icons">email</em>
-                  </span>
-                </div>
-                <input [ngClass]="{'form-control is-invalid' :userForm.get('email')?.invalid && ( userForm.get('email').dirty || userForm.get('email').touched), 'form-control':1}" type="email" class="form-control" id="validationTooltip02" placeholder="Email" formControlName="email" required>
-                <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email').dirty || userForm.get('email').touched)" class="invalid-feedback">
-                  Wrong email
-                </div>
-              </div>
+              <mat-form-field class="field" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input
+                  [errorStateMatcher]="matcher"
+                  formControlName="email"
+                  matInput
+                  placeholder="Email"
+                />
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="userForm.controls['email'].errors">
+                  Invalid Email
+                </mat-error>
+              </mat-form-field>
              
              </div>
              <div class="col-6">
-              <label for="validationTooltip03">Password</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="validationTooltipUsernamePrepend">
-                    <em class="material-icons">lock</em>
-                  </span>
-                </div>
-                <input [ngClass]="{'form-control is-invalid' :userForm.get('password')?.invalid && ( userForm.get('password').dirty || userForm.get('password').touched), 'form-control':1}" type="password" class="form-control" id="validationTooltip03" formControlName="password" placeholder="************" required>
-      <div *ngIf="userForm.get('password')?.invalid && (userForm.get('password').dirty || userForm.get('password').touched)" class="invalid-feedback">
-        Weak password
-      </div>
-              </div>
+              <mat-form-field class="field" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input
+                  type="password"
+                  [errorStateMatcher]="matcher"
+                  formControlName="password"
+                  matInput
+                  placeholder="Password"
+                />
+                <mat-icon matSuffix>lock</mat-icon>
+                <mat-error *ngIf="userForm.controls['password'].errors">
+                  Password is too weak (at least 8 characters, one uppercase ، lowercase ، number
+                  and one special character )
+                </mat-error>
+              </mat-form-field>
       
             </div>
              </div>
              <div class="row">
               <div class="col-6">
-                <label for="validationTooltip04">Confirm Password</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="validationTooltipUsernamePrepend">
-                      <em class="material-icons">lock_open</em>
-                    </span>
-                  </div>
-                  <input [ngClass]="{'form-control is-invalid' :userForm.get('confirmPassword')?.invalid && ( userForm.get('confirmPassword').dirty || userForm.get('confirmPassword').touched), 'form-control':1}" formControlName="confirmPassword" type="password"  class="form-control" id="validationTooltip04" placeholder="************" required>
-                  <div *ngIf="userForm.get('confirmPassword')?.invalid && (userForm.get('confirmPassword').dirty || userForm.get('confirmPassword').touched)" class="invalid-feedback">
+                <mat-form-field class="field" appearance="outline">
+                  <mat-label>Confirm Password</mat-label>
+                  <input
+                    type="password"
+                    [errorStateMatcher]="matcher"
+                    formControlName="confirmPassword"
+                    matInput
+                    placeholder="¨Confirm your Password"
+                  />
+                  <mat-icon matSuffix>lock</mat-icon>
+                  <mat-error *ngIf="userForm.controls['confirmPassword'].errors">
                     Passwords don't match
-                  </div>
-                </div>
-               
+                  </mat-error>
+                </mat-form-field>
               </div>
               </div>
               <div class="row">
