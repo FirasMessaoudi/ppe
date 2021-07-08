@@ -69,12 +69,15 @@ public class UserService {
     return userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
   }
   public ResponseEntity<?> update(UserUpdate userUpdate){
+        User oldUser = userRepository.findById(userUpdate.getId()).get();
         if(!checkEmail(userUpdate.getEmail(),userUpdate.getNewEmail())) {
           throw new CustomException("Email is already in use", HttpStatus.IM_USED);
         }
         if(!checkUsername(userUpdate.getUsername(),userUpdate.getNewUsername())){
           throw new CustomException("Username is already in use", HttpStatus.IM_USED);
-
+        }
+        if(!passwordEncoder.matches(userUpdate.getOldPassword(),oldUser.getPassword())){
+            throw new CustomException("Wrong password", HttpStatus.IM_USED);
         }
         User user = new User();
         user.setId(userUpdate.getId());

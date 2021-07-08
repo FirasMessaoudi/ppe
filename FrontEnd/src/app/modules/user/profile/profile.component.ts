@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/api_services/authservice.service';
 import { TokenStorageService } from 'src/app/core/services/tokenstorage.service';
 import { UserService } from 'src/app/core/api_services/user.service';
 import { ErrorStateMatcher } from '@angular/material';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 export  const patternMDP: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,12}$/;
 export const patternEmail: RegExp = /^[^\W][a-zA-Z0-9\-\_\.]+[^\W]@[^\W][a-zA-Z0-9\-\_\.]+[^\W]\.[a-zA-Z]{2,6}$/;
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
   constructor(private authService: AuthService,
   private toaster: ToastrService,  
   private sanitizer: DomSanitizer,
-  private spinner: Ng4LoadingSpinnerService,
+  private spinner: NgxSpinnerService,
   private fb: FormBuilder, private userService: UserService,
    private tokenStorage: TokenStorageService, private router: Router) { }
   user: any;
@@ -42,7 +42,8 @@ export class ProfileComponent implements OnInit {
         username:[''],
         email:[''],
         password:[''],
-        confirmPassword:['']
+        confirmPassword:[''],
+        oldPassword:['']
       }
     )
   
@@ -55,6 +56,7 @@ export class ProfileComponent implements OnInit {
             firstname:[this.user.firstname,Validators.compose([Validators.required,Validators.minLength(5)])],
             username:[this.user.username,Validators.compose([Validators.required,Validators.minLength(6)])],
             email:[this.user.email,Validators.pattern(patternEmail)],
+            oldPassword:[null,Validators.required],
             password:[null,Validators.compose([Validators.minLength(8),Validators.pattern(patternMDP)])],
             confirmPassword:[null]
           },
@@ -64,7 +66,7 @@ export class ProfileComponent implements OnInit {
           }
         )
         console.log(this.user);
-        if(this.user.picture!=null){
+        if(this.user.picture!=null && this.user.picture!=""){
           this.downloadFile(this.user.picture);
         }
       }
@@ -98,10 +100,11 @@ export class ProfileComponent implements OnInit {
       return null;
     }
     this.spinner.show();
+    let response: any;
+    if(this.file){
   this.formData.delete('file');
    this.formData.append('file',this.file);
    let path : string;
-   let response: any;
    this.userService.pushFileToStorage(this.formData).subscribe(
      res => path = res.body,
      err =>{console.log(err);
@@ -114,6 +117,7 @@ export class ProfileComponent implements OnInit {
       this.user.newUsername= this.userForm.get('username').value;
       this.user.newEmail = this.userForm.get('email').value;
       this.user.password = this.userForm.get('password').value;
+      this.user.oldPassword = this.userForm.get('oldPassword').value;
       this.user.picture =path;
       this.userService.update(this.user).subscribe(
         res => response = res,
@@ -135,6 +139,32 @@ export class ProfileComponent implements OnInit {
       );
      }
    );
+    }else {
+      this.user.firstname = this.userForm.get('firstname').value;
+      this.user.newUsername= this.userForm.get('username').value;
+      this.user.newEmail = this.userForm.get('email').value;
+      this.user.password = this.userForm.get('password').value;
+      this.user.oldPassword = this.userForm.get('oldPassword').value;
+      this.userService.update(this.user).subscribe(
+        res => response = res,
+        err =>{console.log(err);
+          this.spinner.hide();
+    
+        },
+        () => {
+          this.spinner.hide();
+          if(response.status==226){
+             this.toaster.error(response.message);
+          } else {
+            this.toaster.success("Your informations were updated successfully");
+            this.tokenStorage.signOut();
+            this.router.navigate(['/']);
+
+          }
+        }
+      );
+
+    }
   }
   reset() {
     this.userForm.reset();

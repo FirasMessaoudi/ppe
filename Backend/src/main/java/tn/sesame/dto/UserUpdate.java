@@ -8,6 +8,7 @@ import java.util.List;
 public class UserUpdate {
     private Integer id;
     private String firstname;
+    private String oldPassword;
     private String password;
     private String username;
     private String newUsername;
