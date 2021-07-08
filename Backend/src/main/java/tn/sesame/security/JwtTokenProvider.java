@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
+import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -18,10 +19,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import tn.sesame.exception.CustomException;
 import tn.sesame.model.Role;
 import tn.sesame.model.User;
@@ -86,9 +83,18 @@ public class JwtTokenProvider {
     try {
       Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
       return true;
-    } catch (JwtException | IllegalArgumentException e) {
-      throw new CustomException("Expired or invalid JWT token", HttpStatus.INTERNAL_SERVER_ERROR);
+    } catch (SignatureException ex) {
+      // log.info("Invalid JWT Signature");
+    } catch (MalformedJwtException ex) {
+      // log.info("Invalid JWT token");
+    } catch (ExpiredJwtException ex) {
+      // log.info("Expired JWT token");
+    } catch (UnsupportedJwtException ex) {
+//      log.info("Unsupported JWT exception");
+    } catch (IllegalArgumentException ex) {
+      //log.info("Jwt claims string is empty");
     }
+    return false;
   }
 
 }

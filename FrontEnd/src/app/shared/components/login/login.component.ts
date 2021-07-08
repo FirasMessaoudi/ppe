@@ -6,10 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { IUser } from 'src/app/core/domain/iuser';
 import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ModalDirective } from 'angular-bootstrap-md';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { UserService } from 'src/app/core/api_services/user.service';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ErrorStateMatcher } from '@angular/material';
+import { ErrorStateMatcher, MatDialogRef } from '@angular/material';
 import { NgxSpinnerService } from 'ngx-spinner';
 export  const patternMDP: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,12}$/;
 export const patternEmail: RegExp = /^[^\W][a-zA-Z0-9\-\_\.]+[^\W]@[^\W][a-zA-Z0-9\-\_\.]+[^\W]\.[a-zA-Z]{2,6}$/;
@@ -25,8 +22,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('framelogin') modalLogin: ModalDirective;
-  @ViewChild('framesignup') modalSignUp: ModalDirective;
   matcher = new MyErrorStateMatcher();
   isLoggedIn = false;
   isLoginFailed = false;
@@ -41,36 +36,22 @@ export class LoginComponent implements OnInit {
   profil:string;
   isAdmin=false;
   signUpForm:FormGroup;
-  user: any;
-  url : any;
+  isSignUp= false;
+  isLogin= true; 
   constructor(private fb:FormBuilder,private toastr: ToastrService,private authService: AuthService,
      private tokenStorage: TokenStorageService,  
         private spinnerService: NgxSpinnerService,
-        private userService: UserService,
-        private sanitizer: DomSanitizer,
-
-      
+        public dialogRef: MatDialogRef<LoginComponent>,      
      ) { }
-
+     onNoClick(): void {
+      this.dialogRef.close();
+    }
   ngOnInit() {
     this.tokenStorage.currentStatus.subscribe(status => {
       this.isLoggedIn = status;
       if(this.isLoggedIn){
       this.profil = this.tokenStorage.getUsername();
-       this.userService.getUser(this.profil).subscribe(
-         res => this.user = res,
-         err => console.log(err),
-         () =>{
-           console.log(this.user);
-           
-         if(this.user){
-           if(this.user.picture){
-           this.downloadFile(this.user.picture);
-           }
-         }
-         }
-
-               )
+       
         }
 
 
@@ -78,13 +59,7 @@ export class LoginComponent implements OnInit {
     this.createSignUpForm();
   }
   
-  sanitize(){
-    if(this.url){
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-    } else {
-      return "https://www.w3schools.com/howto/img_avatar.png";
-    }
-}
+
   createSignUpForm(){
     this.signUpForm = this.fb.group({
       'firstname':[null,Validators.compose([Validators.required,Validators.minLength(5)])],
@@ -116,7 +91,7 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveToken(data.token);
         this.profil = this.tokenStorage.getUsername();
         this.isLoggedIn = true;
-        this.modalSignUp.hide();
+        this.onNoClick();
       },
       error => {
         console.log(error);
@@ -142,16 +117,13 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         console.log(this.profil);
-       // this.roles = this.tokenStorage.getAuthorities();
-       // console.log("roled= "+this.roles);
-       // this.reloadPage();
-       this.modalLogin.hide();
+       this.onNoClick();
       },
       error => {
         console.log(error);
         this.spinnerService.hide();
         this.toastr.error("Check Your Username or Password","Autnetification failed");
-        this.errorMessage = error.error.message;
+        // this.errorMessage = error.error.message;
         this.isLoginFailed = true;
       },
       () => {
@@ -169,38 +141,7 @@ export class LoginComponent implements OnInit {
   
     
   }
-  downloadFile($event) {
-    let file;
-    let blob;
-    let path: string = $event;
-    let type;
-    console.log(path)
-    let ext = path.substr(path.lastIndexOf('.') + 1);
-    console.log(ext);
-    if (ext.toLowerCase() === 'pdf')
-      type = 'application/pdf';
-    if (ext.toLowerCase() === 'png')
-      type = 'image/png';
-    if (ext.toLowerCase() === 'jpg' || ext === 'jpeg')
-      type = 'image/jpeg';
-    if (ext.toLowerCase() === 'gif')
-      type = 'image/gif';
-    this.userService.getFile($event, type).subscribe(
-      (result) => {
-
-        blob = result;
-
-      },
-      (error) => {console.log(error);
-      },
-      () => {
-        file = new Blob([blob], {type: type});
-        this.url = window.URL.createObjectURL(file);
-
-      }
-    )
-
-  }
+ 
   MustMatch(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
       const control = formGroup.controls[controlName];

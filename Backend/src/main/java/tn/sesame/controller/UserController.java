@@ -23,6 +23,7 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
     @GetMapping("/{username}")
+    @PreAuthorize("isAuthenticated()")
     public UserDTO getUser(@PathVariable("username") String username){
         return userMapper.toDto(userRepository.findByUsername(username));
     }

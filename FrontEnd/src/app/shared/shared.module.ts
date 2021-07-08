@@ -8,7 +8,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { FooterComponent } from './layout/footer/footer.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CarouselModule, MDBBootstrapModule, ModalModule, NavbarModule } from 'angular-bootstrap-md';
+import { CarouselModule, MDBBootstrapModule, MDBModalRef, ModalModule, NavbarModule } from 'angular-bootstrap-md';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -20,12 +20,14 @@ import { RouterModule } from '@angular/router';
 import { SafeurlserviceService } from '../core/services/safeurlservice.service';
 import { LoginComponent } from './components/login/login.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [ActionsComponent, CardmovieComponent, DetailModalComponent,
     ModalfavoritComponent, PageNotFoundComponent,
     FooterComponent, NavBarComponent, SafeurlserviceService,SettingsComponent,
-    LoginComponent],
+    LoginComponent,
+    ContactComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -62,7 +64,7 @@ import { SettingsComponent } from './components/settings/settings.component';
     FormsModule,
     SafeurlserviceService,
   ],
-  entryComponents:[DetailModalComponent],
+  entryComponents:[DetailModalComponent, LoginComponent, ContactComponent],
   providers: []
 
 })

@@ -7,8 +7,10 @@ import java.util.Date;
 @Data
 public class ContactDTO {
     private Long id;
-    private String name,email,subject,message,response;
+    private String subject,message,response;
     private Date dateMessage;
+    private Integer userId;
+    private String email;
 }
 
 
