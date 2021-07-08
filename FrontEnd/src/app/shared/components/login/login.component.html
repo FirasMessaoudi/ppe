@@ -1,65 +1,27 @@
-<button
-  *ngIf="!isLoggedIn"
-  (click)="framelogin.show()"
-  class="waves-light loginbtn"
-  mdbWavesEffect
->
-  {{ "App.Sign in" | translate }}
-</button>
-  <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <img class="avatar" [src]="sanitize()" />
-    <span
-  
-    class="font-weight-bold text-white ml-1"
-    >{{ profil }}</span
-  > 
-  </button>
-  <mat-menu #menu="matMenu">
 
-    <app-actions *ngIf="isLoggedIn" [profil]="profil"></app-actions>
-
-   
-  </mat-menu>
-<!--Login-->
-<div
-  mdbModal
-  #framelogin="mdbModal"
-  class="modal fade left"
-  id="frameModalTop"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
+      <div class="modal-header pt-0 text-center">
         <div class="d-flex justify-content-center w-75">
           <a class="w-100 signin">
             <h4 style="color: black" class="modal-title font-weight-bold">
-              <span class="actii">{{ "App.Sign in" | translate }}</span>
+              <span *ngIf="isLogin">{{ "App.Sign in" | translate }}</span>
+              <span *ngIf="isSignUp">{{ "App.Sign in" | translate }}</span>
+
             </h4>
           </a>
-          <a
-            class="w-100 signup"
-            (click)="framelogin.hide(); framesignup.show()"
-          >
-            <h4 style="color: black" class="modal-title font-weight-bold">
-              {{ "App.sign up" | translate }}
-            </h4>
-          </a>
+        
         </div>
         <button
           type="button"
           class="close"
           data-dismiss="modal"
           aria-label="Close"
-          (click)="framelogin.hide()"
+          (click)="onNoClick()"
         >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body mx-3">
+
+      <div *ngIf="isLogin" class="modal-body mx-3 pt-0">
         <mat-form-field class="field" appearance="outline">
           <mat-label>Username</mat-label>
           <input
@@ -82,62 +44,25 @@
           />
           <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
+        <div class="text-center">
         <button
-          (click)="attemptLogin()"
-          mdbBtn
-          color="default"
-          class="waves-light lgbutton"
-          mdbWavesEffect
-        >
-          {{ "App.Sign in" | translate }}
-        </button>
+        (click)="attemptLogin()"
+        mdbBtn
+        color="default"
+        class="waves-light lgbutton"
+        mdbWavesEffect
+      >
+        {{ "App.Sign in" | translate }}
+      </button>
+      <a (click)="isLogin = false;isSignUp = true;">
+      <span class="d-block">Create an account</span>
+      </a>
       </div>
-    </div>
-  </div>
-</div>
+      </div>
+     
 <!--Sign up-->
 
-<div
-  mdbModal
-  #framesignup="mdbModal"
-  class="modal fade left"
-  id="frameModalTop"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <div class="d-flex justify-content-center w-75">
-          <a
-            class="w-100 signin"
-            (click)="framesignup.hide(); framelogin.show()"
-          >
-            <h4 style="color: black" class="modal-title font-weight-bold">
-              {{ "App.Sign in" | translate }}
-            </h4>
-          </a>
-          <a class="w-100 signup">
-            <h4 style="color: black" class="modal-title font-weight-bold">
-              <span class="actii">{{ "App.sign up" | translate }}</span>
-            </h4>
-          </a>
-        </div>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-          (click)="framesignup.hide()"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div [formGroup]="signUpForm" class="modal-body mx-3">
+      <div *ngIf="isSignUp" [formGroup]="signUpForm" class="modal-body mx-3">
         <mat-form-field class="field" appearance="outline">
           <mat-label>Full Name</mat-label>
           <input
@@ -188,17 +113,11 @@
             placeholder="Password"
           />
           <mat-icon matSuffix>lock</mat-icon>
-          <mat-hint
-            >Password must contain of at least 8 characters ، at most 12
-            characters containing at least one uppercase ، lowercase ، number
-            and one special character
-          </mat-hint>
           <mat-error *ngIf="signUpForm.controls['password'].errors">
-            Password is too weak
+            Password is too weak (at least 8 characters, one uppercase ، lowercase ، number
+            and one special character )
           </mat-error>
         </mat-form-field>
-        <br /><br />
-
         <mat-form-field class="field" appearance="outline">
           <mat-label>Confirm Password</mat-label>
           <input
@@ -213,21 +132,19 @@
             Passwords don't match
           </mat-error>
         </mat-form-field>
+        <div class="text-center">
+          <button
+            (click)="signUp()"
+            mdbBtn
+            color="deep-orange"
+            class="waves-light lgbutton"
+            mdbWavesEffect
+          >
+            {{ "App.sign up" | translate }}
+          </button>
+          <a (click)="isLogin = true;isSignUp = false;">
+            <span class="d-block">Back to login</span>
+            </a>
+        </div>
       </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button
-          (click)="signUp()"
-          mdbBtn
-          color="deep-orange"
-          class="waves-light lgbutton"
-          mdbWavesEffect
-        >
-          {{ "App.sign up" | translate }}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<ng-template #content>
-  <app-actions *ngIf="isLoggedIn" [profil]="profil"></app-actions>
-</ng-template>
+

@@ -82,6 +82,28 @@
       </div>
     </form>
 
-    <app-login></app-login>
+    <!-- <app-login></app-login> -->
+    <button
+  *ngIf="!isLoggedIn"
+  (click)="openLogin()"
+  class="waves-light loginbtn"
+  mdbWavesEffect
+>
+  {{ "App.Sign in" | translate }}
+</button>
+  <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <img class="avatar" [src]="sanitize()" />
+    <span
+  
+    class="font-weight-bold text-white ml-1"
+    >{{ profil }}</span
+  > 
+  </button>
+  <mat-menu #menu="matMenu">
+
+    <app-actions *ngIf="isLoggedIn" [profil]="profil"></app-actions>
+
+   
+  </mat-menu>
   </links>
 </mdb-navbar>
