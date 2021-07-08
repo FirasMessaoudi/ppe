@@ -33,15 +33,15 @@ main {
 
     .profile-pic {
       width: auto !important;
-      max-width: 20rem !important;
-      margin: 3rem 2rem !important;
+       max-width: 20rem !important;
+      // margin: 3rem 2rem !important;
       padding: 2rem !important;
       display: flex !important;
       flex-flow: wrap column !important;
       align-items: center !important;
       justify-content: center !important;
       border-radius: 0.25rem !important;
-      background-color: white !important;
+      // background-color: white !important;
 
       .pic-label {
         width: 100% !important;
@@ -167,7 +167,7 @@ main {
             font-size: 1rem !important;
             font-weight: 400 !important;
             line-height: 1.5 !important;
-            color: #495057 !important;
+            color: white !important;
           }
 
           &:focus,
@@ -318,48 +318,22 @@ padding-top: 1%;
 .transition-fast{
   transition:0.2s ease-out;
 }
-.thumbs-up-circle{
-  width:50px;
-  height:50px;
-  background:#f0f0f0;
-  border-radius:50%;
-  box-shadow:1px 1px 0px rgba(0,0,0,0.2);
-  cursor:pointer;
-  margin-bottom:5px;
-  margin-top:5px;
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color:white!important;
+  // opacity: 1!important;
 }
-.thumbs-up{
-  color:#2196f3;
-  font-size:24px;
-  transform:rotate(0) translate(0);
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color:white!important;
 }
-.thumbs-up-circle:hover{
-   box-shadow:1px 1px 2px rgba(0,0,0,0.5);
+.field{
+  color: white !important;
+  width: 90% !important;
 }
-.thumbs-up-circle:hover .thumbs-up{
-  color:#1976D2;
-  transform:rotate(-5deg) translate(0px, -1px);
+::ng-deep .mat-form-field-label {
+  color: white !important;
+  // color: $mainColor!important;
 }
-.thumbs-up-circle:active{
-  background:#e0e0e0;
-  box-shadow:1px 1px 0px rgba(0,0,0,0.2);
-}
-.thumbs-up-circle:active .thumbs-up{
-  color:#065bae;
-  transition:0.1s;
-  transform:rotate(-10deg) translate(0px, -2px);
-}
-.thumbs-down{
-  color:#2196f3;
-  font-size:24px;
-  transform:rotate(0) translate(0);
-}
-.thumbs-up-circle:hover .thumbs-down{
-  color:#065bae;
-  transform:rotate(5deg) translate(0px, 1px);
-}
-.thumbs-up-circle:active .thumbs-down{
-  color:#065bae;
-  transition:0.1s;
-  transform:rotate(10deg) translate(0px, 2px);
+// mat-input error carent color
+::ng-deep .mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
+  caret-color: red!important;
 }

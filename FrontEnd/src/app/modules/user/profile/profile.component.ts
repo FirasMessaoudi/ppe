@@ -1,14 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/api_services/authservice.service';
 import { TokenStorageService } from 'src/app/core/services/tokenstorage.service';
 import { UserService } from 'src/app/core/api_services/user.service';
+import { ErrorStateMatcher } from '@angular/material';
+import { Router } from '@angular/router';
 export  const patternMDP: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,12}$/;
 export const patternEmail: RegExp = /^[^\W][a-zA-Z0-9\-\_\.]+[^\W]@[^\W][a-zA-Z0-9\-\_\.]+[^\W]\.[a-zA-Z]{2,6}$/;
-
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -22,13 +29,16 @@ export class ProfileComponent implements OnInit {
   private toaster: ToastrService,  
   private sanitizer: DomSanitizer,
   private spinner: Ng4LoadingSpinnerService,
-  private fb: FormBuilder, private userService: UserService, private tokenStorage: TokenStorageService) { }
+  private fb: FormBuilder, private userService: UserService,
+   private tokenStorage: TokenStorageService, private router: Router) { }
   user: any;
   userForm: FormGroup;
+  matcher = new MyErrorStateMatcher();
+
   ngOnInit() {
     this.userForm = this.fb.group(
       {
-        name:[''],
+        firstname:[''],
         username:[''],
         email:[''],
         password:[''],
@@ -42,7 +52,7 @@ export class ProfileComponent implements OnInit {
       () => {
         this.userForm = this.fb.group(
           {
-            name:[this.user.firstname,Validators.compose([Validators.required,Validators.minLength(5)])],
+            firstname:[this.user.firstname,Validators.compose([Validators.required,Validators.minLength(5)])],
             username:[this.user.username,Validators.compose([Validators.required,Validators.minLength(6)])],
             email:[this.user.email,Validators.pattern(patternEmail)],
             password:[null,Validators.compose([Validators.minLength(8),Validators.pattern(patternMDP)])],
@@ -100,7 +110,7 @@ export class ProfileComponent implements OnInit {
     },
      () => {
        console.log(path);
-      this.user.firstname = this.userForm.get('name').value;
+      this.user.firstname = this.userForm.get('firstname').value;
       this.user.newUsername= this.userForm.get('username').value;
       this.user.newEmail = this.userForm.get('email').value;
       this.user.password = this.userForm.get('password').value;
@@ -117,6 +127,8 @@ export class ProfileComponent implements OnInit {
              this.toaster.error(response.message);
           } else {
             this.toaster.success("Your informations were updated successfully");
+            this.tokenStorage.signOut();
+            this.router.navigate(['/']);
 
           }
         }
