@@ -26,17 +26,14 @@ export class AuthInterceptor implements HttpInterceptor {
     }
         return next.handle(req)
         .pipe(
-            catchError((err: HttpErrorResponse) =>{
-                console.log(err);
-                
-             if(err.status==403){
-                 console.log('invalid token');
-                 
+            catchError((err: HttpErrorResponse) =>{                
+             if(err.status==403){                 
                 this.token.signOut();
                 this.router.navigate(['/home']);
-                this.tostr.info("Your session has been expired")
+                this.tostr.info("Your session has been expired");
+                return throwError('Invalid Token');
              }
-             return throwError('Invalid Token');
+             return throwError(err);
 
             })
         )

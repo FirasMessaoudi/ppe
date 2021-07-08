@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher, MatDialogRef } from '@angular/material';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
 import { ToastrService } from 'ngx-toastr';
 import { ContactService } from 'src/app/core/api_services/contact.service';
 import { Contact } from 'src/app/core/domain/contact';

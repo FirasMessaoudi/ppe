@@ -1,11 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ICategory } from "src/app/core/domain/icategory";
-import { CategoryService } from "src/app/core/api_services/category.service";
-import { Router } from "@angular/router";
 import { StorageService } from "src/app/core/services/sharedservice.service";
 import { IMovie } from "src/app/core/domain/movie";
 import { MovieService } from "src/app/core/api_services/movie.service";
-import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({

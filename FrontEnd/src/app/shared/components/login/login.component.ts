@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
      ) { }
      onNoClick(): void {
       this.dialogRef.close();
+      this.spinnerService.hide();
     }
   ngOnInit() {
     this.tokenStorage.currentStatus.subscribe(status => {
