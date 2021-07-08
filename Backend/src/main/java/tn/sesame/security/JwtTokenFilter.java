@@ -41,13 +41,13 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                   Authentication auth = token != null ? jwtTokenProvider.getAuthentication(token) : null;
                   SecurityContextHolder.getContext().setAuthentication(auth);
               } else {
-//                  res.addHeader("Message", "Invalid token");
-//                  res.setStatus(401);
+                  res.addHeader("Message", "Invalid token");
+                  res.setStatus(403);
 //                  res.sendError(401, "Invalid token");
                   //res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication Failed");
 
                   logger.warn("Invalid token");
-                  return ;
+                  //return ;
               }
           } catch (IllegalArgumentException e) {
               logger.error("an error occured during getting username from token", e);

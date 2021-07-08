@@ -86,8 +86,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .anyRequest().authenticated();
 
     // If a user try to access a resource without having enough permissions
-    http.exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.FORBIDDEN));
-    // Apply JWT
+    http.exceptionHandling()
+            .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));    // Apply JWT
 //    http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
     http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 

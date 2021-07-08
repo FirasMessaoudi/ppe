@@ -5,6 +5,7 @@ import { TokenStorageService } from '../services/tokenstorage.service';
 import { Observable, throwError } from 'rxjs';
 import {catchError} from 'rxjs/operators'; 
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 const TOKEN_HEADER_KEY = 'Authorization';
 const req1="/users/signin";
@@ -13,7 +14,7 @@ const req3 ="/comments/findAll";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    constructor(private token: TokenStorageService, private router: Router) { }
+    constructor(private token: TokenStorageService, private router: Router, private tostr: ToastrService) { }
     
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if(req.url.search(req1)==-1 && req.url.search(req2)==-1 && req.url.search(req3)==-1){
@@ -23,24 +24,22 @@ export class AuthInterceptor implements HttpInterceptor {
             }
         })
     }
-        return next.handle(req);
-        // .pipe(
-        //     catchError((err: HttpErrorResponse) =>{
-        //         console.log(err);
-        //         console.log(err.headers);
+        return next.handle(req)
+        .pipe(
+            catchError((err: HttpErrorResponse) =>{
+                console.log(err);
                 
-        //         console.log(err.headers.get('Message'));
-                
-        //      if(err.headers.get('Message')=='Invalid token'){
-        //          console.log('invalid token');
+             if(err.status==403){
+                 console.log('invalid token');
                  
-        //         this.token.signOut();
-        //         this.router.navigate(['/home']);
-        //      }
-        //      return throwError('Invalid Token');
+                this.token.signOut();
+                this.router.navigate(['/home']);
+                this.tostr.info("Your session has been expired")
+             }
+             return throwError('Invalid Token');
 
-        //     })
-        // )
+            })
+        )
     }
 }
  
