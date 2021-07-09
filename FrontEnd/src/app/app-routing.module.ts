@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminGuard } from './core/guards/admin.guard';
 import { UserGuard } from './core/guards/user.guard';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { SettingsComponent } from './shared/components/settings/settings.component';
@@ -18,6 +19,9 @@ const appRoutes: Routes = [
   },
   {path: 'user',
   loadChildren: './modules/user/user.module#UserModule', canActivate: [UserGuard]
+  },
+  {path: 'admin',
+  loadChildren: './modules/admin/admin.module#AdminModule', canActivate: [AdminGuard]
   },
   {path: 'not-found', component: PageNotFoundComponent},
  {path: 'settings',component: SettingsComponent},

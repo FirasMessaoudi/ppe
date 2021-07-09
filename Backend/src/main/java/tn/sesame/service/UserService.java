@@ -17,6 +17,9 @@ import tn.sesame.exception.CustomException;
 import tn.sesame.model.User;
 import tn.sesame.repository.UserRepository;
 import tn.sesame.security.JwtTokenProvider;
+
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -53,10 +56,10 @@ public class UserService {
     }
   }
 
- /* public void delete(String username) {
-    userRepository.deleteByUsername(username);
+ public List<User> findAll() {
+return userRepository.findAll();
   }
-*/
+
   public User search(String username) {
     User user = userRepository.findByUsername(username);
     if (user == null) {

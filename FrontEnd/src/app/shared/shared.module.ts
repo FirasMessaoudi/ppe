@@ -21,6 +21,7 @@ import { SafeurlserviceService } from '../core/services/safeurlservice.service';
 import { LoginComponent } from './components/login/login.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ShareModule } from '@ngx-share/core';
 
 @NgModule({
   declarations: [ActionsComponent, CardmovieComponent, DetailModalComponent,
@@ -41,6 +42,8 @@ import { ContactComponent } from './components/contact/contact.component';
     NgZorroAntdModule,
     TranslateModule,
     RouterModule,
+    ShareModule,
+
   ],
   exports: [
     CommonModule,
@@ -63,6 +66,8 @@ import { ContactComponent } from './components/contact/contact.component';
     RouterModule,
     FormsModule,
     SafeurlserviceService,
+    ShareModule,
+
   ],
   entryComponents:[DetailModalComponent, LoginComponent, ContactComponent],
   providers: []

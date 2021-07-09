@@ -22,8 +22,6 @@ export class TokenStorageService {
     localStorage.setItem(TOKEN_KEY, token);
     this.statusSource.next(true);
 
-    
-
   }
  
   public getToken(): string {
@@ -32,6 +30,16 @@ export class TokenStorageService {
   public getUsername(): string {
     if(localStorage.getItem(TOKEN_KEY) != null)
     return helper.decodeToken(localStorage.getItem(TOKEN_KEY)).sub; 
+   }
+   public getRoles(): any {
+    if(localStorage.getItem(TOKEN_KEY) != null)
+    return helper.decodeToken(localStorage.getItem(TOKEN_KEY)).auth; 
+   }
+   public isAdmin(){
+    if(this.getRoles().find(role=>role.authority=='ROLE_ADMIN')){      
+      return true;
+      }
+      return false;
    }
    public getEmail(): string {
     if(localStorage.getItem(TOKEN_KEY) != null)
