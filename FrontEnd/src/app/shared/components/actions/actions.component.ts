@@ -23,6 +23,7 @@ export class ActionsComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.profil=this.tokenStorage.getUsername();
+      this.isAdmin = this.tokenStorage.isAdmin();
       // this.roles = this.tokenStorage.getAuthorities();
       // if(this.tokenStorage.getAuthorities().includes('ROLE_ADMIN'))
       // this.isAdmin=true;

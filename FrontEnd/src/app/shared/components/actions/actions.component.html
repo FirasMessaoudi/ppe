@@ -24,6 +24,10 @@
       <i class="fa fa-user-circle"></i>
       <span> {{'App.Manage Profile' | translate}}</span>
     </button>
+    <button *ngIf="isAdmin" (click)="navigate('admin')" mat-menu-item >
+      <i class="fa fa-cogs"></i>
+      <span> Settings</span>
+    </button>
     <button (click)="signout()" mat-menu-item >
       <i class="fa fa-power-off"></i>
      <span> {{'App.Sign out' | translate}}</span>
