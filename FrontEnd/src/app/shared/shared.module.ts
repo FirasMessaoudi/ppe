@@ -8,7 +8,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { FooterComponent } from './layout/footer/footer.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CarouselModule, MDBBootstrapModule, MDBModalRef, ModalModule, NavbarModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule} from 'angular-bootstrap-md';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -22,13 +22,20 @@ import { LoginComponent } from './components/login/login.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ShareModule } from '@ngx-share/core';
-
 @NgModule({
-  declarations: [ActionsComponent, CardmovieComponent, DetailModalComponent,
-    ModalfavoritComponent, PageNotFoundComponent,
-    FooterComponent, NavBarComponent, SafeurlserviceService,SettingsComponent,
+  declarations: [
+    ActionsComponent, 
+    CardmovieComponent, 
+    DetailModalComponent,
+    ModalfavoritComponent, 
+    PageNotFoundComponent,
+    FooterComponent, 
+    NavBarComponent, 
+    SafeurlserviceService,
+    SettingsComponent,
     LoginComponent,
-    ContactComponent],
+    ContactComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -67,9 +74,12 @@ import { ShareModule } from '@ngx-share/core';
     FormsModule,
     SafeurlserviceService,
     ShareModule,
-
   ],
-  entryComponents:[DetailModalComponent, LoginComponent, ContactComponent],
+  entryComponents:[
+    DetailModalComponent, 
+    LoginComponent, 
+    ContactComponent
+  ],
   providers: []
 
 })
