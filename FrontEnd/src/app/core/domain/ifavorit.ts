@@ -6,6 +6,8 @@ export class IFavorit {
     section?:string;
     note?:number;
     like?:boolean;
+    runtime?: number;
+    nbEpisodes?: number;
     constructor(id:IMovieUserId){
         this.movieUserID = id;
     }

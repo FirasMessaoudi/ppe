@@ -6,6 +6,8 @@ import { MovieModel } from "src/app/core/domain/moviemodel";
 import { MovieService } from "src/app/core/api_services/movie.service";
 import { NgxSpinner } from "ngx-spinner/lib/ngx-spinner.enum";
 import { NgxSpinnerService } from "ngx-spinner";
+import { MovieCast } from "src/app/core/domain/moviecast";
+import { PersonService } from "src/app/core/api_services/person.service";
 
 @Component({
   selector: "app-search",
@@ -15,6 +17,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class SearchComponent implements OnInit {
   shows: MovieModel[] = [];
   movies: MovieModel[] = [];
+  persons: any[] = [];
   keyword = "";
   p: number = 1;
   index = 0;
@@ -24,6 +27,7 @@ export class SearchComponent implements OnInit {
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private service: MovieService,
+    private personService: PersonService,
     private router: Router
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -37,6 +41,7 @@ export class SearchComponent implements OnInit {
 
     this.init();
     this.initS();
+    this.initPerson();
   }
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.p = 1;
@@ -74,22 +79,44 @@ export class SearchComponent implements OnInit {
       }
     );
   }
+  initPerson() {
+    this.spinner.show();
+    this.personService.getPersonByName(this.keyword, this.p).subscribe(
+      (res) => {
+        this.persons.push(...res['results']);
+      },
+      (erreur) => {
+        console.log("erreur person");
+        this.showError = true;
+        this.spinner.hide();
+      },
+      () => {
+        this.spinner.hide();
+      }
+    );
+  }
   @HostListener("window:scroll", ["$event"])
   onWindowScroll() {
     //In chrome and some browser scroll is given to body tag
     let pos =
       (document.documentElement.scrollTop || document.body.scrollTop) +
-      document.documentElement.offsetHeight;
+      document.documentElement.offsetHeight+1;
     let max = document.documentElement.scrollHeight;
     // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
-    if (pos == max) {
+    if (pos >= max) {
       //Do your action here
       this.p++;
       if (this.index == 0) {
         this.init();
-      } else {
+      } else if(this.index==1) {
         this.initS();
+      } else {
+        this.initPerson();
       }
     }
+  }
+  goToActor(id:number){
+    this.router.navigate(['detail/actorworks',id])
+
   }
 }

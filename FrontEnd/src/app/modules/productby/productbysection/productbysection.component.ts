@@ -223,14 +223,14 @@ export class ProductbysectionComponent implements OnInit {
   @HostListener("window:touchmove", ["$event"])
 onWindowScroll() {
 //In chrome and some browser scroll is given to body tag
-let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight+1;
 let max = document.documentElement.scrollHeight;
 // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
 console.log(pos);
 console.log(max);
 
 
- if(pos == max )   {
+ if(pos >= max )   {
  //Do your action here
  this.p++;
  this.discover();

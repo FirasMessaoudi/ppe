@@ -187,6 +187,12 @@ export class ProductDetailsComponent implements OnInit {
     let fav = new IFavorit(new IMovieUserId(this.id, this.user.email));
     fav.watched = false;
     fav.section = this.section;
+    if(this.section=='Series'){
+      fav.runtime = this.showDetail.episode_run_time[0];
+      fav.nbEpisodes = this.showDetail.number_of_episodes;
+    } else {
+      fav.runtime = this.movieDetail.runtime;
+    }
     this.userservice.addToList(fav).subscribe(() => (this.message = "hhhhh"));
     this.existsInWatchList = !this.existsInWatchList;
   }

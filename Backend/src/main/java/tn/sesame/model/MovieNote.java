@@ -10,6 +10,7 @@ public class MovieNote {
     @EmbeddedId
     private MovieUserID movieUserID;
     private int note;
+    private String section;
     private Boolean liked;
     private Boolean disliked;
 }

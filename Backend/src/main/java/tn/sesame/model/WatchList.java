@@ -12,5 +12,7 @@ public class WatchList {
     private MovieUserID movieUserID;
     private String section;
     private boolean watched;
+    private int runtime;
+    private int nbEpisodes;
 
 }

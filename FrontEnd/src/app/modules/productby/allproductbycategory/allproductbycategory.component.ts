@@ -88,10 +88,10 @@ export class AllproductbycategoryComponent implements OnInit {
     //In chrome and some browser scroll is given to body tag
     let pos =
       (document.documentElement.scrollTop || document.body.scrollTop) +
-      document.documentElement.offsetHeight;
+      document.documentElement.offsetHeight+1;
     let max = document.documentElement.scrollHeight;
     // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
-    if (pos == max) {
+    if (pos >= max) {
       //Do your action here
       this.p++;
       this.init();

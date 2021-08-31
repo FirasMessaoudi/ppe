@@ -12,6 +12,8 @@ export class LikeDislikeComponent implements OnInit, OnChanges {
   user: string;
   @Input()
   id: any;
+  @Input()
+  section: string;
   movieNote: any;
   constructor(private service: UserService) { }
   ngOnChanges(changes: SimpleChanges): void {
@@ -53,7 +55,7 @@ export class LikeDislikeComponent implements OnInit, OnChanges {
   like(){
     if(this.movieNote==null){
     let movieUserId={'idMovie':this.id,'email':this.user};
-    this.movieNote= {'movieUserID':movieUserId,'liked':true};
+    this.movieNote= {'movieUserID':movieUserId,'liked':true, 'section':this.section};
     this.service.likeDislike(this.movieNote).subscribe(
       res => console.log(res),
       err =>console.log(err)
@@ -74,7 +76,7 @@ export class LikeDislikeComponent implements OnInit, OnChanges {
   dislike(){
     if(this.movieNote==null){
     let movieUserId={'idMovie':this.id,'email':this.user};
-    this.movieNote= {'movieUserID':movieUserId,'disliked':true};
+    this.movieNote= {'movieUserID':movieUserId,'disliked':true,'section':this.section};
     this.service.likeDislike(this.movieNote).subscribe(
       res => console.log(res),
       err =>console.log(err)
