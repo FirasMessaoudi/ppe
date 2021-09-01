@@ -1,6 +1,15 @@
 @import 'assets/scss/palette';
 // @import '~swiper/swiper-bundle';
 
+.separator{
+  padding-top: 6% !important;
+}
+.navbar {
+  background-color: transparent !important;
+  position: absolute !important;
+  z-index: 10 !important;
+  width: 100% !important;
+}
 .modal-backdrop {
   position: fixed;
   top: 0;

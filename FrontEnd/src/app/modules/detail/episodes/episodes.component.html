@@ -1,0 +1,55 @@
+<div dir={{dir}} class="separator ml-3">
+  <div class="row mb-4 mt-2">
+    <div class="col-3">
+      <h3 class="text-white text-left">{{name}}</h3>
+    </div>
+    <div class="col-2">
+      <mat-select class="pt-1" name="season" [placeholder]="'Season '+ sNumber" [(ngModel)]="sNumber"
+        (selectionChange)="getEpisodes()">
+        <mat-option *ngFor="let item of counters" [value]="item">Season {{item}}</mat-option>
+      </mat-select>
+    </div>
+  </div>
+  <div dir="{{dir}}" class="row mt-2" *ngFor="let item of season?.episodes">
+    <div class="col-4">
+      <img style="cursor: pointer;" class="card-img-top"
+        [lazyLoad]="'https://image.tmdb.org/t/p/original/' + item?.still_path">
+    </div>
+    <div dir="{{dir}}" class="col-8">
+      <div class="row">
+        <div class="col-6">
+          <span class="text-white title">{{item?.name}}</span>
+        </div>
+        <div class="col-6">
+          <span class="text-white">{{item?.air_date}}</span>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col-6 text-white">
+          <i class="fa fa-star"></i> {{item?.vote_average.toFixed(1)}} ({{item?.vote_count}})
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col-12">
+          <p class="text-white">
+            {{item?.overview}}
+          </p>
+        </div>
+      </div>
+      <div class="row actors">
+        <div class="card" style="width: 3rem; margin: 20px" *ngFor="
+          let person of item?.guest_stars
+            | paginate: { itemsPerPage: 8, currentPage: p }
+        ">
+          <a (click)="goToActor(person.id)">
+            <img *ngIf="person.profile_path" class="card-img-top avatar"
+              [defaultImage]="'assets/images/no_poster_available.jpg'" [lazyLoad]="
+              'https://image.tmdb.org/t/p/original' + person.profile_path
+            " />
+
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

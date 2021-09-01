@@ -8,6 +8,7 @@ import { MovieCastModel } from "src/app/core/domain/moviecast";
 import { MovieDetailsModel } from "src/app/core/domain/moviedetail";
 import { MovieVideosModel } from "src/app/core/domain/moviemodelvideo";
 import { TvDetailsModel } from "src/app/core/domain/tvshowdetail";
+import { ISeason } from "../domain/season";
 
 
 @Injectable({
@@ -288,5 +289,8 @@ export class MovieService {
     return this._http.get<IMovie>(
       "https://api.themoviedb.org/3/trending/movie/week?api_key=cb4b280fa67edaa591ed48d4da421246"
     );
+  }
+  getSeasonDetail(idShow:number, season:number,lang:any):Observable<ISeason>{
+    return this._http.get<ISeason>(this.basetv+idShow+'/season/'+season+'?api_key='+this.apikey+'&language='+lang)
   }
 }

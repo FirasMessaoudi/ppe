@@ -34,6 +34,7 @@
     "@ngx-share/core": "^7.1.1",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
+    "@swimlane/ngx-charts": "^19.0.1",
     "angular-bootstrap-md": "^6.3.0",
     "angular-responsive-carousel": "^2.0.2",
     "bootstrap": "^4.3.1",

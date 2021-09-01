@@ -8,10 +8,11 @@ import { ShowDetailsComponent } from './show-details/show-details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
+import { EpisodesComponent } from './episodes/episodes.component';
 
 @NgModule({
   declarations: [ActorsKnownForComponent, CommentsComponent,
-     ProductDetailsComponent, ShowDetailsComponent, TimeAgoPipe, LikeDislikeComponent],
+     ProductDetailsComponent, ShowDetailsComponent, TimeAgoPipe, LikeDislikeComponent, EpisodesComponent],
   imports: [
     CommonModule,
     SharedModule,

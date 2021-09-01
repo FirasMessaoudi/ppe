@@ -28,6 +28,9 @@ export class ProductbysectionComponent implements OnInit {
   certifications = ["G", "PG", "PG-13", "R", "NC-17", "NR"];
   networks = [
     { id: 49, name: "HBO" },
+    { id: 2739, name: "Disney +" },
+    { id: 3186, name: "HBO Max" },
+    { id: 2552, name: "Apple tv" },
     { id: 213, name: "Netflix" },
     { id: 1024, name: "Amazon Prime" },
     { id: 71, name: "CW" },
@@ -37,7 +40,7 @@ export class ProductbysectionComponent implements OnInit {
     { id: 30, name: "USA Network" },
     { id: 6, name: "NBC" },
     { id: 453, name: "HULU" },
-    { id: 4343, name: "Showtime Networks" },
+    { id: 67, name: "Showtime Networks" },
     { id: 2, name: "ABC" },
     { id: 2360, name: "History" },
     { id: 4, name: "BBC One" },

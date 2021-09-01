@@ -133,7 +133,7 @@ export class ProductDetailsComponent implements OnInit {
         () => {
           this.spinner.hide();
           this.link =
-            "https://movie2konline.net/api/openload.php?id="+this.movieDetail.imdb_id;
+            "https://movie2konline.net/api/openload.php?id=" + this.movieDetail.imdb_id;
           this.movieService.getSimilarMovies(this.movieDetail.id).subscribe(
             (res) => (this.similar = res),
             (err) => console.log(err),
@@ -150,8 +150,8 @@ export class ProductDetailsComponent implements OnInit {
                 (err) => console.log(err),
                 () => {
                   console.log(this.video.results);
-                  if(this.video.results)
-                  this.youtube += this.video.results[0].key;
+                  if (this.video.results)
+                    this.youtube += this.video.results[0].key;
                 }
               );
             }
@@ -162,20 +162,20 @@ export class ProductDetailsComponent implements OnInit {
 
     this.tokenStorage.currentStatus.subscribe((status) => {
       this.isLoggedIn = status;
-      if(this.isLoggedIn){
-      this.username = this.tokenStorage.getUsername();
-      this.userservice.getUser(this.username).subscribe(
-        (res) => (this.user = res),
-        (err) => console.log(err),
-        () => {
-          this.userservice
-          .existsInWatchList(new IMovieUserId(this.id, this.user.email))
-          .subscribe(
-            (res) => (this.existsInWatchList = res),
-            (err) => console.log(err.error)
-          );
-        }
-      );
+      if (this.isLoggedIn) {
+        this.username = this.tokenStorage.getUsername();
+        this.userservice.getUser(this.username).subscribe(
+          (res) => (this.user = res),
+          (err) => console.log(err),
+          () => {
+            this.userservice
+              .existsInWatchList(new IMovieUserId(this.id, this.user.email))
+              .subscribe(
+                (res) => (this.existsInWatchList = res),
+                (err) => console.log(err.error)
+              );
+          }
+        );
       }
     });
 
@@ -187,7 +187,7 @@ export class ProductDetailsComponent implements OnInit {
     let fav = new IFavorit(new IMovieUserId(this.id, this.user.email));
     fav.watched = false;
     fav.section = this.section;
-    if(this.section=='Series'){
+    if (this.section == 'Series') {
       fav.runtime = this.showDetail.episode_run_time[0];
       fav.nbEpisodes = this.showDetail.number_of_episodes;
     } else {
@@ -197,19 +197,22 @@ export class ProductDetailsComponent implements OnInit {
     this.existsInWatchList = !this.existsInWatchList;
   }
 
-  trailerLink(key){
-    return "https://www.youtube.com/embed/"+key;
+  trailerLink(key) {
+    return "https://www.youtube.com/embed/" + key;
   }
-  getName(movie: any){
+  getName(movie: any) {
     let name = movie.original_title.toLowerCase().split(":").join("");
     let finalFinalName = name.split("-").join("");
-    let finalName= finalFinalName.split(" ").join("-");
+    let finalName = finalFinalName.split(" ").join("-");
     return finalName;
   }
-  goToMovieCategory(genre: any){
-    this.router.navigate(['/query/category','Movies',genre.name,genre.id])
+  goToMovieCategory(genre: any) {
+    this.router.navigate(['/query/category', 'Movies', genre.name, genre.id])
   }
-  goToSerieCategory(genre: any){
-    this.router.navigate(['/query/category','Series',genre.name,genre.id])
+  goToSerieCategory(genre: any) {
+    this.router.navigate(['/query/category', 'Series', genre.name, genre.id])
+  }
+  goToEpisode(season: number) {
+    this.router.navigate(['/detail/episode', this.showDetail.name, this.showDetail.id, season, this.showDetail.number_of_seasons])
   }
 }

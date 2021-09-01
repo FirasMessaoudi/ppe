@@ -1,6 +1,6 @@
 <app-page-not-found *ngIf="showError"></app-page-not-found>
 
-<div  *ngIf="!showError" style="padding: 20px;">
+<div  *ngIf="!showError" class="separator" style="padding: 20px;">
 <h2 style="color: #FFF;padding-top: 1%">{{'App.Top_rated' | translate}}</h2>
 <div *ngIf="top_rated" class="items">
   <div *ngFor="let item of top_rated; let i = index">
