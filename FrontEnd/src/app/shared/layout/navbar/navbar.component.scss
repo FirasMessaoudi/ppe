@@ -1,6 +1,15 @@
-.navbar {
-
-}
+::placeholder {
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: white;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+   color: white;
+  }
 a{
     text-shadow: #000;
     color: #fff;
@@ -32,8 +41,8 @@ border-bottom: 2px solid #FF424F !important;
     color: aliceblue !important;
 }
 .stext{
-    background-color: #24272e;;
-    color: aliceblue;
+    background-color: transparent;;
+    color: white;
     border: #24272e;;
     border-radius: 35px;
     width: 100%;

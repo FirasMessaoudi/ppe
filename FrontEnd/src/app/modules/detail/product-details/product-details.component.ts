@@ -132,8 +132,8 @@ export class ProductDetailsComponent implements OnInit {
         },
         () => {
           this.spinner.hide();
-          this.link =
-            "https://movie2konline.net/api/openload.php?id=" + this.movieDetail.imdb_id;
+          this.link ="https://gomo.to/movie/"+this.getName(this.movieDetail.original_title);
+            // "https://movie2konline.net/api/openload.php?id=" + this.movieDetail.imdb_id;
           this.movieService.getSimilarMovies(this.movieDetail.id).subscribe(
             (res) => (this.similar = res),
             (err) => console.log(err),
@@ -201,9 +201,10 @@ export class ProductDetailsComponent implements OnInit {
     return "https://www.youtube.com/embed/" + key;
   }
   getName(movie: any) {
-    let name = movie.original_title.toLowerCase().split(":").join("");
-    let finalFinalName = name.split("-").join("");
-    let finalName = finalFinalName.split(" ").join("-");
+    let name = movie.toLowerCase().split(":").join("");
+    let finalFinalName = name.split("-").join(" ");
+    let nameWithouSpeacials = finalFinalName.split("'").join("-");
+    let finalName = nameWithouSpeacials.split(" ").join("-");
     return finalName;
   }
   goToMovieCategory(genre: any) {
