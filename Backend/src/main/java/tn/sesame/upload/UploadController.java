@@ -66,9 +66,9 @@ public class UploadController {
     @PostMapping(value = "/files/")
     @ResponseBody
     public ResponseEntity<byte[]> getFile(@RequestBody String filename) {
-        byte[] b = storageService.readFile(filename);
+        byte[] b = storageService.readFile("D://profile//avatar.jpg");
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + "test.jpg" + "\"")
                 .body(b);
 
     }

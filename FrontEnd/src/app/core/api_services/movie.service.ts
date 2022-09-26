@@ -293,4 +293,7 @@ export class MovieService {
   getSeasonDetail(idShow:number, season:number,lang:any):Observable<ISeason>{
     return this._http.get<ISeason>(this.basetv+idShow+'/season/'+season+'?api_key='+this.apikey+'&language='+lang)
   }
+  getImdbInfo(id: String): Observable<any>{
+    return this._http.get<any>('https://www.omdbapi.com/?i='+id+'&apikey=114165f2')
+  }
 }

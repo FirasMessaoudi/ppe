@@ -62,6 +62,7 @@ export class ProductDetailsComponent implements OnInit {
   section = "";
   showError: boolean;
   profil: string;
+  imdbInfo: any;
 
   // tslint:disable-next-line:max-line-length
   constructor(
@@ -152,6 +153,15 @@ export class ProductDetailsComponent implements OnInit {
                   console.log(this.video.results);
                   if (this.video.results)
                     this.youtube += this.video.results[0].key;
+                  this.movieService.getImdbInfo(this.movieDetail.imdb_id).subscribe(
+                    res =>{
+                      this.imdbInfo = res;
+                      console.log(this.imdbInfo);
+                      
+                    },
+                    err=>console.log(err)
+                    
+                  )
                 }
               );
             }

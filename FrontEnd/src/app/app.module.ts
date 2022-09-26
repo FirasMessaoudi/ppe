@@ -16,8 +16,6 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { AuthInterceptor } from './core/interceptors/authinterceptor.service';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CarouselModule, MDBBootstrapModule } from 'angular-bootstrap-md';
-import { HighlightsComponent } from './modules/home/highlights/highlights.component';
 
 registerLocaleData(en);
 export function createTranslateLoader(http: HttpClient) {

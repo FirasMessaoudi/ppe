@@ -63,7 +63,18 @@
         "Star tv": "Star known for Tv",
         "Actors": "Actors",
         "Crew": "Crew",
-        "Reviews": "Reviews"
+        "Reviews": "Reviews",
+        "about_page":{
+            "title":"Box Movies is your guide to explore the latest movies and series .",
+             "contact":"Contact",
+             "contact_text1":"If you have any suggestion or for further informations click ",
+             "here":"here",
+             "contact_text2":" to contact us",
+             "developer":"Developer",
+             "tmdb":"The movie database",
+             "tmdb_text":"This application is developed using the movie database (Tmdb)",
+             "language":"Language"
+        }
         
     }
 }

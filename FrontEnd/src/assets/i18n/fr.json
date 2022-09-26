@@ -63,7 +63,18 @@
         "Star tv": "Acteur connu pour les series",
         "Actors": "Acteurs",
         "Crew": "Staff",
-        "Reviews": "Avis"
+        "Reviews": "Avis",
+        "about_page": {
+            "title": "Box Movies est votre guide pour explorer les derniers films et séries.",
+            "contact": "Contact",
+            "contact_text1": "Si vous avez des suggestions ou pour plus d'informations, cliquez ",
+            "here": "ici",
+            "contact_text2": " pour nous contacter",
+            "developer": "Développeur",
+            "tmdb":"La base des données des films",
+            "tmdb_text": "Cette application est développée à l'aide de la base de données de films (Tmdb)",
+            "language": "Langue"
+          }
 
         
 
