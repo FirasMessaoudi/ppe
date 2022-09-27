@@ -23,24 +23,24 @@
 
       <div *ngIf="isLogin" class="modal-body mx-3 pt-0">
         <mat-form-field class="field" appearance="outline">
-          <mat-label>Username</mat-label>
+          <mat-label>{{'App.login_page.username' | translate}}</mat-label>
           <input
             [(ngModel)]="username"
             name="username"
             matInput
-            placeholder="Username"
+            placeholder="{{'App.login_page.username' | translate}}"
           />
           <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
 
         <mat-form-field class="field" appearance="outline">
-          <mat-label>Password</mat-label>
+          <mat-label>{{'App.login_page.password' | translate}}</mat-label>
           <input
             type="password"
             [(ngModel)]="password"
             name="password"
             matInput
-            placeholder="Password"
+            placeholder="{{'App.login_page.passowrd' | translate}}"
           />
           <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
@@ -55,7 +55,7 @@
         {{ "App.Sign in" | translate }}
       </button>
       <a (click)="isLogin = false;isSignUp = true;">
-      <span class="d-block">Create an account</span>
+      <span class="d-block">{{'App.login_page.create_account' | translate}}</span>
       </a>
       </div>
       </div>
@@ -64,72 +64,71 @@
 
       <div *ngIf="isSignUp" [formGroup]="signUpForm" class="modal-body mx-3">
         <mat-form-field class="field" appearance="outline">
-          <mat-label>Full Name</mat-label>
+          <mat-label>{{'App.login_page.full_name' | translate}}</mat-label>
           <input
             [errorStateMatcher]="matcher"
             formControlName="firstname"
             matInput
-            placeholder="Full Name"
+            placeholder="{{'App.login_page.full_name' | translate}}"
           />
           <mat-icon matSuffix>person</mat-icon>
           <mat-error *ngIf="signUpForm.controls['firstname'].errors">
-            Invalid name
+            {{'App.login_page.invalid_name' | translate}}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="field" appearance="outline">
-          <mat-label>Username</mat-label>
+          <mat-label>{{'App.login_page.username' | translate}}</mat-label>
           <input
             [errorStateMatcher]="matcher"
             formControlName="username"
             matInput
-            placeholder="Username"
+            placeholder="{{'App.login_page.username' | translate}}"
           />
           <mat-icon matSuffix>person_pin</mat-icon>
           <mat-error *ngIf="signUpForm.controls['username'].errors">
-            Invalid username
+            {{'App.login_page.invalid_username' | translate}}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="field" appearance="outline">
-          <mat-label>Email</mat-label>
+          <mat-label>{{'App.login_page.email' | translate}}</mat-label>
           <input
             [errorStateMatcher]="matcher"
             formControlName="email"
             matInput
-            placeholder="Email"
+            placeholder="{{'App.login_page.email' | translate}}"
           />
           <mat-icon matSuffix>email</mat-icon>
           <mat-error *ngIf="signUpForm.controls['email'].errors">
-            Invalid Email
+            {{'App.login_page.invaldi_email' | translate}}
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="field" appearance="outline">
-          <mat-label>Password</mat-label>
+          <mat-label>{{'App.login_page.password' | translate}}</mat-label>
           <input
             type="password"
             [errorStateMatcher]="matcher"
             formControlName="password"
             matInput
-            placeholder="Password"
+            placeholder="{{'App.login_page.password' | translate}}"
           />
           <mat-icon matSuffix>lock</mat-icon>
           <mat-error *ngIf="signUpForm.controls['password'].errors">
-            Password is too weak (at least 8 characters, one uppercase ، lowercase ، number
-            and one special character )
+            {{'App.login_page.passowrd_error' | translate}}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="field" appearance="outline">
-          <mat-label>Confirm Password</mat-label>
+          <mat-label>{{'App.login_page.confirm_password' | translate}}</mat-label>
           <input
             type="password"
             [errorStateMatcher]="matcher"
             formControlName="confirmPassword"
             matInput
-            placeholder="¨Confirm your Password"
+            placeholder="{{'App.login_page.confirm_password' | translate}}"
           />
           <mat-icon matSuffix>lock</mat-icon>
           <mat-error *ngIf="signUpForm.controls['confirmPassword'].errors">
-            Passwords don't match
+            {{'App.login_page.password_match' | translate}}
           </mat-error>
         </mat-form-field>
         <div class="text-center">
@@ -143,7 +142,7 @@
             {{ "App.sign up" | translate }}
           </button>
           <a (click)="isLogin = true;isSignUp = false;">
-            <span class="d-block">Back to login</span>
+            <span class="d-block">{{'App.login_page.back_to_login' | translate}}</span>
             </a>
         </div>
       </div>

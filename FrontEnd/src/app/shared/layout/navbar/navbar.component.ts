@@ -113,7 +113,7 @@ modalFormSubscriptionEmail = new FormControl('', Validators.email);
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '500px',
       autoFocus: false,
-      // maxHeight: '90vh',
+      maxHeight: '90vh',
       // data: {name: this.name, animal: this.animal}
     });
 

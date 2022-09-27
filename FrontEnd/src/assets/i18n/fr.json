@@ -64,6 +64,7 @@
         "Actors": "Acteurs",
         "Crew": "Staff",
         "Reviews": "Avis",
+        "view_all":"Voir tous",
         "about_page": {
             "title": "Box Movies est votre guide pour explorer les derniers films et séries.",
             "contact": "Contact",
@@ -74,6 +75,20 @@
             "tmdb":"La base des données des films",
             "tmdb_text": "Cette application est développée à l'aide de la base de données de films (Tmdb)",
             "language": "Langue"
+          },
+          "login_page":{
+            "username": "Nom d'utilisateur",
+            "password": "Mot de passe",
+            "create_account": "Créer un compte",
+            "full_name": "Nom complet",
+            "invalid_name": "Nom invalide",
+            "invalid_username": "Nom d'utilisateur invalide",
+            "email": "Email",
+            "invalid_email": "Email invalide",
+            "password_error": " Le mot de passe est trop faible (au moins 8 caractères, une majuscule ، minuscule ، et un numéro spécial caractère )",
+            "confirm_password": "Confirmer le mot de passe",
+            "password_match": " Les mots de passe ne correspondent pas",
+            "back_to_login": "Retour à la connexion"
           }
 
         
