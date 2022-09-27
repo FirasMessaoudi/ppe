@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{"0+U9":function(i,n,s){"use strict";s.d(n,"a",function(){return o});class o{constructor(i,n){this.idMovie=i,this.email=n}}}}]);
