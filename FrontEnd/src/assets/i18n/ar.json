@@ -43,6 +43,8 @@
         "Sort by": "الترتيب حسب",
         "To watch": "للمشاهدة",
         "watched": "شاهدت",
+        "not_watched":"لم اشاهد بعد",
+        "all":"الكل",
         "Add new category": "اضافة صنف",
         "Add new section": "اضافة قسم",
         "Add new movie": "اضافة فلم او مسلسل",
@@ -65,6 +67,13 @@
         "Crew": "طاقم العمل",
         "Reviews": "التقييمات",
         "view_all":"عرض الكل",
+        "stat":"احصائيات",
+        "loading":"جار التحميل",
+        "add_watchlist": "إضافة إلى قائمة المشاهدة",
+        "remove_watchlist": "إزالة من قائمة المشاهدة",
+        "seasons":"المواسم",
+        "next_ep":"تاريخ الحلقة القادمة",
+        "available_on":"متوفر على",
         "about_page": {
             "title": "هو دليلك لاستكشاف أحدث الأفلام والمسلسلات Box Movies",
             "contact": "الاتصال",
@@ -90,6 +99,29 @@
             "password_match": "كلمات المرور غير متطابقة",
             "back_to_login": "الرجوع إلى تسجيل الدخول"
 
+          },
+          "profile":{
+            "title": "تحديث ملفك الشخصي",
+            "current_password": "كلمة المرور الحالية",
+            "current_password_error": "يجب كتابة كلمة المرور الحالية",
+            "clear": "مسح",
+            "save": "حفظ",
+            "photo": "ستظهر هذه الصورة على المنصة ، كصورة رمزية. اضغط عليها للتحديث"
+          },
+          "contact":{
+            "title": "اكتب لنا",
+            "subject": "الموضوع",
+            "subject_error": "لا يمكن أن يكون الموضوع فارغًا",
+            "message": "الرسالة",
+            "message_error": "لا يمكن ترك الرسالة فارغة",
+            "send": "إرسال"
+          },
+          "comments":{
+            "placeholder": "كتابة تعليق",
+            "button": "إضافة تعليق",
+            "cancel": "إلغاء",
+            "ok": "موافق",
+            "update": "حفظ"
           }
         
 

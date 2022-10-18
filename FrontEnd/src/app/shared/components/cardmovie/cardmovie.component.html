@@ -5,15 +5,17 @@
     <img *ngIf="!image" class="card-img-top " style="height: 330px;" src="/assets/images/no_poster_available.jpg" alt="Card image cap">
     <div class="overlay">
     <div class="middle">
-      <div class="text">{{title}}  ({{dateRelease | date: 'y'}})</div>
+      <div *ngIf="dateRelease" class="text">{{title}}  ({{dateRelease | date: 'y'}})</div>
+      <div *ngIf="dateRelease==null" class="text">{{title}}</div>
+
     </div>
-    <div class="middlenote">
+    <div class="middlenote" *ngIf="note">
         <div class="textnote">
-          {{note}}
+          {{note|number : '1.1-1'}}
             <i class="fa fa-star"></i>
         </div>
       </div>
-      <div class="middlevisit">
+      <div class="middlevisit" *ngIf="numbervisits">
           <div class="textnote">
               
             {{numbervisits}}

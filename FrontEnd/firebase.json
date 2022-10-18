@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/MyMoviesApp",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",

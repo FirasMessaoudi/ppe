@@ -19,7 +19,7 @@
     (selectedTabChange)="tabChanged($event)"
     *ngIf="movies?.length > 0 || shows?.length > 0; else notfound"
   >
-    <mat-tab label="Movies">
+    <mat-tab label="{{'App.Movies' | translate }}">
       <div
         class="row my-films justify-content-center"
         style="width: 100%; text-align: center; padding-left: 2%"
@@ -42,7 +42,7 @@
     </mat-tab>
     <!-- shows -->
 
-    <mat-tab label="Shows">
+    <mat-tab label="{{'App.Series' | translate }}">
       <div
         class="row my-films justify-content-center"
         style="width: 100%; text-align: center; padding-left: 2%"
@@ -63,7 +63,7 @@
     </mat-tab>
 
     <!-- Persons -->
-    <mat-tab label="Actors">
+    <mat-tab label="{{'App.Actors' | translate }}">
       <div
       class="row justify-content-center"
       style="width: 100%; text-align: center; padding-left: 2%"

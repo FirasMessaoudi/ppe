@@ -1,21 +1,3 @@
-<!-- <li class="nav-item" >
-  <a class="nav-link waves-light actions" [routerLink]="['/watchlist']" mdbWavesEffect>
-      <mat-icon>list</mat-icon> {{'App.My-List' | translate}}</a>
-</li>
-<li class="nav-item" >
-  <a [routerLink]="['/profile']" class="nav-link waves-light actions" mdbWavesEffect>
-  <i class="fa fa-user-circle"></i>
-    {{'App.Manage Profile' | translate}}</a>
-</li>
-<li *ngIf="isAdmin" class="nav-item" >
-<a class="nav-link waves-light actions" [routerLink]="['/admin']" mdbWavesEffect>
-<i class="fa fa-cogs"></i> {{'App.Manage App' | translate}}</a>
-</li>
-<li class="nav-item" >
-<a class="nav-link waves-light actions" (click)="signout()" mdbWavesEffect>
-<i class="fa fa-power-off"></i> {{'App.Sign out' | translate}}</a>
-</li> -->
-
   <button (click)="navigate('user/watchlist')" mat-menu-item>
     <i class="fa fa-list"></i>
     <span class="ml-1">{{'App.My-List' | translate}}</span>

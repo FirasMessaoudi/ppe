@@ -10,8 +10,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MDBBootstrapModule} from 'angular-bootstrap-md';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { NzCarouselModule } from 'ng-zorro-antd';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from '../material.module';
@@ -22,6 +22,9 @@ import { LoginComponent } from './components/login/login.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ShareModule } from '@ngx-share/core';
+import { LocalizedDatePipe } from './pipes/localized-date.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     ActionsComponent, 
@@ -34,7 +37,8 @@ import { ShareModule } from '@ngx-share/core';
     SafeurlserviceService,
     SettingsComponent,
     LoginComponent,
-    ContactComponent
+    ContactComponent,
+    LocalizedDatePipe
   ],
   imports: [
     CommonModule,
@@ -42,14 +46,15 @@ import { ShareModule } from '@ngx-share/core';
     ReactiveFormsModule,
     MaterialModule,
     MDBBootstrapModule.forRoot(),
-    NgxPaginationModule,
     ToastrModule.forRoot(),
     LazyLoadImageModule,
     NgxSpinnerModule,
+    NzCarouselModule,
     NgZorroAntdModule,
     TranslateModule,
     RouterModule,
     ShareModule,
+    NgxPaginationModule
 
   ],
   exports: [
@@ -62,9 +67,9 @@ import { ShareModule } from '@ngx-share/core';
     MDBBootstrapModule,
     FooterComponent,
     SettingsComponent,
+    LocalizedDatePipe,
     ReactiveFormsModule,
     MaterialModule,
-    NgxPaginationModule,
     ToastrModule,
     LazyLoadImageModule,
     NgxSpinnerModule,
@@ -74,6 +79,7 @@ import { ShareModule } from '@ngx-share/core';
     FormsModule,
     SafeurlserviceService,
     ShareModule,
+    NgxPaginationModule
   ],
   entryComponents:[
     DetailModalComponent, 

@@ -40,7 +40,7 @@
             [(ngModel)]="password"
             name="password"
             matInput
-            placeholder="{{'App.login_page.passowrd' | translate}}"
+            placeholder="{{'App.login_page.password' | translate}}"
           />
           <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
@@ -99,7 +99,7 @@
           />
           <mat-icon matSuffix>email</mat-icon>
           <mat-error *ngIf="signUpForm.controls['email'].errors">
-            {{'App.login_page.invaldi_email' | translate}}
+            {{'App.login_page.invalid_email' | translate}}
           </mat-error>
         </mat-form-field>
 
@@ -114,7 +114,7 @@
           />
           <mat-icon matSuffix>lock</mat-icon>
           <mat-error *ngIf="signUpForm.controls['password'].errors">
-            {{'App.login_page.passowrd_error' | translate}}
+            {{'App.login_page.password_error' | translate}}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="field" appearance="outline">

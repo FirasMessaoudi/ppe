@@ -23,7 +23,7 @@
         "Cast": "Full Cast & Crew",
         "More like this": "More like this",
         "Watch Now": "Watch Now",
-        "Watch List":" Watch List",
+        "Watch List":" Watchlist",
         "Favorite": "Favorite",
         "Share": "Share",
         "Rate this": "Rate this",
@@ -43,6 +43,8 @@
         "Sort by": "Sort By",
         "To watch": "To watch",
         "watched": "Watched",
+        "not_watched":"Not Watched",
+        "all":"All",
         "Add new category": "Add new category",
         "Add new section": "Add new section",
         "Add new movie": "Add new movie, serie, anime",
@@ -63,7 +65,63 @@
         "Star tv": "Star known for Tv",
         "Actors": "Actors",
         "Crew": "Crew",
-        "Reviews": "Reviews"
+        "Reviews": "Reviews",
+        "view_all":"View all",
+        "stat":"Statistics",
+        "loading":"Loading",
+        "add_watchlist":"Add to watchlist",
+        "remove_watchlist":"Remove from watchlist",
+        "seasons":"Seasons",
+        "next_ep":"Next Episode to Air",
+        "available_on":"Available on",
+        "about_page":{
+            "title":"Box Movies is your guide to explore the latest movies and series .",
+             "contact":"Contact",
+             "contact_text1":"If you have any suggestion or for further informations click ",
+             "here":"here",
+             "contact_text2":" to contact us",
+             "developer":"Developer",
+             "tmdb":"The movie database",
+             "tmdb_text":"This application is developed using the movie database (Tmdb)",
+             "language":"Language"
+        },
+        "login_page":{
+            "username":"Username",
+            "password":"Password",
+            "create_account":"Create an account",
+            "full_name":"Full Name",
+            "invalid_name":"Invalid Name",
+            "invalid_username":"Invalid Username",
+            "email":"Email",
+            "invalid_email":"Invalid Email",
+            "password_error":" Password is too weak (at least 8 characters, one uppercase ، lowercase ، number and one special character )",
+            "confirm_password":"Confirm Password",
+            "password_match":" Passwords don't match",
+            "back_to_login":"Back to login"
+        },
+        "profile":{
+            "title":"Edit Your profile",
+            "current_password":"Current password",
+            "current_password_error":"You must type your current password",
+            "clear":"Clear",
+            "save":"Save",
+            "photo":" This photo will appear on the platform, as your avatar. Click on it to update"
+        },
+        "contact":{
+            "title":"Write to us",
+            "subject":"Subject",
+            "subject_error":"Subject cannot be empty",
+            "message":"Message",
+            "message_error":"Message cannot be empty",
+            "send":"Send"
+        },
+        "comments":{
+            "placeholder":"Write a comment",
+            "button":"Post comment",
+            "cancel":"Cancel",
+            "ok":"OK",
+            "update":"Submit changes"
+        }
         
     }
 }

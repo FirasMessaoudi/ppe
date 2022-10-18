@@ -1,0 +1,17 @@
+<app-page-not-found *ngIf="showError"></app-page-not-found>
+<div *ngIf="!showError" class="separator" style="padding: 20px">
+  
+    <div  class="card-header bg-gray text-white">
+      <h2 style="color: #FFF;font-family: sans-serif;">{{networkLabel}}
+      </h2>
+    </div>
+      <section  class="items">
+         
+      
+        <div *ngFor="let item of movies; let i = index">
+            <app-cardmovie [section]= " 'Series' " [id] ="item.id" [image] = "item.poster_path" [title] = "item.name" [dateRelease]="item.first_air_date" [note] = "item.vote_average" [numbervisits] = "item.popularity">
+         
+              </app-cardmovie>  
+          </div>
+        </section>
+        </div>

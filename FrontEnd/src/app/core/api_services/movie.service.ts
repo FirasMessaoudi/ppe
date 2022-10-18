@@ -219,6 +219,11 @@ export class MovieService {
       this.discovertv + "popularity.desc&with_networks=" + id
     );
   }
+  getTvByNetworkAndPagination(id: number,page:number): Observable<IMovie> {
+    return this._http.get<IMovie>(
+      this.discovertv + "&popularity.desc&with_networks=" + id+"&page="+page
+    );
+  }
   getMovieByNetwork(id: number): Observable<IMovie> {
     return this._http.get<IMovie>(
       this.discovermovie + "popularity.desc&with_companies=" + id

@@ -63,6 +63,7 @@ export class ProductDetailsComponent implements OnInit {
   showError: boolean;
   profil: string;
   imdbInfo: any;
+  dir: string;
 
   // tslint:disable-next-line:max-line-length
   constructor(
@@ -85,6 +86,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
     this.read = true;
     this.lang = this.storageService.read("language");
+    this.dir= this.lang=='ar'? 'rtl': 'ltr';
     this.route.params.subscribe((params) => {
       this.id = params["idProduct"];
       this.section = params["section"];
@@ -99,6 +101,7 @@ export class ProductDetailsComponent implements OnInit {
           this.spinner.hide();
         },
         () => {
+          console.log(this.showDetail);
           this.spinner.hide();
           this.movieService.getSimilarTv(this.showDetail.id).subscribe(
             (res) => (this.similar = res),
@@ -225,5 +228,8 @@ export class ProductDetailsComponent implements OnInit {
   }
   goToEpisode(season: number) {
     this.router.navigate(['/detail/episode', this.showDetail.name, this.showDetail.id, season, this.showDetail.number_of_seasons])
+  }
+  goToDetail(id,name){
+    this.router.navigate(['query/network',id, name]);
   }
 }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AllproductbycategoryComponent } from './allproductbycategory/allproductbycategory.component';
 import { ProductbyimdbComponent } from './productbyimdb/productbyimdb.component';
 import { ProductbysectionComponent } from './productbysection/productbysection.component';
+import { ProducytbynetworkComponent } from './producytbynetwork/producytbynetwork.component';
 import { SearchComponent } from './search/search.component';
 import { UpcomingmoviesComponent } from './upcomingmovies/upcomingmovies.component';
 
@@ -12,6 +13,8 @@ const routes: Routes = [
   {path: 'upcomingmovies', component: UpcomingmoviesComponent},
   {path: 'searchbykeyword/:keyword', component: SearchComponent},
   {path:'top-rated', component: ProductbyimdbComponent},
+  {path: 'network/:networkId/:networkLabel', component: ProducytbynetworkComponent},
+
 
 ];
 

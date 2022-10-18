@@ -30,9 +30,12 @@
             }}<span></span> |<span></span>{{ movieDetail?.runtime }} minutes<span></span> |<span></span>{{
             movieDetail?.production_countries[0]?.name
             }}<span></span> |<span></span><span style="color: #fbb829; font-weight: 700">Imdb</span>
-            {{ movieDetail?.vote_average }}<br /><br />
+            {{ movieDetail?.vote_average | number : '1.1-1' }}<br /><br />
+            <div *ngIf="section=='Movies'">
             <strong>{{ "App.Box_office" | translate }}:
-              {{ movieDetail?.revenue | currency }} </strong><br /><br />
+              {{ movieDetail?.revenue | currency }} </strong>
+              <br /><br />
+              </div>
           </div>
         </div>
 
@@ -49,12 +52,11 @@
         </div>
         <div *ngIf="isLoggedIn" class="like">
           <button *ngIf="!existsInWatchList" matTooltip="Add to wachlist" mat-button (click)="addOrDeleteWatchList()">
-            <mat-icon class="mat-red">playlist_add </mat-icon>&nbsp;Add to
-            list &nbsp;&nbsp;
+            <mat-icon class="mat-red">playlist_add </mat-icon>&nbsp;{{"App.add_watchlist" | translate}} &nbsp;&nbsp;
           </button>
           <button *ngIf="existsInWatchList" matTooltip="Remove from wachlist" mat-button
             (click)="addOrDeleteWatchList()">
-            <mat-icon class="mat-red">playlist_add_check </mat-icon>&nbsp;Remove from list
+            <mat-icon class="mat-red">playlist_add_check </mat-icon>&nbsp;{{"App.remove_watchlist" | translate}}
             &nbsp;&nbsp;
           </button>
 
@@ -221,21 +223,19 @@
             <p *ngIf="lang==='ar'" class="movie--overview">{{product.descriptionAr}}</p> -->
 
         <div class="movie--infos">
-          <div>
-            {{ showDetail?.first_air_date | date: "mediumDate"
-            }}<span></span> |<span></span>{{ showDetail?.episode_run_time[0] }} minutes<span></span> |<span></span>{{
+          <div dir="{{dir}}">
+            {{ showDetail?.first_air_date | date:"mediumDate"}}<span></span> |<span></span>{{ showDetail?.episode_run_time[0] }} minutes<span></span> |<span></span>{{
             showDetail?.origin_country[0] }}<span></span> |<span></span><span
               style="color: #fbb829; font-weight: 700">Imdb</span>
-            {{ showDetail?.vote_average }}<br /><br />
-            <h6 *ngIf="showDetail?.next_episode_to_air">Next Episode to air: {{
-              showDetail?.next_episode_to_air?.air_date | date: "mediumDate"
+            {{ showDetail?.vote_average | number : '1.1-1' }}<br /><br />
+            <h6 *ngIf="showDetail?.next_episode_to_air">{{"App.next_ep" | translate}}: {{
+              showDetail?.next_episode_to_air?.air_date | date:"mediumDate"
               }} <br> <br></h6>
-            <div class="d-flex">
-              <h6>Available on : &nbsp;&nbsp;</h6>
-              <div class="networks" *ngFor="let item of showDetail?.networks">
-                <img style="background-color: white;" height="30px"
+            <div >
+              <h6 style="display:inline-block">{{"App.available_on" | translate}} : &nbsp;&nbsp;</h6>
+              <div style="display:inline-block" class="networks" *ngFor="let item of showDetail?.networks">
+                <img (click)="goToDetail(item.id,item.name)" style="background-color: white; cursor: pointer;" height="30px"
                   [lazyLoad]="'https://www.themoviedb.org/t/p/w92/'+item.logo_path">
-                &nbsp;&nbsp;
               </div>
             </div>
             <br>
@@ -254,12 +254,11 @@
         </div>
         <div *ngIf="isLoggedIn" class="like">
           <button *ngIf="!existsInWatchList" matTooltip="Add to wachlist" mat-button (click)="addOrDeleteWatchList()">
-            <mat-icon class="mat-red">playlist_add </mat-icon>&nbsp;Add to
-            list &nbsp;&nbsp;
+            <mat-icon class="mat-red">playlist_add </mat-icon>&nbsp;{{"App.add_watchlist" | translate}} &nbsp;&nbsp;
           </button>
           <button *ngIf="existsInWatchList" matTooltip="Remove from wachlist" mat-button
             (click)="addOrDeleteWatchList()">
-            <mat-icon class="mat-red">playlist_add_check </mat-icon>&nbsp;Remove from list
+            <mat-icon class="mat-red">playlist_add_check </mat-icon>&nbsp;{{"App.remove_watchlist" | translate}}
             &nbsp;&nbsp;
           </button>
 
@@ -296,7 +295,7 @@
           <div class="row justify-content-center" style="width: 100%; text-align: center; padding-left: 2%">
             <div class="card" style="width: 18rem; margin: 10px"
               *ngFor="let person of actors?.cast | paginate: { itemsPerPage: 12, currentPage: p }">
-              <a [routerLink]="['/actorworks', person.id]">
+              <a [routerLink]="['/detail/actorworks', person.id]">
                 <img *ngIf="person?.profile_path" class="card-img-top avatar" [src]="
                     'https://image.tmdb.org/t/p/original' + person.profile_path
                   " alt="Card image cap" />
@@ -318,7 +317,7 @@
                 let person of actors?.crew
                   | paginate: { itemsPerPage: 6, currentPage: p }
               ">
-              <a [routerLink]="['/actorworks', person.id]">
+              <a [routerLink]="['/detail/actorworks', person.id]">
                 <img *ngIf="person.profile_path" class="card-img-top avatar" [src]="
                     'https://image.tmdb.org/t/p/original' + person.profile_path
                   " alt="Card image cap" />
@@ -345,7 +344,7 @@
       </mat-tab>
 
       <!-- Seasons-->
-      <mat-tab label="Seasons">
+      <mat-tab label="{{ 'App.seasons' | translate }}">
         <div class="row justify-content-center my-films" style="width: 100%; text-align: center; padding-left: 2%">
           <div *ngFor="let item of showDetail?.seasons">
             <div class="card p-1" style="width: 15rem;">

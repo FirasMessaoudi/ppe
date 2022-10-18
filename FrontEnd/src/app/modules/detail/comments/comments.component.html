@@ -28,11 +28,11 @@
               type="text"
               class="input"
               [(ngModel)]="selectedComment.comment"
-              placeholder="Write a comment"
+              placeholder="{{ 'App.comments.placeholder' | translate }}"
             ></textarea>
             <div class="float-right">
               <button (click)="editMode = false" class="cancel" type="submit">
-                Cancel
+                {{ 'App.comments.cancel' | translate }}
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <button
@@ -41,7 +41,7 @@
                 type="submit"
                 (click)="update()"
               >
-                Submit changes
+              {{ 'App.comments.update' | translate }}
               </button>
             </div>
           </div>
@@ -90,7 +90,7 @@
           type="text"
           class="input"
           [(ngModel)]="myComment"
-          placeholder="Write a comment"
+          placeholder="{{ 'App.comments.placeholder' | translate }}"
         ></textarea>
         <button
           (click)="addComment()"
@@ -98,7 +98,7 @@
           class="primaryContained float-right"
           type="submit"
         >
-          Post Comment
+        {{ 'App.comments.button' | translate }}
         </button>
       </div>
     </div>
