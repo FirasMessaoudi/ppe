@@ -234,7 +234,7 @@
             <div >
               <h6 style="display:inline-block">{{"App.available_on" | translate}} : &nbsp;&nbsp;</h6>
               <div style="display:inline-block" class="networks" *ngFor="let item of showDetail?.networks">
-                <img (click)="goToDetail(item.id,item.name)" style="background-color: white; cursor: pointer;" height="30px"
+                <img (click)="goToDetail(item.id,item.name,item.logo_path)" style="background-color: white; cursor: pointer;" height="30px"
                   [lazyLoad]="'https://www.themoviedb.org/t/p/w92/'+item.logo_path">
               </div>
             </div>

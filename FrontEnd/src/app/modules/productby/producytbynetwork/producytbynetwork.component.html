@@ -1,9 +1,11 @@
 <app-page-not-found *ngIf="showError"></app-page-not-found>
 <div *ngIf="!showError" class="separator" style="padding: 20px">
   
-    <div  class="card-header bg-gray text-white">
-      <h2 style="color: #FFF;font-family: sans-serif;">{{networkLabel}}
-      </h2>
+    <div style="text-align: center !important"  class="card-header bg-gray text-white d-block">
+      <!-- <h2 style="color: #FFF;font-family: sans-serif;">{{networkLabel}}
+      </h2> -->
+      <img style="background-color: white;cursor: pointer;"
+      [lazyLoad]="logo">
     </div>
       <section  class="items">
          

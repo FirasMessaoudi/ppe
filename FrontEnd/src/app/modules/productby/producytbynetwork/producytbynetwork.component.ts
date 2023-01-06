@@ -14,6 +14,7 @@ export class ProducytbynetworkComponent implements OnInit {
   movies: MovieModel[] = [];
   networkId: number;
   networkLabel: string;
+  logo: string;
   p: number = 1;
   showError = false;
   constructor(
@@ -34,8 +35,9 @@ export class ProducytbynetworkComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.networkLabel = params["networkLabel"];
     });
-    console.log(this.networkLabel);
-    console.log(this.networkId);
+    console.log(localStorage.getItem('logo'));
+    
+   this.logo = 'https://www.themoviedb.org/t/p/w185/'+localStorage.getItem('logo');
 
     this.init();
   }

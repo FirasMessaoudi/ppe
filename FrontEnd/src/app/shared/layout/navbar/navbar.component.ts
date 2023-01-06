@@ -53,6 +53,9 @@ modalFormSubscriptionEmail = new FormControl('', Validators.email);
       this.isLoggedIn = status;
       if(this.isLoggedIn){
         this.profil = this.tokenStorage.getUsername();
+        if(this.profil.length>10){
+          this.profil = this.profil.substring(0,7)+'...'
+        }
         this.userService.getUser(this.profil).subscribe(
           res => this.user = res,
           err => console.log(err),

@@ -229,7 +229,8 @@ export class ProductDetailsComponent implements OnInit {
   goToEpisode(season: number) {
     this.router.navigate(['/detail/episode', this.showDetail.name, this.showDetail.id, season, this.showDetail.number_of_seasons])
   }
-  goToDetail(id,name){
+  goToDetail(id,name,logo){
+    localStorage.setItem("logo",logo);
     this.router.navigate(['query/network',id, name]);
   }
 }
