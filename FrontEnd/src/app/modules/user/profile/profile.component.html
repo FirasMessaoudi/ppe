@@ -2,152 +2,156 @@
   <section>
     <div class="lx-container-100">
       <div class="lx-row">
-        <h1 class="title">{{'App.profile.title' | translate }}</h1>
+        <h1 class="title">{{ 'App.profile.title' | translate }}</h1>
       </div>
       <div class="row">
         <div class="col-4">
-            <div class="profile-pic bs-md">
-              <!-- <h1 class="pic-label">Profile picture</h1> -->
-              <div class="pic bs-md">
-                <label class="hoverable" for="fileInput">
-                  <img [src]="sanitize()"> 
-                  <div class="hover-text">
-                    <em class="material-icons">add_a_photo</em>
-                  </div>
-                  <div class="background"></div>
-                </label>
-                <br/>
-                <input id="fileInput" type='file' (change)="onSelectFile($event)">
-              </div>
-              <div class="pic-info">
-                <p class="text-white"><i class="fas fa-exclamation-triangle">
-
-                </i>&nbsp;&nbsp;{{'App.profile.photo' | translate }}</p>
-              </div>
+          <div class="profile-pic bs-md">
+            <!-- <h1 class="pic-label">Profile picture</h1> -->
+            <div class="pic bs-md">
+              <label class="hoverable" for="fileInput">
+                <img [src]="sanitize()">
+                <div class="hover-text">
+                  <em class="material-icons">add_a_photo</em>
+                </div>
+                <div class="background"></div>
+              </label>
+              <br/>
+              <input id="fileInput" type='file' (change)="onSelectFile($event)">
             </div>
+            <div class="pic-info">
+              <p class="text-white"><i class="fas fa-exclamation-triangle">
+
+              </i>&nbsp;&nbsp;{{ 'App.profile.photo' | translate }}</p>
+            </div>
+          </div>
         </div>
         <div class="col-8">
 
           <div class="lx-column">
             <div class="col-12">
 
-            <form [formGroup]="userForm"class=" needs-validation" novalidate>
-              <div class="row">
-                <div class="col-6">
-                  <mat-form-field class="field" appearance="outline">
-                    <mat-label>{{'App.login_page.full_name' | translate }}</mat-label>
-                    <input
-                      [errorStateMatcher]="matcher"
-                      formControlName="firstname"
-                      matInput
-                      placeholder="{{'App.login_page.full_name' | translate }}"
-                    />
-                    <mat-icon matSuffix>person</mat-icon>
-                    <mat-error *ngIf="userForm.controls['firstname'].errors">
-                      {{'App.login_page.invalid_name' | translate }}
-                    </mat-error>
-                  </mat-form-field>
-                 
-                </div>
-                <div class="col-6">
-                  <mat-form-field class="field" appearance="outline">
-                    <mat-label>{{'App.login_page.username' | translate }}</mat-label>
-                    <input
-                      [errorStateMatcher]="matcher"
-                      formControlName="username"
-                      matInput
-                      placeholder="{{'App.login_page.username' | translate }}"
-                    />
-                    <mat-icon matSuffix>person_pin</mat-icon>
-                    <mat-error *ngIf="userForm.controls['username'].errors">
-                      {{'App.login_page.invalid_username' | translate }}
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-              </div>
-             
-             <div class="row">
-             <div class="col-6">
-              <mat-form-field class="field" appearance="outline">
-                <mat-label>{{'App.login_page.email' | translate }}</mat-label>
-                <input
-                  [errorStateMatcher]="matcher"
-                  formControlName="email"
-                  matInput
-                  placeholder="{{'App.login_page.email' | translate }}"
-                />
-                <mat-icon matSuffix>email</mat-icon>
-                <mat-error *ngIf="userForm.controls['email'].errors">
-                  {{'App.login_page.invalid_email' | translate }}
-                </mat-error>
-              </mat-form-field>
-             
-             </div>
-             <div class="col-6">
-              <mat-form-field class="field" appearance="outline">
-                <mat-label>{{'App.profile.current_password' | translate }}</mat-label>
-                <input
-                  type="password"
-                  [errorStateMatcher]="matcher"
-                  formControlName="oldPassword"
-                  matInput
-                  placeholder="{{'App.profile.current_password' | translate }}"
-                />
-                <mat-icon matSuffix>lock</mat-icon>
-                <mat-error *ngIf="userForm.controls['oldPassword'].errors">
-                  {{'App.profile.current_password_error' | translate }}
-                </mat-error>
-              </mat-form-field>
-      
-            </div>
-             </div>
-             <div class="row">
-              <div class="col-6">
-                <mat-form-field class="field" appearance="outline">
-                  <mat-label>{{'App.login_page.password' | translate }}</mat-label>
-                  <input
-                    type="password"
-                    [errorStateMatcher]="matcher"
-                    formControlName="password"
-                    matInput
-                    placeholder="{{'App.login_page.title' | translate }}"
-                  />
-                  <mat-icon matSuffix>lock</mat-icon>
-                  <mat-error *ngIf="userForm.controls['password'].errors">
-                    {{'App.login_page.password_error' | translate }}
-                  </mat-error>
-                </mat-form-field>
-        
-              </div>
-              <div class="col-6">
-                <mat-form-field class="field" appearance="outline">
-                  <mat-label>{{'App.login_page.confirm_password' | translate }}</mat-label>
-                  <input
-                    type="password"
-                    [errorStateMatcher]="matcher"
-                    formControlName="confirmPassword"
-                    matInput
-                    placeholder="{{'App.login_page.confirm_password' | translate }}"
-                  />
-                  <mat-icon matSuffix>lock</mat-icon>
-                  <mat-error *ngIf="userForm.controls['confirmPassword'].errors">
-                    {{'App.login_page.password_match' | translate }}
-                  </mat-error>
-                </mat-form-field>
-              </div>
+              <form [formGroup]="userForm" class=" needs-validation" novalidate>
+                <div class="row">
+                  <div class="col-6">
+                    <mat-form-field class="field" appearance="outline">
+                      <mat-label>{{ 'App.login_page.full_name' | translate }}</mat-label>
+                      <input
+                        [errorStateMatcher]="matcher"
+                        formControlName="firstname"
+                        matInput
+                        placeholder="{{'App.login_page.full_name' | translate }}"
+                      />
+                      <mat-icon matSuffix>person</mat-icon>
+                      <mat-error *ngIf="userForm.controls['firstname'].errors">
+                        {{ 'App.login_page.invalid_name' | translate }}
+                      </mat-error>
+                    </mat-form-field>
 
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <label for="passc"></label>
-                  <div class="actions">
-                    <button (click)="reset()" type="button" class="btn btn-danger">{{'App.profile.clear' | translate }}</button>
-                    <button  (click)="update()" type="button" class="btn btn-success">{{'App.profile.save' | translate }}</button>
                   </div>
-               </div>
-              </div>
-            </form>
-          </div>
+                  <div class="col-6">
+                    <mat-form-field class="field" appearance="outline">
+                      <mat-label>{{ 'App.login_page.username' | translate }}</mat-label>
+                      <input
+                        [errorStateMatcher]="matcher"
+                        formControlName="username"
+                        matInput
+                        placeholder="{{'App.login_page.username' | translate }}"
+                      />
+                      <mat-icon matSuffix>person_pin</mat-icon>
+                      <mat-error *ngIf="userForm.controls['username'].errors">
+                        {{ 'App.login_page.invalid_username' | translate }}
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    <mat-form-field class="field" appearance="outline">
+                      <mat-label>{{ 'App.login_page.email' | translate }}</mat-label>
+                      <input
+                        [errorStateMatcher]="matcher"
+                        formControlName="email"
+                        matInput
+                        placeholder="{{'App.login_page.email' | translate }}"
+                      />
+                      <mat-icon matSuffix>email</mat-icon>
+                      <mat-error *ngIf="userForm.controls['email'].errors">
+                        {{ 'App.login_page.invalid_email' | translate }}
+                      </mat-error>
+                    </mat-form-field>
+
+                  </div>
+                  <div class="col-6">
+                    <mat-form-field class="field" appearance="outline">
+                      <mat-label>{{ 'App.profile.current_password' | translate }}</mat-label>
+                      <input
+                        type="password"
+                        [errorStateMatcher]="matcher"
+                        formControlName="oldPassword"
+                        matInput
+                        placeholder="{{'App.profile.current_password' | translate }}"
+                      />
+                      <mat-icon matSuffix>lock</mat-icon>
+                      <mat-error *ngIf="userForm.controls['oldPassword'].errors">
+                        {{ 'App.profile.current_password_error' | translate }}
+                      </mat-error>
+                    </mat-form-field>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <mat-form-field class="field" appearance="outline">
+                      <mat-label>{{ 'App.login_page.password' | translate }}</mat-label>
+                      <input
+                        type="password"
+                        [errorStateMatcher]="matcher"
+                        formControlName="password"
+                        matInput
+                        placeholder="{{'App.login_page.title' | translate }}"
+                      />
+                      <mat-icon matSuffix>lock</mat-icon>
+                      <mat-error *ngIf="userForm.controls['password'].errors">
+                        {{ 'App.login_page.password_error' | translate }}
+                      </mat-error>
+                    </mat-form-field>
+
+                  </div>
+                  <div class="col-6">
+                    <mat-form-field class="field" appearance="outline">
+                      <mat-label>{{ 'App.login_page.confirm_password' | translate }}</mat-label>
+                      <input
+                        type="password"
+                        [errorStateMatcher]="matcher"
+                        formControlName="confirmPassword"
+                        matInput
+                        placeholder="{{'App.login_page.confirm_password' | translate }}"
+                      />
+                      <mat-icon matSuffix>lock</mat-icon>
+                      <mat-error *ngIf="userForm.controls['confirmPassword'].errors">
+                        {{ 'App.login_page.password_match' | translate }}
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <label for="passc"></label>
+                    <div class="actions">
+                      <button (click)="reset()" type="button"
+                              class="btn btn-danger">{{ 'App.profile.clear' | translate }}
+                      </button>
+                      <button (click)="update()" type="button"
+                              class="btn btn-success">{{ 'App.profile.save' | translate }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
 
           </div>
         </div>

@@ -9,13 +9,13 @@ import { IMovie } from 'src/app/core/domain/movie';
   styleUrls: ['./highlights.component.scss']
 })
 export class HighlightsComponent implements OnInit {
-  @ViewChild('carousel') carousel:any;
+  @ViewChild('carousel') carousel: any;
   highlightmovies: IMovie;
-  tvs:IMovie;
+  tvs: IMovie;
   array = [ 1, 2, 3, 4 ];
-  p=1;
-  slides : Array<any> = []
-  options : any = {
+  p = 1;
+  slides: Array<any> = [];
+  options: any = {
     clicking: true,
     sourceProp: 'src',
     visible: 7,
@@ -28,30 +28,30 @@ export class HighlightsComponent implements OnInit {
     space: 220,
     autoRotationSpeed: 3000,
     loop: true
-}
-  constructor(private _service: MovieService,private router: Router) {
+};
+  constructor(private _service: MovieService, private router: Router) {
    }
-  ngOnInit(){
+  ngOnInit() {
     this._service.trendingMovie().subscribe(
       res => this.highlightmovies = res,
-      err=> console.log(err.error),
-      ()=>{
+      err => console.log(err.error),
+      () => {
         console.log(this.highlightmovies.results);
-        let newSlides = new Array<object>()
+        const newSlides = new Array<object>();
         this.highlightmovies.results.forEach((item) => {
-          newSlides.push({src: 'https://image.tmdb.org/t/p/original'+item['backdrop_path']})
-        })
-        this.slides = newSlides.concat(this.slides)
+          newSlides.push({src: 'https://image.tmdb.org/t/p/original' + item['backdrop_path']});
+        });
+        this.slides = newSlides.concat(this.slides);
       }
-     )
+     );
   }
   slideClicked (index) {
-    this.carousel.slideClicked(index)
+    this.carousel.slideClicked(index);
    }
-  goToDetails($event){
+  goToDetails($event) {
     console.log($event);
-    
-   this.router.navigateByUrl('/details'+'Movies'+$event)
+
+   this.router.navigateByUrl('/details' + 'Movies' + $event);
   }
 
 }

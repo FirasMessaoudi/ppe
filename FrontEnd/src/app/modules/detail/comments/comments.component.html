@@ -12,8 +12,8 @@
           </div>
           <span class="displayName title">{{ comment?.username }}</span>
           <span class="displayName caption">{{
-            comment?.commentDate | timeAgo
-          }}</span>
+              comment?.commentDate | timeAgo
+            }}</span>
         </div>
         <!---->
         <div class="wrapper comment">
@@ -41,14 +41,14 @@
                 type="submit"
                 (click)="update()"
               >
-              {{ 'App.comments.update' | translate }}
+                {{ 'App.comments.update' | translate }}
               </button>
             </div>
           </div>
           <div class="row">
             <div class="col-2">
               <span class="cursor" (click)="likeDislike(comment)"
-                ><mat-icon *ngIf="likedOrNot(comment)==-1" class="mat-red">favorite_border </mat-icon>
+              ><mat-icon *ngIf="likedOrNot(comment)==-1" class="mat-red">favorite_border </mat-icon>
                 <mat-icon *ngIf="likedOrNot(comment)!=-1" class="mat-red">favorite </mat-icon>
                 <span class="comment-number">{{ likesNumber(comment) }}</span>
               </span>
@@ -65,13 +65,13 @@
                 (nzOnConfirm)="delete(comment.id)"
               >
                 <mat-icon class="mat-red cursor"
-                  >delete
+                >delete
                 </mat-icon>
               </a>
               <mat-icon
                 (click)="editMode = true; selectedComment = comment"
                 class="mat-green cursor"
-                >edit_note
+              >edit_note
               </mat-icon>
             </div>
           </div>
@@ -98,7 +98,7 @@
           class="primaryContained float-right"
           type="submit"
         >
-        {{ 'App.comments.button' | translate }}
+          {{ 'App.comments.button' | translate }}
         </button>
       </div>
     </div>

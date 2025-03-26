@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { Router } from '@angular/router';
-import { DetailModalComponent } from '../detail-modal/detail-modal.component';
+import {Component, OnInit, Input} from '@angular/core';
+import {Router} from '@angular/router';
+import {DetailModalComponent} from '../detail-modal/detail-modal.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cardmovie',
@@ -23,24 +23,27 @@ export class CardmovieComponent implements OnInit {
   dateRelease: Date;
   @Input()
   section: string;
-  constructor(public dialog: MatDialog, private router: Router) { }
+
+  constructor(public dialog: MatDialog, private router: Router) {
+  }
 
   ngOnInit() {
-    //this.image = 'https://image.tmdb.org/t/p/original/'+this.image;
+    // this.image = 'https://image.tmdb.org/t/p/original/'+this.image;
   }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DetailModalComponent, {
       width: '700px',
-      data: "test"
+      data: 'test'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      //this.animal = result;
+      // this.animal = result;
     });
   }
 
-goToDetail(){
-  this.router.navigate(['detail/section',this.section, this.id]);
-}
+  goToDetail() {
+    this.router.navigate(['detail/section', this.section, this.id]);
+  }
 }

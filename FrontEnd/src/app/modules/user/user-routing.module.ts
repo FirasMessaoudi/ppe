@@ -6,7 +6,7 @@ import { WatchlistComponent } from './watchlist/watchlist.component';
 
 const routes: Routes = [
   {path: 'watchlist', component: WatchlistComponent},
-  {path: 'profile',component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent},
 
 
 ];

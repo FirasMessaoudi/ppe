@@ -1,28 +1,29 @@
-import { MatTabChangeEvent } from "@angular/material/material";
-import { Component, HostListener, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { IMovie } from "src/app/core/domain/movie";
-import { MovieModel } from "src/app/core/domain/moviemodel";
-import { MovieService } from "src/app/core/api_services/movie.service";
-import { NgxSpinner } from "ngx-spinner/lib/ngx-spinner.enum";
-import { NgxSpinnerService } from "ngx-spinner";
-import { MovieCast } from "src/app/core/domain/moviecast";
-import { PersonService } from "src/app/core/api_services/person.service";
+import {Component, HostListener, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {IMovie} from 'src/app/core/domain/movie';
+import {MovieModel} from 'src/app/core/domain/moviemodel';
+import {MovieService} from 'src/app/core/api_services/movie.service';
+import {NgxSpinner} from 'ngx-spinner/lib/ngx-spinner.enum';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {MovieCast} from 'src/app/core/domain/moviecast';
+import {PersonService} from 'src/app/core/api_services/person.service';
+import {MatTabChangeEvent} from '@angular/material/tabs';
 
 @Component({
-  selector: "app-search",
-  templateUrl: "./search.component.html",
-  styleUrls: ["./search.component.scss"],
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
   shows: MovieModel[] = [];
   movies: MovieModel[] = [];
   persons: any[] = [];
-  keyword = "";
-  p: number = 1;
+  keyword = '';
+  p = 1;
   index = 0;
   isLoading = true;
   showError: boolean;
+
   constructor(
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
@@ -34,19 +35,22 @@ export class SearchComponent implements OnInit {
       return false;
     };
   }
+
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.keyword = params["keyword"];
+      this.keyword = params['keyword'];
     });
 
     this.init();
     this.initS();
     this.initPerson();
   }
+
   public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.p = 1;
     this.index = tabChangeEvent.index;
   }
+
   init() {
     this.spinner.show();
     this.service.getMovieByName(this.keyword, this.p).subscribe(
@@ -54,7 +58,7 @@ export class SearchComponent implements OnInit {
         this.movies.push(...res.results);
       },
       (erreur) => {
-        console.log("erreur movie");
+        console.log('erreur movie');
         this.showError = true;
         this.spinner.hide();
       },
@@ -63,6 +67,7 @@ export class SearchComponent implements OnInit {
       }
     );
   }
+
   initS() {
     this.spinner.show();
     this.service.getTvShowByName(this.keyword, this.p).subscribe(
@@ -70,7 +75,7 @@ export class SearchComponent implements OnInit {
         this.shows.push(...res.results);
       },
       (erreur) => {
-        console.log("erreur movie");
+        console.log('erreur movie');
         this.showError = true;
         this.spinner.hide();
       },
@@ -79,6 +84,7 @@ export class SearchComponent implements OnInit {
       }
     );
   }
+
   initPerson() {
     this.spinner.show();
     this.personService.getPersonByName(this.keyword, this.p).subscribe(
@@ -86,7 +92,7 @@ export class SearchComponent implements OnInit {
         this.persons.push(...res['results']);
       },
       (erreur) => {
-        console.log("erreur person");
+        console.log('erreur person');
         this.showError = true;
         this.spinner.hide();
       },
@@ -95,28 +101,30 @@ export class SearchComponent implements OnInit {
       }
     );
   }
-  @HostListener("window:scroll", ["$event"])
+
+  @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    //In chrome and some browser scroll is given to body tag
-    let pos =
+    // In chrome and some browser scroll is given to body tag
+    const pos =
       (document.documentElement.scrollTop || document.body.scrollTop) +
-      document.documentElement.offsetHeight+1;
-    let max = document.documentElement.scrollHeight;
+      document.documentElement.offsetHeight + 1;
+    const max = document.documentElement.scrollHeight;
     // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
     if (pos >= max) {
-      //Do your action here
+      // Do your action here
       this.p++;
       if (this.index == 0) {
         this.init();
-      } else if(this.index==1) {
+      } else if (this.index == 1) {
         this.initS();
       } else {
         this.initPerson();
       }
     }
   }
-  goToActor(id:number){
-    this.router.navigate(['detail/actorworks',id])
+
+  goToActor(id: number) {
+    this.router.navigate(['detail/actorworks', id]);
 
   }
 }

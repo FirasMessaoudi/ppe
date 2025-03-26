@@ -8,10 +8,10 @@ import { Contact } from 'src/app/core/domain/contact';
   providedIn: 'root'
 })
 export class ContactService {
-  baseUrl=environment.myBaseUrl;
+  baseUrl = environment.myBaseUrl;
   constructor(private _http: HttpClient) { }
-  addMessage(message:Contact):Observable<Contact>{
-    return this._http.post<Contact>(this.baseUrl+'/contacts/addMessage',message);
+  addMessage(message: Contact): Observable<Contact> {
+    return this._http.post<Contact>(this.baseUrl + '/contacts/addMessage', message);
   }
 
 }

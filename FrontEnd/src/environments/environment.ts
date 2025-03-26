@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  myBaseUrl:'https://infinite-hamlet-71906.herokuapp.com'
+  myBaseUrl: 'https://infinite-hamlet-71906.herokuapp.com'
 };
 
 /*

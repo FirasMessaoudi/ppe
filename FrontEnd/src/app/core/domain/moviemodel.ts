@@ -1,4 +1,4 @@
-import { ICategory } from "./icategory";
+import { ICategory } from './icategory';
 
 export interface MovieModel {
     poster_path: string;
@@ -7,9 +7,9 @@ export interface MovieModel {
     release_date: string;
     genre_ids: ICategory[];
     id: number;
-    original_name?:string;
-    first_air_date?:string;
-    origin_country?:object;
+    original_name?: string;
+    first_air_date?: string;
+    origin_country?: object;
     original_title: string;
     original_language: string;
     title: string;
@@ -18,5 +18,5 @@ export interface MovieModel {
     vote_count: number;
     video: boolean;
     vote_average: number;
-    name:string;
+    name: string;
 }

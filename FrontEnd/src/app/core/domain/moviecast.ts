@@ -1,9 +1,9 @@
-import { MovieCrewModel } from "./moviecrew";
+import { MovieCrewModel } from './moviecrew';
 
 export interface MovieCastModel {
     id?: number;
     cast: MovieCast[];
-    crew :MovieCrewModel[];
+    crew: MovieCrewModel[];
 }
     export interface MovieCast {
     cast_id?: number;

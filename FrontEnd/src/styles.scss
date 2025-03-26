@@ -19,7 +19,7 @@
     z-index:-1 !important;
   }
 
- 
+
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
     // z-index: 99999 !important;
  }
@@ -41,9 +41,9 @@
 }
 .card {
     box-shadow: none !important;
-    
+
         background-color: #13151a !important;
-    
+
 }
 .ngx-pagination a {
     color: #FFF !important;
@@ -70,7 +70,7 @@
     color: #fbb829;
 
   }
- 
+
   html {
     box-sizing: border-box;
 }
@@ -115,7 +115,7 @@ h4 {
     color: #ffffff !important;
   }
   .mat-select-value-text{
-    color: #ffffff !important; 
+    color: #ffffff !important;
   }
   .mat-select-placeholder{
     color: #ffffff !important;
@@ -131,12 +131,12 @@ h4 {
 }
 .mat {
     &-menu-item {
-        color: $primary-light;
+        color: $primary-light !important;
     }
 }
 .mat-tab {
     &-labels {
-        justify-content: center;
+        justify-content: center !important;
     }
     &-label {
         color: $white;
@@ -221,7 +221,7 @@ h1.mat-dialog-title {
     justify-content: center;
 
     @media only screen and (min-width: 731px){
-        left: 208px;  
+        left: 208px;
     }
 }
 $spinner-size: 4rem;
@@ -239,7 +239,7 @@ $animation-speed: 2s;
     height: $spinner-size;
     border: $spinner-thickness solid #9c27b0;
     animation: $animation-speed infinite spin ease-in-out;
-    
+
       &:nth-child(1){
         animation-delay: 0s;
       }
@@ -347,4 +347,4 @@ select {
     color: #f39c12;
   }
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
-@import '~css-star-rating/scss/star-rating';
+//@import '~css-star-rating/scss/star-rating';

@@ -6,10 +6,10 @@ import { EpisodesComponent } from './episodes/episodes.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
 const routes: Routes = [
-  {path: 'section/:section/:idProduct', component:ProductDetailsComponent},
+  {path: 'section/:section/:idProduct', component: ProductDetailsComponent},
   {path: 'actorworks/:id', component: ActorsKnownForComponent},
   // {path: 'settings',component: SettingsComponent},
-  {path: 'episode/:name/:id/:ep/:s',component: EpisodesComponent},
+  {path: 'episode/:name/:id/:ep/:s', component: EpisodesComponent},
 
 
 ];

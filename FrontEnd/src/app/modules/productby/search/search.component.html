@@ -65,37 +65,37 @@
     <!-- Persons -->
     <mat-tab label="{{'App.Actors' | translate }}">
       <div
-      class="row justify-content-center"
-      style="width: 100%; text-align: center; padding-left: 2%"
-    >
-      <div
-      class="card"
-      style="width: 13rem; margin: 10px"
-      *ngFor="let person of persons"
-    >
-      <a (click)="goToActor(person.id)">
-        <img
-          *ngIf="person?.profile_path"
-          class="card-img-top avatar"
-          [src]="
+        class="row justify-content-center"
+        style="width: 100%; text-align: center; padding-left: 2%"
+      >
+        <div
+          class="card"
+          style="width: 13rem; margin: 10px"
+          *ngFor="let person of persons"
+        >
+          <a (click)="goToActor(person.id)">
+            <img
+              *ngIf="person?.profile_path"
+              class="card-img-top avatar"
+              [src]="
             'https://image.tmdb.org/t/p/original' + person.profile_path
           "
-          alt="Card image cap"
-        />
-        <img
-          *ngIf="!person?.profile_path"
-          class="card-img-top avatar"
-          src="/assets/images/no_poster_available.jpg"
-          alt="Card image cap"
-        />
-      </a>
-      <div class="card-body">
-        <h5 class="card-title">{{ person.name }}</h5>
-        <!-- <p class="card-text">{{ person.character }}</p> -->
-      </div>
-    </div>
+              alt="Card image cap"
+            />
+            <img
+              *ngIf="!person?.profile_path"
+              class="card-img-top avatar"
+              src="/assets/images/no_poster_available.jpg"
+              alt="Card image cap"
+            />
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{ person.name }}</h5>
+            <!-- <p class="card-text">{{ person.character }}</p> -->
+          </div>
+        </div>
 
-    </div>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>

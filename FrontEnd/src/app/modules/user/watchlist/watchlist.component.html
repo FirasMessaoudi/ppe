@@ -1,8 +1,8 @@
-<mat-tab-group  class="separator">
+<mat-tab-group class="separator">
   <mat-tab label="{{'App.Watch List' | translate }}">
     <div class="row  justify-content-center mt-4 mb-3">
       <div class="select">
-        <select (change)="getWatchList()" [(ngModel)]="watched"  name="slct" id="slct">
+        <select (change)="getWatchList()" [(ngModel)]="watched" name="slct" id="slct">
           <option selected value="ALL">ALL</option>
           <option value="true">WATCHED</option>
           <option value="false">NOT WATCHED</option>
@@ -17,10 +17,12 @@
         <div *ngFor="let item of movieList">
 
           <app-modalfavorit (updateFav)="updateFav($event)" (updateWatchlist)="updateWatchlist($event)"
-            [section]=" 'Movies' " [id]="item.id" [image]="item.poster_path" [title]="item.title"
-            [dateRelease]="item.release_date" [note]="item.vote_average" [numbervisits]="item.popularity"
-            [runtime]="item.runtime" [description]="item.overview" [country]="item.production_countries[0]?.name"
-            [cat]="item.genres">
+                            [section]=" 'Movies' " [id]="item.id" [image]="item.poster_path" [title]="item.title"
+                            [dateRelease]="item.release_date" [note]="item.vote_average"
+                            [numbervisits]="item.popularity"
+                            [runtime]="item.runtime" [description]="item.overview"
+                            [country]="item.production_countries[0]?.name"
+                            [cat]="item.genres">
 
           </app-modalfavorit>
 
@@ -31,9 +33,10 @@
         <div *ngFor="let item of tvList">
 
           <app-modalfavorit (updateWatchlist)="updateWatchlist($event)"
-            [section]=" 'Series' " [id]="item.id" [image]="item.poster_path" [title]="item.name"
-            [dateRelease]="item.first_air_date" [note]="item.vote_average" [numbervisits]="item.popularity"
-            [description]="item.overview" [country]="item.origin_country[0]" [cat]="item.genres">
+                            [section]=" 'Series' " [id]="item.id" [image]="item.poster_path" [title]="item.name"
+                            [dateRelease]="item.first_air_date" [note]="item.vote_average"
+                            [numbervisits]="item.popularity"
+                            [description]="item.overview" [country]="item.origin_country[0]" [cat]="item.genres">
 
           </app-modalfavorit>
 
@@ -44,6 +47,6 @@
     </div>
   </mat-tab>
   <mat-tab label="{{'App.stat' | translate }}">
-  <app-user-stat></app-user-stat>
+    <app-user-stat></app-user-stat>
   </mat-tab>
 </mat-tab-group>

@@ -1,32 +1,32 @@
-import { Injectable } from "@angular/core";
-import { environment } from "src/environments/environment";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { IEpisodeDetail } from "src/app/core/domain/episodeDetail";
-import { IMovie } from "src/app/core/domain/movie";
-import { MovieCastModel } from "src/app/core/domain/moviecast";
-import { MovieDetailsModel } from "src/app/core/domain/moviedetail";
-import { MovieVideosModel } from "src/app/core/domain/moviemodelvideo";
-import { TvDetailsModel } from "src/app/core/domain/tvshowdetail";
-import { ISeason } from "../domain/season";
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { IEpisodeDetail } from 'src/app/core/domain/episodeDetail';
+import { IMovie } from 'src/app/core/domain/movie';
+import { MovieCastModel } from 'src/app/core/domain/moviecast';
+import { MovieDetailsModel } from 'src/app/core/domain/moviedetail';
+import { MovieVideosModel } from 'src/app/core/domain/moviemodelvideo';
+import { TvDetailsModel } from 'src/app/core/domain/tvshowdetail';
+import { ISeason } from '../domain/season';
 
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class MovieService {
   baseUrl = environment.myBaseUrl;
-  private apikey = "cb4b280fa67edaa591ed48d4da421246";
-  private searchmovie = "https://api.themoviedb.org/3/search/movie";
-  private basemovie = "https://api.themoviedb.org/3/movie/";
-  private searchtv = "https://api.themoviedb.org/3/search/tv";
-  private basetv = "https://api.themoviedb.org/3/tv/";
+  private apikey = 'cb4b280fa67edaa591ed48d4da421246';
+  private searchmovie = 'https://api.themoviedb.org/3/search/movie';
+  private basemovie = 'https://api.themoviedb.org/3/movie/';
+  private searchtv = 'https://api.themoviedb.org/3/search/tv';
+  private basetv = 'https://api.themoviedb.org/3/tv/';
   private discovermovie =
-    "https://api.themoviedb.org/3/discover/movie?api_key=cb4b280fa67edaa591ed48d4da421246";
+    'https://api.themoviedb.org/3/discover/movie?api_key=cb4b280fa67edaa591ed48d4da421246';
   private discovertv =
-    "https://api.themoviedb.org/3/discover/tv?api_key=cb4b280fa67edaa591ed48d4da421246";
+    'https://api.themoviedb.org/3/discover/tv?api_key=cb4b280fa67edaa591ed48d4da421246';
   private searchactor =
-    "https://api.themoviedb.org/3/search/person?api_key=cb4b280fa67edaa591ed48d4da421246&language=en-US&query=";
+    'https://api.themoviedb.org/3/search/person?api_key=cb4b280fa67edaa591ed48d4da421246&language=en-US&query=';
 
   constructor(private _http: HttpClient) {}
 
@@ -38,13 +38,13 @@ export class MovieService {
   ): Observable<IMovie> {
     return this._http.get<IMovie>(
       this.discovermovie +
-        "&sortby=popularity.desc&primary_release_date.gte=" +
+        '&sortby=popularity.desc&primary_release_date.gte=' +
         today +
-        "&primary_release_date.lte=" +
+        '&primary_release_date.lte=' +
         max +
-        "&page=" +
+        '&page=' +
         page +
-        "&language=" +
+        '&language=' +
         lang
     );
   }
@@ -56,24 +56,24 @@ export class MovieService {
   ): Observable<IMovie> {
     return this._http.get<IMovie>(
       this.searchmovie +
-        "?api_key=" +
+        '?api_key=' +
         this.apikey +
-        "&query=" +
+        '&query=' +
         query +
-        "&page=" +
+        '&page=' +
         page +
-        "&language=" +
+        '&language=' +
         lang
     );
   }
   getMovieVideo(id: number): Observable<MovieVideosModel> {
     return this._http.get<MovieVideosModel>(
-      this.basemovie + id + "/videos?api_key=" + this.apikey
+      this.basemovie + id + '/videos?api_key=' + this.apikey
     );
   }
   getMovieCast(id: number): Observable<MovieCastModel> {
     return this._http.get<MovieCastModel>(
-      this.basemovie + id + "/casts?api_key=" + this.apikey
+      this.basemovie + id + '/casts?api_key=' + this.apikey
     );
   }
   getTvShowByName(
@@ -83,34 +83,34 @@ export class MovieService {
   ): Observable<IMovie> {
     return this._http.get<IMovie>(
       this.searchtv +
-        "?api_key=" +
+        '?api_key=' +
         this.apikey +
-        "&query=" +
+        '&query=' +
         query +
-        "&page=" +
+        '&page=' +
         page +
-        "&language=" +
+        '&language=' +
         lang
     );
   }
   getTvVideo(id: number): Observable<MovieVideosModel> {
     return this._http.get<MovieVideosModel>(
-      this.basetv + id + "/videos?api_key=" + this.apikey
+      this.basetv + id + '/videos?api_key=' + this.apikey
     );
   }
   getTvCast(id: number): Observable<MovieCastModel> {
     return this._http.get<MovieCastModel>(
-      this.basetv + id + "/credits?api_key=" + this.apikey
+      this.basetv + id + '/credits?api_key=' + this.apikey
     );
   }
   getMovieById(id: number, lang?: string): Observable<MovieDetailsModel> {
     return this._http.get<MovieDetailsModel>(
-      this.basemovie + id + "?api_key=" + this.apikey + "&language=" + lang
+      this.basemovie + id + '?api_key=' + this.apikey + '&language=' + lang
     );
   }
   getTvShowById(id: number, lang?: string): Observable<TvDetailsModel> {
     return this._http.get<TvDetailsModel>(
-      this.basetv + id + "?api_key=" + this.apikey + "&language=" + lang
+      this.basetv + id + '?api_key=' + this.apikey + '&language=' + lang
     );
   }
 
@@ -122,9 +122,9 @@ export class MovieService {
   getTopRatedMovies(page: number, lang?: string): Observable<IMovie> {
     return this._http.get<IMovie>(
       this.discovermovie +
-        "&language=en-US&sort_by=vote_average.desc&vote_count.gte=500&with_original_language=en&page=" +
+        '&language=en-US&sort_by=vote_average.desc&vote_count.gte=500&with_original_language=en&page=' +
         page +
-        "&language=" +
+        '&language=' +
         lang
     );
   }
@@ -156,11 +156,11 @@ export class MovieService {
     return this._http.get<IEpisodeDetail>(
       this.basetv +
         idshow +
-        "/season/" +
+        '/season/' +
         season_number +
-        "/episode/" +
+        '/episode/' +
         episode +
-        "?api_key=" +
+        '?api_key=' +
         this.apikey
     );
   }
@@ -168,18 +168,18 @@ export class MovieService {
   getMoviesByGenre(genre: number, page: number): Observable<IMovie> {
     return this._http.get<IMovie>(
       this.discovermovie +
-        "&sort_by=popularity.desc&with_genres=" +
+        '&sort_by=popularity.desc&with_genres=' +
         genre +
-        "&page=" +
+        '&page=' +
         page
     );
   }
   getTvByGenre(genre: number, page: number): Observable<IMovie> {
     return this._http.get<IMovie>(
       this.discovertv +
-        "&sort_by=popularity.desc&with_genres=" +
+        '&sort_by=popularity.desc&with_genres=' +
         genre +
-        "&page=" +
+        '&page=' +
         page
     );
   }
@@ -187,46 +187,46 @@ export class MovieService {
   getMovieByCertif(certif: string, today: string): Observable<IMovie> {
     return this._http.get<IMovie>(
       this.discovermovie +
-        "certification_country=US&certification=" +
+        'certification_country=US&certification=' +
         certif +
-        "&primary_release_date.lte=" +
+        '&primary_release_date.lte=' +
         today +
-        "&popularity.desc"
+        '&popularity.desc'
     );
   }
   getTvByCertif(certif: string, today: string): Observable<IMovie> {
     return this._http.get<IMovie>(
       this.discovertv +
-        "certification_country=US&certification=" +
+        'certification_country=US&certification=' +
         certif +
-        "&primary_release_date.lte=" +
+        '&primary_release_date.lte=' +
         today +
-        "&&popularity.desc"
+        '&&popularity.desc'
     );
   }
   getTvByYear(year: number): Observable<IMovie> {
     return this._http.get<IMovie>(
-      this.discovertv + "popularity.desc&first_air_date_year=" + year
+      this.discovertv + 'popularity.desc&first_air_date_year=' + year
     );
   }
   getMovieByYear(year: number): Observable<IMovie> {
     return this._http.get<IMovie>(
-      this.discovermovie + "popularity.desc&year=" + year
+      this.discovermovie + 'popularity.desc&year=' + year
     );
   }
   getTvByNetwork(id: number): Observable<IMovie> {
     return this._http.get<IMovie>(
-      this.discovertv + "popularity.desc&with_networks=" + id
+      this.discovertv + 'popularity.desc&with_networks=' + id
     );
   }
-  getTvByNetworkAndPagination(id: number,page:number): Observable<IMovie> {
+  getTvByNetworkAndPagination(id: number, page: number): Observable<IMovie> {
     return this._http.get<IMovie>(
-      this.discovertv + "&popularity.desc&with_networks=" + id+"&page="+page
+      this.discovertv + '&popularity.desc&with_networks=' + id + '&page=' + page
     );
   }
   getMovieByNetwork(id: number): Observable<IMovie> {
     return this._http.get<IMovie>(
-      this.discovermovie + "popularity.desc&with_companies=" + id
+      this.discovermovie + 'popularity.desc&with_companies=' + id
     );
   }
 
@@ -241,20 +241,20 @@ export class MovieService {
   ): Observable<IMovie> {
     return this._http.get<IMovie>(
       this.discovermovie +
-        "&sort_by=" +
+        '&sort_by=' +
         sortby +
-        "&with_genres=" +
+        '&with_genres=' +
         genre +
-        "&with_companies=" +
+        '&with_companies=' +
         companie +
-        "&year=" +
+        '&year=' +
         year +
-        "&certification_country=US" +
-        "&certification=" +
+        '&certification_country=US' +
+        '&certification=' +
         rating +
-        "&with_original_language=" +
+        '&with_original_language=' +
         language +
-        "&page=" +
+        '&page=' +
         page
     );
   }
@@ -268,37 +268,37 @@ export class MovieService {
   ): Observable<IMovie> {
     return this._http.get<IMovie>(
       this.discovertv +
-        "&sort_by=" +
+        '&sort_by=' +
         sortby +
-        "&with_genres=" +
+        '&with_genres=' +
         genre +
-        "&with_networks=" +
+        '&with_networks=' +
         network +
-        "&first_air_date_year=" +
+        '&first_air_date_year=' +
         year +
-        "&with_original_language=" +
+        '&with_original_language=' +
         language +
-        "&page=" +
+        '&page=' +
         page
     );
   }
   findByActor(query: string, page: number): Observable<any> {
-    return this._http.get<any>(this.searchactor + query + "&page=" + page);
+    return this._http.get<any>(this.searchactor + query + '&page=' + page);
   }
   trendingTV(): Observable<IMovie> {
     return this._http.get<IMovie>(
-      "https://api.themoviedb.org/3/trending/tv/week?api_key=cb4b280fa67edaa591ed48d4da421246"
+      'https://api.themoviedb.org/3/trending/tv/week?api_key=cb4b280fa67edaa591ed48d4da421246'
     );
   }
   trendingMovie(): Observable<IMovie> {
     return this._http.get<IMovie>(
-      "https://api.themoviedb.org/3/trending/movie/week?api_key=cb4b280fa67edaa591ed48d4da421246"
+      'https://api.themoviedb.org/3/trending/movie/week?api_key=cb4b280fa67edaa591ed48d4da421246'
     );
   }
-  getSeasonDetail(idShow:number, season:number,lang:any):Observable<ISeason>{
-    return this._http.get<ISeason>(this.basetv+idShow+'/season/'+season+'?api_key='+this.apikey+'&language='+lang)
+  getSeasonDetail(idShow: number, season: number, lang: any): Observable<ISeason> {
+    return this._http.get<ISeason>(this.basetv + idShow + '/season/' + season + '?api_key=' + this.apikey + '&language=' + lang);
   }
-  getImdbInfo(id: String): Observable<any>{
-    return this._http.get<any>('https://www.omdbapi.com/?i='+id+'&apikey=114165f2')
+  getImdbInfo(id: String): Observable<any> {
+    return this._http.get<any>('https://www.omdbapi.com/?i=' + id + '&apikey=114165f2');
   }
 }

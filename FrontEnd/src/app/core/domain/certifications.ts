@@ -1,6 +1,6 @@
-export class Certification{
-    certifications:Certif;
+export class Certification {
+    certifications: Certif;
 }
-export class Certif{
+export class Certif {
 
 }

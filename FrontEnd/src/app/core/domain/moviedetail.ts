@@ -1,4 +1,4 @@
-import { ICategory } from "./icategory";
+import { ICategory } from './icategory';
 
 export interface MovieDetailsModel {
     adult: boolean;
@@ -25,7 +25,7 @@ export interface MovieDetailsModel {
     title: string;
     video: boolean;
     vote_average: number;
-    vote_count: number
+    vote_count: number;
 }
 
 interface CompaniesModel {

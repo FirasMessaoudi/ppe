@@ -1,149 +1,148 @@
+<div class="modal-header pt-0 text-center">
+  <div class="d-flex justify-content-center w-75">
+    <a class="w-100 signin">
+      <h4 style="color: black" class="modal-title font-weight-bold">
+        <span *ngIf="isLogin">{{ "App.Sign in" | translate }}</span>
+        <span *ngIf="isSignUp">{{ "App.Sign in" | translate }}</span>
 
-      <div class="modal-header pt-0 text-center">
-        <div class="d-flex justify-content-center w-75">
-          <a class="w-100 signin">
-            <h4 style="color: black" class="modal-title font-weight-bold">
-              <span *ngIf="isLogin">{{ "App.Sign in" | translate }}</span>
-              <span *ngIf="isSignUp">{{ "App.Sign in" | translate }}</span>
+      </h4>
+    </a>
 
-            </h4>
-          </a>
-        
-        </div>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-          (click)="onNoClick()"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+  </div>
+  <button
+    type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="onNoClick()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
-      <div *ngIf="isLogin" class="modal-body mx-3 pt-0">
-        <mat-form-field class="field" appearance="outline">
-          <mat-label>{{'App.login_page.username' | translate}}</mat-label>
-          <input
-            [(ngModel)]="username"
-            name="username"
-            matInput
-            placeholder="{{'App.login_page.username' | translate}}"
-          />
-          <mat-icon matSuffix>person</mat-icon>
-        </mat-form-field>
+<div *ngIf="isLogin" class="modal-body mx-3 pt-0">
+  <mat-form-field class="field" appearance="outline">
+    <mat-label>{{ 'App.login_page.username' | translate }}</mat-label>
+    <input
+      [(ngModel)]="username"
+      name="username"
+      matInput
+      placeholder="{{'App.login_page.username' | translate}}"
+    />
+    <mat-icon matSuffix>person</mat-icon>
+  </mat-form-field>
 
-        <mat-form-field class="field" appearance="outline">
-          <mat-label>{{'App.login_page.password' | translate}}</mat-label>
-          <input
-            type="password"
-            [(ngModel)]="password"
-            name="password"
-            matInput
-            placeholder="{{'App.login_page.password' | translate}}"
-          />
-          <mat-icon matSuffix>lock</mat-icon>
-        </mat-form-field>
-        <div class="text-center">
-        <button
-        (click)="attemptLogin()"
-        mdbBtn
-        color="default"
-        class="waves-light lgbutton"
-        mdbWavesEffect
-      >
-        {{ "App.Sign in" | translate }}
-      </button>
-      <a (click)="isLogin = false;isSignUp = true;">
-      <span class="d-block">{{'App.login_page.create_account' | translate}}</span>
-      </a>
-      </div>
-      </div>
-     
+  <mat-form-field class="field" appearance="outline">
+    <mat-label>{{ 'App.login_page.password' | translate }}</mat-label>
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      matInput
+      placeholder="{{'App.login_page.password' | translate}}"
+    />
+    <mat-icon matSuffix>lock</mat-icon>
+  </mat-form-field>
+  <div class="text-center">
+    <button
+      (click)="attemptLogin()"
+      mdbBtn
+      color="default"
+      class="waves-light lgbutton"
+      mdbWavesEffect
+    >
+      {{ "App.Sign in" | translate }}
+    </button>
+    <a (click)="isLogin = false;isSignUp = true;">
+      <span class="d-block">{{ 'App.login_page.create_account' | translate }}</span>
+    </a>
+  </div>
+</div>
+
 <!--Sign up-->
 
-      <div *ngIf="isSignUp" [formGroup]="signUpForm" class="modal-body mx-3">
-        <mat-form-field class="field" appearance="outline">
-          <mat-label>{{'App.login_page.full_name' | translate}}</mat-label>
-          <input
-            [errorStateMatcher]="matcher"
-            formControlName="firstname"
-            matInput
-            placeholder="{{'App.login_page.full_name' | translate}}"
-          />
-          <mat-icon matSuffix>person</mat-icon>
-          <mat-error *ngIf="signUpForm.controls['firstname'].errors">
-            {{'App.login_page.invalid_name' | translate}}
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="field" appearance="outline">
-          <mat-label>{{'App.login_page.username' | translate}}</mat-label>
-          <input
-            [errorStateMatcher]="matcher"
-            formControlName="username"
-            matInput
-            placeholder="{{'App.login_page.username' | translate}}"
-          />
-          <mat-icon matSuffix>person_pin</mat-icon>
-          <mat-error *ngIf="signUpForm.controls['username'].errors">
-            {{'App.login_page.invalid_username' | translate}}
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="field" appearance="outline">
-          <mat-label>{{'App.login_page.email' | translate}}</mat-label>
-          <input
-            [errorStateMatcher]="matcher"
-            formControlName="email"
-            matInput
-            placeholder="{{'App.login_page.email' | translate}}"
-          />
-          <mat-icon matSuffix>email</mat-icon>
-          <mat-error *ngIf="signUpForm.controls['email'].errors">
-            {{'App.login_page.invalid_email' | translate}}
-          </mat-error>
-        </mat-form-field>
+<div *ngIf="isSignUp" [formGroup]="signUpForm" class="modal-body mx-3">
+  <mat-form-field class="field" appearance="outline">
+    <mat-label>{{ 'App.login_page.full_name' | translate }}</mat-label>
+    <input
+      [errorStateMatcher]="matcher"
+      formControlName="firstname"
+      matInput
+      placeholder="{{'App.login_page.full_name' | translate}}"
+    />
+    <mat-icon matSuffix>person</mat-icon>
+    <mat-error *ngIf="signUpForm.controls['firstname'].errors">
+      {{ 'App.login_page.invalid_name' | translate }}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="field" appearance="outline">
+    <mat-label>{{ 'App.login_page.username' | translate }}</mat-label>
+    <input
+      [errorStateMatcher]="matcher"
+      formControlName="username"
+      matInput
+      placeholder="{{'App.login_page.username' | translate}}"
+    />
+    <mat-icon matSuffix>person_pin</mat-icon>
+    <mat-error *ngIf="signUpForm.controls['username'].errors">
+      {{ 'App.login_page.invalid_username' | translate }}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="field" appearance="outline">
+    <mat-label>{{ 'App.login_page.email' | translate }}</mat-label>
+    <input
+      [errorStateMatcher]="matcher"
+      formControlName="email"
+      matInput
+      placeholder="{{'App.login_page.email' | translate}}"
+    />
+    <mat-icon matSuffix>email</mat-icon>
+    <mat-error *ngIf="signUpForm.controls['email'].errors">
+      {{ 'App.login_page.invalid_email' | translate }}
+    </mat-error>
+  </mat-form-field>
 
-        <mat-form-field class="field" appearance="outline">
-          <mat-label>{{'App.login_page.password' | translate}}</mat-label>
-          <input
-            type="password"
-            [errorStateMatcher]="matcher"
-            formControlName="password"
-            matInput
-            placeholder="{{'App.login_page.password' | translate}}"
-          />
-          <mat-icon matSuffix>lock</mat-icon>
-          <mat-error *ngIf="signUpForm.controls['password'].errors">
-            {{'App.login_page.password_error' | translate}}
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="field" appearance="outline">
-          <mat-label>{{'App.login_page.confirm_password' | translate}}</mat-label>
-          <input
-            type="password"
-            [errorStateMatcher]="matcher"
-            formControlName="confirmPassword"
-            matInput
-            placeholder="{{'App.login_page.confirm_password' | translate}}"
-          />
-          <mat-icon matSuffix>lock</mat-icon>
-          <mat-error *ngIf="signUpForm.controls['confirmPassword'].errors">
-            {{'App.login_page.password_match' | translate}}
-          </mat-error>
-        </mat-form-field>
-        <div class="text-center">
-          <button
-            (click)="signUp()"
-            mdbBtn
-            color="deep-orange"
-            class="waves-light lgbutton"
-            mdbWavesEffect
-          >
-            {{ "App.sign up" | translate }}
-          </button>
-          <a (click)="isLogin = true;isSignUp = false;">
-            <span class="d-block">{{'App.login_page.back_to_login' | translate}}</span>
-            </a>
-        </div>
-      </div>
+  <mat-form-field class="field" appearance="outline">
+    <mat-label>{{ 'App.login_page.password' | translate }}</mat-label>
+    <input
+      type="password"
+      [errorStateMatcher]="matcher"
+      formControlName="password"
+      matInput
+      placeholder="{{'App.login_page.password' | translate}}"
+    />
+    <mat-icon matSuffix>lock</mat-icon>
+    <mat-error *ngIf="signUpForm.controls['password'].errors">
+      {{ 'App.login_page.password_error' | translate }}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="field" appearance="outline">
+    <mat-label>{{ 'App.login_page.confirm_password' | translate }}</mat-label>
+    <input
+      type="password"
+      [errorStateMatcher]="matcher"
+      formControlName="confirmPassword"
+      matInput
+      placeholder="{{'App.login_page.confirm_password' | translate}}"
+    />
+    <mat-icon matSuffix>lock</mat-icon>
+    <mat-error *ngIf="signUpForm.controls['confirmPassword'].errors">
+      {{ 'App.login_page.password_match' | translate }}
+    </mat-error>
+  </mat-form-field>
+  <div class="text-center">
+    <button
+      (click)="signUp()"
+      mdbBtn
+      color="deep-orange"
+      class="waves-light lgbutton"
+      mdbWavesEffect
+    >
+      {{ "App.sign up" | translate }}
+    </button>
+    <a (click)="isLogin = true;isSignUp = false;">
+      <span class="d-block">{{ 'App.login_page.back_to_login' | translate }}</span>
+    </a>
+  </div>
+</div>
 

@@ -1,44 +1,47 @@
-  <div class="cellphone-container">    
-      <div class="movie">       
-        <div class="text-movie-cont">
-          <div class="mr-grid">
-            <div class="col1">
-              <h4>{{program?.title}}</h4>
-              <ul class="movie-gen">
-                <li>{{program?.dateRelease | date: 'y'}}  /</li>
-                <li>{{program?.runtime}}  /</li>
-                <li>{{cat}}</li>
-              </ul>
-            </div>
-          </div>
-          <div class="mr-grid summary-row">
-            <div class="col2">
-              <h5>SUMMARY</h5>
-            </div>
-            <div class="col2">
-               <ul class="movie-likes">
-                 {{program.note}} &#11088;
-              </ul>
-            </div>
-          </div>
-          <div class="mr-grid">
-            <div class="col1">
-              <p class="movie-description">{{program?.description}} </p>
-            </div>
-          </div>
-          <div class="mr-grid actors-row">
-            <div class="col1">
-              <p class="movie-actors">Country: {{program?.country}}</p>
-            </div>
-          </div>
-          <div class="mr-grid action-row">
-            <div matTooltip="Remove from wachlist" (click)="removeFav()" class="col6 action-btn"><mat-icon class="mat-red">favorite</mat-icon>
-            </div>
-            <div matTooltip="Watched" (click)="updateFav()" *ngIf="!fav.watched" class="col6 action-btn"><mat-icon class="mat-green">visibility</mat-icon>
-            </div>
-            <div matTooltip="Not watched yet" (click)="updateFav()" *ngIf="fav.watched" class="col6 action-btn"><mat-icon class="mat-green">visibility_off</mat-icon>
-            </div>
-          </div>
+<div class="cellphone-container">
+  <div class="movie">
+    <div class="text-movie-cont">
+      <div class="mr-grid">
+        <div class="col1">
+          <h4>{{ program?.title }}</h4>
+          <ul class="movie-gen">
+            <li>{{ program?.dateRelease | date: 'y' }}  /</li>
+            <li>{{ program?.runtime }}  /</li>
+            <li>{{ cat }}</li>
+          </ul>
         </div>
       </div>
+      <div class="mr-grid summary-row">
+        <div class="col2">
+          <h5>SUMMARY</h5>
+        </div>
+        <div class="col2">
+          <ul class="movie-likes">
+            {{ program.note }} &#11088;
+          </ul>
+        </div>
+      </div>
+      <div class="mr-grid">
+        <div class="col1">
+          <p class="movie-description">{{ program?.description }} </p>
+        </div>
+      </div>
+      <div class="mr-grid actors-row">
+        <div class="col1">
+          <p class="movie-actors">Country: {{ program?.country }}</p>
+        </div>
+      </div>
+      <div class="mr-grid action-row">
+        <div matTooltip="Remove from wachlist" (click)="removeFav()" class="col6 action-btn">
+          <mat-icon class="mat-red">favorite</mat-icon>
+        </div>
+        <div matTooltip="Watched" (click)="updateFav()" *ngIf="!fav.watched" class="col6 action-btn">
+          <mat-icon class="mat-green">visibility</mat-icon>
+        </div>
+        <div matTooltip="Not watched yet" (click)="updateFav()" *ngIf="fav.watched" class="col6 action-btn">
+          <mat-icon class="mat-green">visibility_off</mat-icon>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

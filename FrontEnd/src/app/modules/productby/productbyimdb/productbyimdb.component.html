@@ -1,14 +1,14 @@
 <app-page-not-found *ngIf="showError"></app-page-not-found>
 
-<div  *ngIf="!showError" class="separator" style="padding: 20px;">
-<h2 style="color: #FFF;padding-top: 1%">{{'App.Top_rated' | translate}}</h2>
-<div *ngIf="top_rated" class="items">
-  <div *ngFor="let item of top_rated; let i = index">
-      <app-cardmovie [section]=" 'Movies' " [id] ="item.id" [image] = "item.poster_path" [title] = "item.title" [dateRelease]="item.release_date" [note] = "item.vote_average" [numbervisits] = "item.popularity">
-        
-        </app-cardmovie>    
+<div *ngIf="!showError" class="separator" style="padding: 20px;">
+  <h2 style="color: #FFF;padding-top: 1%">{{ 'App.Top_rated' | translate }}</h2>
+  <div *ngIf="top_rated" class="items">
+    <div *ngFor="let item of top_rated; let i = index">
+      <app-cardmovie [section]=" 'Movies' " [id]="item.id" [image]="item.poster_path" [title]="item.title"
+                     [dateRelease]="item.release_date" [note]="item.vote_average" [numbervisits]="item.popularity">
+
+      </app-cardmovie>
     </div>
-  
+
   </div>
-  </div>
-  
+</div>

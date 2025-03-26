@@ -1,8 +1,8 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { MovieModel } from 'src/app/core/domain/moviemodel';
-import { MovieService } from 'src/app/core/api_services/movie.service';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {MovieModel} from 'src/app/core/domain/moviemodel';
+import {MovieService} from 'src/app/core/api_services/movie.service';
 
 @Component({
   selector: 'app-productbyimdb',
@@ -10,31 +10,34 @@ import { MovieService } from 'src/app/core/api_services/movie.service';
   styleUrls: ['./productbyimdb.component.scss']
 })
 export class ProductbyimdbComponent implements OnInit {
-  p: number = 1;
-  top_rated:MovieModel[] = [];
+  p = 1;
+  top_rated: MovieModel[] = [];
   showError: boolean;
+
   // tslint:disable-next-line:max-line-length
   constructor(private service: MovieService, private spinner: NgxSpinnerService, private router: Router) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
-} ;
+    };
   }
 
   ngOnInit() {
     this.init();
-  
+
   }
-  init(){
-   this.spinner.show();
+
+  init() {
+    this.spinner.show();
     this.service.getTopRatedMovies(this.p).subscribe(
-      res =>
-      {this.top_rated.push(...res.results)
+      res => {
+        this.top_rated.push(...res.results);
       },
-      erreur => {console.log('erreur movie');
-      this.showError = true;
-      this.spinner.hide();
-    
-    },      ()=>{
+      erreur => {
+        console.log('erreur movie');
+        this.showError = true;
+        this.spinner.hide();
+
+      }, () => {
         console.log(this.top_rated);
         this.spinner.hide();
 
@@ -42,21 +45,23 @@ export class ProductbyimdbComponent implements OnInit {
       }
     );
   }
- changePage(event){
-   this.p = event;
-   this.init()
- }
- @HostListener("window:scroll", ["$event"])
- @HostListener("window:touchmove", ["$event"])
-onWindowScroll() {
-//In chrome and some browser scroll is given to body tag
-let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight+1;
-let max = document.documentElement.scrollHeight;
+
+  changePage(event) {
+    this.p = event;
+    this.init();
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:touchmove', ['$event'])
+  onWindowScroll() {
+// In chrome and some browser scroll is given to body tag
+    const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight + 1;
+    const max = document.documentElement.scrollHeight;
 // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
- if(pos >= max )   {
- //Do your action here
- this.p++;
- this.init();
- }
-}
+    if (pos >= max) {
+      // Do your action here
+      this.p++;
+      this.init();
+    }
+  }
 }

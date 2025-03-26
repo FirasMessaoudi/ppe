@@ -11,9 +11,9 @@ import { environment } from 'src/environments/environment';
 })
 export class PersonService {
   baseUrl = environment.myBaseUrl;
-  private url_person = "https://api.themoviedb.org/3/person";
-  private url_search = "https://api.themoviedb.org/3/search/person";
-  private api_key = "cb4b280fa67edaa591ed48d4da421246";
+  private url_person = 'https://api.themoviedb.org/3/person';
+  private url_search = 'https://api.themoviedb.org/3/search/person';
+  private api_key = 'cb4b280fa67edaa591ed48d4da421246';
   constructor(private _http: HttpClient) {}
   getPersonMovies(person_id: number): Observable<MovieCastModel> {
     return this._http.get<MovieCastModel>(
@@ -29,9 +29,9 @@ export class PersonService {
     return this._http.get<MoviePersonModel>(
       `${this.url_person}/${person_id}?api_key=${this.api_key}`
     );
-    
+
   }
-  getPersonByName(name: string, page:number): Observable<any> {
+  getPersonByName(name: string, page: number): Observable<any> {
     return this._http.get<any>(
       `${this.url_search}?api_key=${this.api_key}&query=${name}&page=${page}`
     );

@@ -7,21 +7,21 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CommentService {
-  baseUrl = environment.myBaseUrl+'/comments';
+  baseUrl = environment.myBaseUrl + '/comments';
   constructor(private httpClient: HttpClient) { }
-  findAllComments(idMovie: number): Observable<any[]>{
-    return this.httpClient.get<any[]>(this.baseUrl+'/findAll/'+idMovie);  
+  findAllComments(idMovie: number): Observable<any[]> {
+    return this.httpClient.get<any[]>(this.baseUrl + '/findAll/' + idMovie);
   }
-  addComment(comment: any){
-    return this.httpClient.post<any>(this.baseUrl+'/addComment',comment);
+  addComment(comment: any) {
+    return this.httpClient.post<any>(this.baseUrl + '/addComment', comment);
   }
-  updateComment(comment: any){
-    return this.httpClient.put<any>(this.baseUrl+'/updateComment',comment);
+  updateComment(comment: any) {
+    return this.httpClient.put<any>(this.baseUrl + '/updateComment', comment);
   }
-  deleteComment(id: number){
-    return this.httpClient.delete<any>(this.baseUrl+'/delete/'+id);
+  deleteComment(id: number) {
+    return this.httpClient.delete<any>(this.baseUrl + '/delete/' + id);
   }
-  likeDislike(idComment: number, idUser: number){
-    return this.httpClient.get<any>(this.baseUrl+'/likedislike/'+idComment+'/'+idUser);
+  likeDislike(idComment: number, idUser: number) {
+    return this.httpClient.get<any>(this.baseUrl + '/likedislike/' + idComment + '/' + idUser);
   }
 }

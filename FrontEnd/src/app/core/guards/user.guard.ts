@@ -7,16 +7,16 @@ import { TokenStorageService } from '../services/tokenstorage.service';
   providedIn: 'root'
 })
 export class UserGuard implements CanActivate {
-  constructor(private tokenStorage: TokenStorageService, private router: Router){}
+  constructor(private tokenStorage: TokenStorageService, private router: Router) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean>  | Promise<boolean> | boolean {
-    if(this.tokenStorage.getToken()){
+    if (this.tokenStorage.getToken()) {
       return true;
     } else {
       this.router.navigate(['not-found']);
       return false;
     }
   }
-  
+
 }

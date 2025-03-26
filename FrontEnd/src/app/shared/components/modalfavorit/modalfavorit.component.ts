@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { ICategory } from 'src/app/core/domain/icategory';
-import { IUser } from 'src/app/core/domain/iuser';
-import { UserService } from 'src/app/core/api_services/user.service';
-import { IFavorit } from 'src/app/core/domain/ifavorit';
-import { TokenStorageService } from 'src/app/core/services/tokenstorage.service';
-import { ModalDirective } from 'angular-bootstrap-md';
-import { IMovieUserId } from 'src/app/core/domain/imovieuserid';
-import { MovieService } from 'src/app/core/api_services/movie.service';
-import { Router } from '@angular/router';
+import {Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, ViewChild} from '@angular/core';
+import {ICategory} from 'src/app/core/domain/icategory';
+import {IUser} from 'src/app/core/domain/iuser';
+import {UserService} from 'src/app/core/api_services/user.service';
+import {IFavorit} from 'src/app/core/domain/ifavorit';
+import {TokenStorageService} from 'src/app/core/services/tokenstorage.service';
+import {IMovieUserId} from 'src/app/core/domain/imovieuserid';
+import {MovieService} from 'src/app/core/api_services/movie.service';
+import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-modalfavorit',
   templateUrl: './modalfavorit.component.html',
@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class ModalfavoritComponent implements OnInit {
-  @ViewChild(ModalDirective) basicModal: ModalDirective;
   @Output() updateWatchlist = new EventEmitter<any>();
   @Input()
   id: number;
@@ -32,53 +31,58 @@ export class ModalfavoritComponent implements OnInit {
   @Input()
   cat: ICategory[];
   @Input()
-  section:string;
+  section: string;
   @Input()
-  note:number;
+  note: number;
   @Input()
-  numbervisits:number;
+  numbervisits: number;
   @Input()
   runtime: string;
-  watched :boolean;
+  watched: boolean;
   watchList: IFavorit;
   user: IUser;
   closeResult: string;
   existInwatchList: boolean;
   existInFavoris: boolean;
-  visible:boolean;
-  email:string;
-  rate : number;
+  visible: boolean;
+  email: string;
+  rate: number;
   item: any = {};
-  fav:IFavorit;
+  fav: IFavorit;
+
   // tslint:disable-next-line:no-shadowed-variable
-  constructor(private tokenStorage: TokenStorageService, 
-    private serviceUser: UserService,private router: Router) { }
-
-  ngOnInit() {
-      this.item = {'id':this.id,'title':this.title,'description':this.description,
-      'dateRelease':this.dateRelease,'country':this.country,'cat':this.cat,'note':this.note};
-      if(this.section=='Series'){
-        this.item.runtime = '50 min';
-      } else {
-        this.item.runtime = this.runtime+' min';
-      }
-      this.email=this.tokenStorage.getEmail();    
-        this.serviceUser.findOne(new IMovieUserId(this.id,this.email)).subscribe(
-          res => this.fav = res,
-          err => console.log(err),
-          () => {
-            console.log(this.fav);
-          }
-        );
-
-    
+  constructor(private tokenStorage: TokenStorageService,
+              private serviceUser: UserService, private router: Router) {
   }
 
-refresh($event){
-  console.log($event);
-  this.updateWatchlist.emit($event);
-}
-goToDetail(){
-  this.router.navigate(['detail/section',this.section, this.id]);
-}
+  ngOnInit() {
+    this.item = {
+      'id': this.id, 'title': this.title, 'description': this.description,
+      'dateRelease': this.dateRelease, 'country': this.country, 'cat': this.cat, 'note': this.note
+    };
+    if (this.section == 'Series') {
+      this.item.runtime = '50 min';
+    } else {
+      this.item.runtime = this.runtime + ' min';
+    }
+    this.email = this.tokenStorage.getEmail();
+    this.serviceUser.findOne(new IMovieUserId(this.id, this.email)).subscribe(
+      res => this.fav = res,
+      err => console.log(err),
+      () => {
+        console.log(this.fav);
+      }
+    );
+
+
+  }
+
+  refresh($event) {
+    console.log($event);
+    this.updateWatchlist.emit($event);
+  }
+
+  goToDetail() {
+    this.router.navigate(['detail/section', this.section, this.id]);
+  }
 }

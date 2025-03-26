@@ -1,13 +1,13 @@
 <form [formGroup]="contactForm" (ngSubmit)="sendMessage()">
   <div class="modal-header text-center">
-    <h4 style="color: black" class="modal-title w-100 font-weight-bold">{{'App.contact.title' | translate }}</h4>
+    <h4 style="color: black" class="modal-title w-100 font-weight-bold">{{ 'App.contact.title' | translate }}</h4>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onNoClick()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body mx-5">
     <mat-form-field class="field" appearance="outline">
-      <mat-label>{{'App.contact.subject' | translate }}</mat-label>
+      <mat-label>{{ 'App.contact.subject' | translate }}</mat-label>
       <input
         [errorStateMatcher]="matcher"
         formControlName="subject"
@@ -16,11 +16,11 @@
       />
       <mat-icon matSuffix>subject</mat-icon>
       <mat-error *ngIf="contactForm.controls['subject'].errors">
-        {{'App.contact.subject_error' | translate }}
+        {{ 'App.contact.subject_error' | translate }}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="field" appearance="outline">
-      <mat-label>{{'App.contact.message' | translate }}</mat-label>
+      <mat-label>{{ 'App.contact.message' | translate }}</mat-label>
       <textarea
         [errorStateMatcher]="matcher"
         formControlName="message"
@@ -30,12 +30,13 @@
       </textarea>
       <mat-icon matSuffix>message</mat-icon>
       <mat-error *ngIf="contactForm.controls['message'].errors">
-        {{'App.contact.message_error' | translate }}
+        {{ 'App.contact.message_error' | translate }}
       </mat-error>
     </mat-form-field>
   </div>
   <div class="modal-footer d-flex justify-content-center">
-    <button style="background-color: #FF424F !important" mdbBtn color="unique" class="waves-light" mdbWavesEffect>{{'App.contact.send' | translate }}
+    <button style="background-color: #FF424F !important" mdbBtn color="unique" class="waves-light"
+            mdbWavesEffect>{{ 'App.contact.send' | translate }}
       <mat-icon>send</mat-icon>
     </button>
   </div>

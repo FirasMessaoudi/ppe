@@ -31,14 +31,12 @@
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "node_modules/font-awesome/scss/font-awesome.scss",
-              "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
-              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "src/styles.scss"
-              
+
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/chart.js/dist/chart.js",
               "node_modules/hammerjs/hammer.min.js"
             ]
           },

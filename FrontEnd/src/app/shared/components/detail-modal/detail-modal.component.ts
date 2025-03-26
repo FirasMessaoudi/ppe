@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { IFavorit } from 'src/app/core/domain/ifavorit';
-import { UserService } from 'src/app/core/api_services/user.service';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {IFavorit} from 'src/app/core/domain/ifavorit';
+import {UserService} from 'src/app/core/api_services/user.service';
 
 @Component({
   selector: 'app-detail-modal',
@@ -14,30 +14,34 @@ export class DetailModalComponent implements OnInit {
   fav: IFavorit;
   @Output() refreshList = new EventEmitter<any>();
 
-  cat: string ='';
-  constructor(private service: UserService) { }
+  cat = '';
 
-  ngOnInit() {    
-   this.program.cat.forEach(element => {
-     this.cat=this.cat+element.name+', ';
-   });
-   
+  constructor(private service: UserService) {
   }
-updateFav(){
-  this.fav.watched = !this.fav.watched;
-  this.service.watchUnWatchMovie(this.fav).subscribe(
-    res =>console.log(res),
-    err => console.log(err)
-  )
-}
-removeFav(){
-  this.service.addToList(this.fav).subscribe(
-    res => console.log(res),
-    err => console.log(err),
-    ()=>{
-      let obj = {'id':this.program.id,'section':this.fav.section}
-     this.refreshList.emit(obj);
-    }
-  )
-}
+
+  ngOnInit() {
+    this.program.cat.forEach(element => {
+      this.cat = this.cat + element.name + ', ';
+    });
+
+  }
+
+  updateFav() {
+    this.fav.watched = !this.fav.watched;
+    this.service.watchUnWatchMovie(this.fav).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
+  }
+
+  removeFav() {
+    this.service.addToList(this.fav).subscribe(
+      res => console.log(res),
+      err => console.log(err),
+      () => {
+        const obj = {'id': this.program.id, 'section': this.fav.section};
+        this.refreshList.emit(obj);
+      }
+    );
+  }
 }

@@ -4,10 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import {FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ShareModule } from '@ngx-share/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NZ_I18N, en_US  } from 'ng-zorro-antd';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
@@ -19,6 +17,8 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { AuthInterceptor } from './core/interceptors/authinterceptor.service';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {en_US, NZ_I18N} from 'ng-zorro-antd/i18n';
+import {MaterialModule} from './material.module';
 
 registerLocaleData(en);
 registerLocaleData(fr);
@@ -31,7 +31,7 @@ export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any> {
     'pinch': { enable: false},
     'rotate': { enable: false}
-  }
+  };
 }
 @NgModule({
   declarations: [
@@ -44,7 +44,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    ShareModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -54,16 +53,16 @@ export class MyHammerConfig extends HammerGestureConfig {
     }),
 
   ],
-  providers: [{provide:HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig},
-    TimeAgoPipe,
+  providers: [{provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig},
+    // TimeAgoPipe,
     { provide: NZ_I18N, useValue: en_US },
     {provide: LocationStrategy, useClass: HashLocationStrategy},
    {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi:true
+      multi: true
     }
-    
+
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

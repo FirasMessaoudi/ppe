@@ -2,37 +2,40 @@
   <div class="about__head">
     <img style="width: 200px" src="assets/images/logo5.png" alt="logo">
     <!-- <h2 style="padding-top: 3%">Movies Box</h2> -->
-    <p style="color: blanchedalmond">{{'App.about_page.title' | translate }}</p>
-    
+    <p style="color: blanchedalmond">{{ 'App.about_page.title' | translate }}</p>
+
   </div>
   <div class="about__body">
     <div class="about--container">
       <div class="about--info">
         <mat-icon>message</mat-icon>
-        <h3>{{'App.about_page.contact' | translate }}</h3>
-        <p  style="color: blanchedalmond">{{'App.about_page.contact_text1' | translate }}  <a style="color: #FF424F" (click)="openContact()"> {{'App.about_page.here' | translate }} </a> {{'App.about_page.contact_text2' | translate }}</p>
+        <h3>{{ 'App.about_page.contact' | translate }}</h3>
+        <p style="color: blanchedalmond">{{ 'App.about_page.contact_text1' | translate }}  <a style="color: #FF424F"
+                                                                                              (click)="openContact()"> {{ 'App.about_page.here' | translate }} </a> {{ 'App.about_page.contact_text2' | translate }}
+        </p>
       </div>
     </div>
     <div class="about--container">
       <div class="about--info">
         <mat-icon>perm_identity</mat-icon>
-        <h3>{{'App.about_page.developer' | translate }}</h3>
-        <p  style="color: blanchedalmond">{{'App.Firas' | translate}}</p>
+        <h3>{{ 'App.about_page.developer' | translate }}</h3>
+        <p style="color: blanchedalmond">{{ 'App.Firas' | translate }}</p>
       </div>
     </div>
     <div class="about--container">
       <div class="about--info">
         <mat-icon>movie_filter</mat-icon>
-        <h3>{{'App.about_page.tmdb' | translate }}</h3>
-        <p  style="color: blanchedalmond">{{'App.about_page.tmdb_text' | translate }}</p>
+        <h3>{{ 'App.about_page.tmdb' | translate }}</h3>
+        <p style="color: blanchedalmond">{{ 'App.about_page.tmdb_text' | translate }}</p>
       </div>
     </div>
     <div class="about--container">
       <div class="about--info">
         <mat-icon>language</mat-icon>
-        <h3>{{'App.about_page.language' | translate }}</h3>
+        <h3>{{ 'App.about_page.language' | translate }}</h3>
         <div style="width: 11%;padding-top: 1.5%" class="setting">
-          <mat-select placeholder="{{'App.Language' | translate}}" [ngModel]="lang" (selectionChange)="languageChange($event)">
+          <mat-select placeholder="{{'App.Language' | translate}}" [ngModel]="lang"
+                      (selectionChange)="languageChange($event)">
             <mat-option *ngFor="let language of languages" [value]="language.value">
               {{ language.viewValue }}
             </mat-option>

@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'category/:section/:name/:category', component: AllproductbycategoryComponent},
   {path: 'upcomingmovies', component: UpcomingmoviesComponent},
   {path: 'searchbykeyword/:keyword', component: SearchComponent},
-  {path:'top-rated', component: ProductbyimdbComponent},
+  {path: 'top-rated', component: ProductbyimdbComponent},
   {path: 'network/:networkId/:networkLabel', component: ProducytbynetworkComponent},
 
 

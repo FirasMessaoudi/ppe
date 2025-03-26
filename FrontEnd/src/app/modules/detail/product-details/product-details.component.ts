@@ -1,30 +1,32 @@
-import { Component, OnInit } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Location } from "@angular/common";
-import { IUser } from "src/app/core/domain/iuser";
-import { UserService } from "src/app/core/api_services/user.service";
-import { IMovieUserId } from "src/app/core/domain/imovieuserid";
-import { IFavorit } from "src/app/core/domain/ifavorit";
-import { IMovie } from "src/app/core/domain/movie";
-import { MovieVideosModel } from "src/app/core/domain/moviemodelvideo";
-import { MovieCastModel } from "src/app/core/domain/moviecast";
-import { TokenStorageService } from "src/app/core/services/tokenstorage.service";
-import { ToastrService } from "ngx-toastr";
-import { MovieModel } from "src/app/core/domain/moviemodel";
-import { TvDetailsModel } from "src/app/core/domain/tvshowdetail";
-import { ISeason } from "src/app/core/domain/season";
-import { IEpisode } from "src/app/core/domain/episode";
-import { StorageService } from "src/app/core/services/sharedservice.service";
-import { TranslateService } from "@ngx-translate/core";
-import { MovieDetailsModel } from "src/app/core/domain/moviedetail";
-import { MovieService } from "src/app/core/api_services/movie.service";
-import { NgxSpinnerService } from "ngx-spinner";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
+import {IUser} from 'src/app/core/domain/iuser';
+import {UserService} from 'src/app/core/api_services/user.service';
+import {IMovieUserId} from 'src/app/core/domain/imovieuserid';
+import {IFavorit} from 'src/app/core/domain/ifavorit';
+import {IMovie} from 'src/app/core/domain/movie';
+import {MovieVideosModel} from 'src/app/core/domain/moviemodelvideo';
+import {MovieCastModel} from 'src/app/core/domain/moviecast';
+import {TokenStorageService} from 'src/app/core/services/tokenstorage.service';
+import {ToastrService} from 'ngx-toastr';
+import {MovieModel} from 'src/app/core/domain/moviemodel';
+import {TvDetailsModel} from 'src/app/core/domain/tvshowdetail';
+import {ISeason} from 'src/app/core/domain/season';
+import {IEpisode} from 'src/app/core/domain/episode';
+import {StorageService} from 'src/app/core/services/sharedservice.service';
+import {TranslateService} from '@ngx-translate/core';
+import {MovieDetailsModel} from 'src/app/core/domain/moviedetail';
+import {MovieService} from 'src/app/core/api_services/movie.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
-  selector: "app-product-details",
-  templateUrl: "./product-details.component.html",
-  styleUrls: ["./product-details.component.scss"],
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.scss'],
+  encapsulation: ViewEncapsulation.None,  // Disable view encapsulation
+
 })
 export class ProductDetailsComponent implements OnInit {
   id: number;
@@ -32,8 +34,8 @@ export class ProductDetailsComponent implements OnInit {
   movies: IMovie;
   similar: IMovie;
   year: number;
-  path = "https://image.tmdb.org/t/p/w185/";
-  youtube = "https://www.youtube.com/embed/";
+  path = 'https://image.tmdb.org/t/p/w185/';
+  youtube = 'https://www.youtube.com/embed/';
   trailer: string;
   video: MovieVideosModel;
   actors: MovieCastModel;
@@ -59,7 +61,7 @@ export class ProductDetailsComponent implements OnInit {
   episode: IEpisode;
   lang: string;
   read = true;
-  section = "";
+  section = '';
   showError: boolean;
   profil: string;
   imdbInfo: any;
@@ -83,16 +85,17 @@ export class ProductDetailsComponent implements OnInit {
     //   return false;
     // };
   }
+
   ngOnInit() {
     this.read = true;
-    this.lang = this.storageService.read("language");
-    this.dir= this.lang=='ar'? 'rtl': 'ltr';
+    this.lang = this.storageService.read('language');
+    this.dir = this.lang == 'ar' ? 'rtl' : 'ltr';
     this.route.params.subscribe((params) => {
-      this.id = params["idProduct"];
-      this.section = params["section"];
+      this.id = params['idProduct'];
+      this.section = params['section'];
     });
 
-    if (this.section === "Series") {
+    if (this.section === 'Series') {
       this.spinner.show();
       this.movieService.getTvShowById(this.id, this.lang).subscribe(
         (res) => (this.showDetail = res),
@@ -136,8 +139,8 @@ export class ProductDetailsComponent implements OnInit {
         },
         () => {
           this.spinner.hide();
-          this.link ="https://gomo.to/movie/"+this.getName(this.movieDetail.original_title);
-            // "https://movie2konline.net/api/openload.php?id=" + this.movieDetail.imdb_id;
+          this.link = 'https://gomo.to/movie/' + this.getName(this.movieDetail.original_title);
+          // "https://movie2konline.net/api/openload.php?id=" + this.movieDetail.imdb_id;
           this.movieService.getSimilarMovies(this.movieDetail.id).subscribe(
             (res) => (this.similar = res),
             (err) => console.log(err),
@@ -154,17 +157,17 @@ export class ProductDetailsComponent implements OnInit {
                 (err) => console.log(err),
                 () => {
                   console.log(this.video.results);
-                  if (this.video.results)
+                  if (this.video.results) {
                     this.youtube += this.video.results[0].key;
+                  }
                   this.movieService.getImdbInfo(this.movieDetail.imdb_id).subscribe(
-                    res =>{
+                    res => {
                       this.imdbInfo = res;
                       console.log(this.imdbInfo);
-                      
+
                     },
-                    err=>console.log(err)
-                    
-                  )
+                    err => console.log(err)
+                  );
                 }
               );
             }
@@ -193,11 +196,13 @@ export class ProductDetailsComponent implements OnInit {
     });
 
   }
+
   back() {
     this.location.back();
   }
+
   addOrDeleteWatchList() {
-    let fav = new IFavorit(new IMovieUserId(this.id, this.user.email));
+    const fav = new IFavorit(new IMovieUserId(this.id, this.user.email));
     fav.watched = false;
     fav.section = this.section;
     if (this.section == 'Series') {
@@ -206,31 +211,36 @@ export class ProductDetailsComponent implements OnInit {
     } else {
       fav.runtime = this.movieDetail.runtime;
     }
-    this.userservice.addToList(fav).subscribe(() => (this.message = "hhhhh"));
+    this.userservice.addToList(fav).subscribe(() => (this.message = 'hhhhh'));
     this.existsInWatchList = !this.existsInWatchList;
   }
 
   trailerLink(key) {
-    return "https://www.youtube.com/embed/" + key;
+    return 'https://www.youtube.com/embed/' + key;
   }
+
   getName(movie: any) {
-    let name = movie.toLowerCase().split(":").join("");
-    let finalFinalName = name.split("-").join(" ");
-    let nameWithouSpeacials = finalFinalName.split("'").join("-");
-    let finalName = nameWithouSpeacials.split(" ").join("-");
+    const name = movie.toLowerCase().split(':').join('');
+    const finalFinalName = name.split('-').join(' ');
+    const nameWithouSpeacials = finalFinalName.split('\'').join('-');
+    const finalName = nameWithouSpeacials.split(' ').join('-');
     return finalName;
   }
+
   goToMovieCategory(genre: any) {
-    this.router.navigate(['/query/category', 'Movies', genre.name, genre.id])
+    this.router.navigate(['/query/category', 'Movies', genre.name, genre.id]);
   }
+
   goToSerieCategory(genre: any) {
-    this.router.navigate(['/query/category', 'Series', genre.name, genre.id])
+    this.router.navigate(['/query/category', 'Series', genre.name, genre.id]);
   }
+
   goToEpisode(season: number) {
-    this.router.navigate(['/detail/episode', this.showDetail.name, this.showDetail.id, season, this.showDetail.number_of_seasons])
+    this.router.navigate(['/detail/episode', this.showDetail.name, this.showDetail.id, season, this.showDetail.number_of_seasons]);
   }
-  goToDetail(id,name,logo){
-    localStorage.setItem("logo",logo);
-    this.router.navigate(['query/network',id, name]);
+
+  goToDetail(id, name, logo) {
+    localStorage.setItem('logo', logo);
+    this.router.navigate(['query/network', id, name]);
   }
 }

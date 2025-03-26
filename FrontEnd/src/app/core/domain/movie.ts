@@ -5,7 +5,7 @@ export interface IMovie {
     dates?: {
         maximum: string;
         minimum: string;
-    }
+    };
     total_pages: number;
     total_results: number;
 }
