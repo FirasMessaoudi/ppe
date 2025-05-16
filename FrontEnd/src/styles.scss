@@ -129,25 +129,12 @@ h4 {
 .mat-dialog-actions {
     color: $primary-light;
 }
-.mat {
-    &-menu-item {
-        color: $primary-light !important;
-    }
+.mat-mdc-tab .mdc-tab__text-label {
+  color: #ffffff !important;
+  justify-content: center !important;
 }
-.mat-tab {
-    &-labels {
-        justify-content: center !important;
-    }
-    &-label {
-        color: $white;
-        opacity: 1 !important;
-    }
-    &-header-pagination-chevron {
-        border-color: white;
-    }
-}
-.mat-ink-bar {
-    background-color:#FF424F !important;
+.mat-mdc-tab .mdc-tab-indicator__content--underline{
+  border-color: $primary-light !important;
 }
 /* img poster movie */
 .icon-container {
@@ -348,3 +335,9 @@ select {
   }
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 //@import '~css-star-rating/scss/star-rating';
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

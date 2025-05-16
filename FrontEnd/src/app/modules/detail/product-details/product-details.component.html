@@ -135,7 +135,7 @@
       </mat-tab>
       <!-- More like this-->
       <mat-tab label="{{ 'App.More like this' | translate }}">
-        <div class="row justify-content-center my-films" style="width: 100%; text-align: center; padding-left: 2%">
+        <div class="row justify-content-center " style="width: 100%; text-align: center; padding-left: 2%; display: block !important;">
           <div *ngFor="let item of similarProducts">
             <app-cardmovie [section]="'Movies'" [id]="item.id" [image]="item.poster_path" [title]="item.title"
                            [dateRelease]="item.release_date" [note]="item.vote_average"
@@ -277,9 +277,9 @@
           <button shareButton="whatsapp" #wtsBtn class="avatarfb whatsapp">
             <i class="fa fa-whatsapp fa-lg white-text"> </i>
           </button>
-          <button shareButton="twitter" #twtBtn class="avatarfb twitter">
-            <i class="fa fa-twitter fa-lg white-text"> </i>
-          </button>
+<!--          <button shareButton="twitter" #twtBtn class="avatarfb twitter">-->
+<!--            <i class="fa fa-twitter fa-lg white-text"> </i>-->
+<!--          </button>-->
         </div>
         <!--Fin Actions-->
       </div>
@@ -317,7 +317,7 @@
         <br/>
         <h2>{{ "App.Crew" | translate }}</h2>
         <div class="card mt-3 border-0 dark-theme" style="width: 100%">
-          <div class="row justify-content-center" style="width: 100%; text-align: center; padding-left: 2%">
+          <div class="row justify-content-center" style="width: 100%; text-align: center; padding-left: 2%; display: block !important;">
             <div class="card" style="width: 18rem; margin: 10px" *ngFor="
                 let person of actors?.crew
                   | paginate: { itemsPerPage: 6, currentPage: p }
@@ -339,7 +339,7 @@
       </mat-tab>
       <!-- More like this-->
       <mat-tab label="{{ 'App.More like this' | translate }}">
-        <div class="row justify-content-center my-films" style="width: 100%; text-align: center; padding-left: 2%">
+        <div class="row justify-content-center my-films" style="width: 100%; text-align: center; padding-left: 2%; display: block">
           <div *ngFor="let item of similarProducts">
             <app-cardmovie [section]="'Series'" [id]="item.id" [image]="item.poster_path" [title]="item.name"
                            [dateRelease]="item.first_air_date" [note]="item.vote_average"
@@ -351,7 +351,7 @@
 
       <!-- Seasons-->
       <mat-tab label="{{ 'App.seasons' | translate }}">
-        <div class="row justify-content-center my-films" style="width: 100%; text-align: center; padding-left: 2%">
+        <div class="row justify-content-center my-films" style="width: 100%; text-align: center; padding-left: 2%; display: block">
           <div *ngFor="let item of showDetail?.seasons">
             <div class="card p-1" style="width: 15rem;">
               <img (click)="goToEpisode(item.season_number)" style="height: 330px;cursor: pointer;"

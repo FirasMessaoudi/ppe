@@ -1,109 +1,59 @@
-<!--<mdb-navbar dir="{{dir}}" style="bottom: 5% !important;" SideClass="navbar navbar-expand-xl navbar-dark ">-->
-<!--  <mdb-navbar-brand>-->
-<!--    <button-->
-<!--      style="-->
-<!--        cursor: pointer;-->
-<!--        background-color: transparent;-->
-<!--        border: transparent;-->
-<!--      "-->
-<!--      [routerLink]="['/home']"-->
-<!--    >-->
-<!--      <img src="assets/images/logo5.png" style="width:115px ;height: 100%" />-->
-<!--    </button>-->
-<!--  </mdb-navbar-brand>-->
-<!--  <links>-->
-<!--    <ul class="navbar-nav mr-auto">-->
-<!--      <li class="nav-item">-->
-<!--        <span style="color: #333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
-<!--      </li>-->
-<!--      <li class="nav-item"><a></a></li>-->
-<!--      <li class="nav-item"><a></a></li>-->
-<!--      <li class="nav-item">-->
-<!--        <a-->
-<!--          class="nav-link waves-light"-->
-<!--          mdbWavesEffect-->
-<!--          (click)="navigateMovie()"-->
-<!--        >-->
-<!--          <mat-icon>movie</mat-icon> {{ "App.Movies" | translate }}</a-->
-<!--        >-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a-->
-<!--          class="nav-link waves-light"-->
-<!--          mdbWavesEffect-->
-<!--          (click)="navigateSerie()"-->
-<!--        >-->
-<!--          <mat-icon>tv</mat-icon> {{ "App.Series" | translate }}</a-->
-<!--        >-->
-<!--      </li>-->
+<mat-toolbar color="primary" class="navbar">
+  <!-- Wrapper for Centering -->
+  <div class="navbar-content">
+    <!-- Logo -->
+    <button mat-button class="logo-btn" [routerLink]="['/home']">
+      <img src="assets/images/logo5.png" style="width:115px ;height: 100%" />
+    </button>
 
-<!--      <li class="nav-item">-->
-<!--        <a-->
-<!--          class="nav-link waves-light"-->
-<!--          mdbWavesEffect-->
-<!--          (click)="navigateUpcoming()"-->
-<!--        >-->
-<!--          <mat-icon>local_cafe</mat-icon> {{ "App.Upcoming" | translate }}</a-->
-<!--        >-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a-->
-<!--          (click)="navigateTop()"-->
-<!--          class="nav-link waves-light"-->
-<!--          mdbWavesEffect-->
-<!--        >-->
-<!--          <mat-icon>star_rate</mat-icon> {{ "App.Top_rated" | translate }}</a-->
-<!--        >-->
-<!--      </li>-->
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <button mat-button (click)="navigateMovie()">
+        <mat-icon>movie</mat-icon> Movies
+      </button>
 
-<!--      <li class="nav-item">-->
-<!--        <a-->
-<!--          class="nav-link waves-light"-->
-<!--          mdbWavesEffect-->
-<!--          [routerLink]="['/settings']"-->
-<!--        >-->
-<!--          <mat-icon>info</mat-icon> {{ "App.About" | translate }}</a-->
-<!--        >-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--    <form class="form-inline waves-light">-->
-<!--      <div class="sdiv">-->
-<!--        <button [routerLink]="['/searchbykeyword', keyword]" class="search">-->
-<!--          <i class="fa fa-search"></i>-->
-<!--        </button>-->
-<!--        <input-->
-<!--          (input)="goToSearch()"-->
-<!--          class="form-control stext"-->
-<!--          type="text"-->
-<!--          name="keyword"-->
-<!--          [(ngModel)]="keyword"-->
-<!--          placeholder="{{ 'App.search' | translate }}"-->
-<!--        />-->
-<!--      </div>-->
-<!--    </form>-->
+      <button mat-button (click)="navigateSerie()">
+        <mat-icon>tv</mat-icon> Series
+      </button>
 
-<!--    &lt;!&ndash; <app-login></app-login> &ndash;&gt;-->
-<!--    <button-->
-<!--  *ngIf="!isLoggedIn"-->
-<!--  (click)="openLogin()"-->
-<!--  class="waves-light loginbtn"-->
-<!--  mdbWavesEffect-->
-<!--&gt;-->
-<!--  {{ "App.Sign in" | translate }}-->
-<!--</button>-->
-<!--  <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">-->
-<!--    <img class="avatar" [src]="sanitize()" />-->
-<!--    <span-->
-<!--  -->
-<!--    class="font-weight-bold text-white ml-1"-->
-<!--    >{{ profil }}</span-->
-<!--  > -->
-<!--  </button>-->
-<!--  <mat-menu #menu="matMenu">-->
+      <button mat-button (click)="navigateUpcoming()">
+        <mat-icon>local_cafe</mat-icon> Upcoming
+      </button>
 
-<!--    <app-actions *ngIf="isLoggedIn" [profil]="profil"></app-actions>-->
+      <button mat-button (click)="navigateTop()">
+        <mat-icon>star_rate</mat-icon> Top Rated
+      </button>
 
-<!--   -->
-<!--  </mat-menu>-->
-<!--  </links>-->
-<!--</mdb-navbar>-->
+      <button mat-button [routerLink]="['/settings']">
+        <mat-icon>info</mat-icon> About Us
+      </button>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input
+        class="search-input"
+        type="text"
+        [(ngModel)]="keyword"
+        (input)="goToSearch()"
+        placeholder="Search for movie, serie..."
+      />
+    </div>
+
+    <!-- Sign-in Button -->
+    <button mat-button class="sign-in-btn" (click)="openLogin()" *ngIf="!isLoggedIn">
+      Sign in
+    </button>
+
+    <!-- User Profile -->
+    <ng-container *ngIf="isLoggedIn">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <img class="avatar" [src]="sanitize()" />
+      </button>
+      <mat-menu #menu="matMenu">
+        <app-actions [profil]="profil"></app-actions>
+      </mat-menu>
+    </ng-container>
+  </div>
+</mat-toolbar>

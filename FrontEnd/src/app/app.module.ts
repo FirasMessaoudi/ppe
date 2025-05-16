@@ -19,6 +19,7 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {en_US, NZ_I18N} from 'ng-zorro-antd/i18n';
 import {MaterialModule} from './material.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(en);
 registerLocaleData(fr);
@@ -51,6 +52,7 @@ export class MyHammerConfig extends HammerGestureConfig {
         deps: [HttpClient],
       }
     }),
+    NgbModule,
 
   ],
   providers: [{provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig},
